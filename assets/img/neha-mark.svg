@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 110" role="img" aria-label="NEHA Threading">
+  <!-- Vector redraw of the NEHA Threading leaf mark. Leaf parts that leave the
+       lime square are drawn in forest green so the mark works on light pages. -->
+  <defs>
+    <clipPath id="neha-sq"><rect x="5" y="12" width="83" height="84"/></clipPath>
+    <g id="neha-leaves">
+      <path d="M36 23 C30 34 14 50 12 64 C11 80 22 92 36 94 C42 95 46 93 47 88 C48 76 46 62 41 50 C39 42 37 32 36 23 Z"/>
+      <path d="M42 52 C51 60 59 70 59 82 C59 96 45 104 25 106 C38 101 48 96 50 86 C52 74 49 62 42 52 Z"/>
+      <path d="M66 6 C78 16 82 30 78 40 C75 48 68 50 62 48 C65 38 62 26 66 6 Z"/>
+      <path d="M62 22 C54 30 52 42 58 50 C62 54 68 56 75 56 C66 52 60 46 60 38 C60 32 61 27 62 22 Z"/>
+    </g>
+  </defs>
+  <rect x="5" y="12" width="83" height="84" fill="#AECD54"/>
+  <use href="#neha-leaves" fill="#285F5F"/>
+  <use href="#neha-leaves" fill="#FFFFFF" clip-path="url(#neha-sq)"/>
+  <circle cx="47" cy="12.5" r="9" fill="#E6883C"/>
+</svg>

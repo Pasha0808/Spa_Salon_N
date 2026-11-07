@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; img-src 'self' data:; media-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://cloudflareinsights.com">
+<title>NEHA Threading — Eyebrow Threading, Lashes &amp; Skin Care</title>
+<meta name="description" content="NEHA Threading offers gentle, precise eyebrow and face threading, henna, lash lifts, tinting and facials in a calm, natural setting. Walk-ins welcome.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NEHA Threading">
+<meta property="og:title" content="NEHA Threading — Eyebrow Threading, Lashes &amp; Skin Care">
+<meta property="og:description" content="Gentle, precise threading, henna, lashes and skin care. Walk-ins welcome.">
+<meta property="og:image" content="assets/img/hero-poster.jpg">
+<meta name="theme-color" content="#285f5f">
+<link rel="icon" type="image/svg+xml" href="assets/img/neha-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css?v=1">
+</head>
+<body class="header-over-hero">
+
+<div id="neha-header"></div>
+
+<main id="main">
+
+<!-- ===== Hero: full-screen background video ===== -->
+<section class="hero">
+  <video class="hero-bg" muted loop playsinline preload="none" aria-hidden="true"
+         poster="assets/img/hero-poster.jpg" id="hero-video"
+         data-src="assets/video/hero-loop.mp4?v=1" data-placeholder="Hero video"></video>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="container hero-content">
+    <p class="eyebrow">Threading · Brows · Lashes · Skin</p>
+    <h1>Natural beauty,<br><em>shaped by hand.</em></h1>
+    <p class="lead">Gentle, precise threading with a single strand of 100% cotton — no chemicals, no wax on delicate skin, just clean lines and a calm, unhurried visit.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-lime" href="#visit" data-book>Book an Appointment</a>
+      <a class="btn btn-outline-light" href="services.html">View Menu &amp; Prices</a>
+    </div>
+    <ul class="hero-meta">
+      <li>Walk-ins welcome</li>
+      <li>Most services in 15 minutes</li>
+      <li>Sensitive-skin friendly</li>
+    </ul>
+  </div>
+  <span class="scroll-cue" aria-hidden="true"></span>
+  <button class="hero-pause" id="hero-pause" type="button" aria-pressed="false" aria-label="Pause background video" hidden></button>
+</section>
+
+<!-- ===== What brings you in? ===== -->
+<section class="needs" id="services" aria-labelledby="needs-title">
+  <div class="container">
+    <p class="eyebrow">Your time · your way</p>
+    <h2 id="needs-title">What brings you in today?</h2>
+    <p class="needs-sub">Shape. Smooth. Brighten. Relax.</p>
+    <div class="needs-grid">
+      <a class="need" href="services.html#threading">
+        <span class="need-icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 20c5-5 12-6 16-3"/><path d="M42 20c-5-5-12-6-16-3"/><path d="M8 30c4-4 10-4 13 0-3 4-9 4-13 0Z"/><path d="M40 30c-4-4-10-4-13 0 3 4 9 4 13 0Z"/></svg></span>
+        <span>Brows</span><small>Threading</small>
+      </a>
+      <a class="need" href="services.html#threading">
+        <span class="need-icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M24 6c-9 0-14 7-14 16 0 10 7 20 14 20s14-10 14-20c0-9-5-16-14-16Z"/><path d="M18 21h4M26 21h4"/><path d="M20 32c2.5 2 5.5 2 8 0"/></svg></span>
+        <span>Face</span><small>Threading</small>
+      </a>
+      <a class="need" href="services.html#lashes">
+        <span class="need-icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 24c10-10 26-10 36 0"/><path d="M10 20 7 15M16 16l-2-6M24 14V8M32 16l2-6M38 20l3-5"/><path d="M6 24c10 9 26 9 36 0"/><circle cx="24" cy="26" r="5"/></svg></span>
+        <span>Lashes</span><small>Lift &amp; tint</small>
+      </a>
+      <a class="need" href="services.html#henna">
+        <span class="need-icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="24" cy="24" r="4"/><path d="M24 20c-3-6 0-12 0-12s3 6 0 12M28 24c6-3 12 0 12 0s-6 3-12 0M24 28c3 6 0 12 0 12s-3-6 0-12M20 24c-6 3-12 0-12 0s6-3 12 0"/><path d="M27 21c4-4 9-4 9-4s0 5-4 9M21 27c-4 4-9 4-9 4s0-5 4-9"/></svg></span>
+        <span>Henna</span><small>Brows &amp; art</small>
+      </a>
+      <a class="need" href="services.html#skin">
+        <span class="need-icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M10 40C10 22 22 10 40 8c0 18-10 30-30 32Z"/><path d="M10 40 30 18"/></svg></span>
+        <span>Skin</span><small>Facials</small>
+      </a>
+      <a class="need" href="services.html#wax">
+        <span class="need-icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M24 6c6 9 12 16 12 23a12 12 0 0 1-24 0c0-7 6-14 12-23Z"/><path d="M18 30a6 6 0 0 0 6 6"/></svg></span>
+        <span>Waxing</span><small>Body</small>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Our story ===== -->
+<section class="section" id="about">
+  <div class="container story-grid">
+    <div class="ph-photo story-photo reveal" data-label="Photo · Salon interior" role="img" aria-label="Salon interior photo placeholder"></div>
+    <div class="story-card reveal" data-placeholder="Owner story">
+      <p class="eyebrow">Our story</p>
+      <h2>An ancient art, <em>practised with care.</em></h2>
+      <p>Threading has been passed from hand to hand for generations. At NEHA we keep that tradition — a twisted cotton thread lifting each hair cleanly from the root — and pair it with a quiet space, fresh thread for every guest, and soothing aloe to finish.</p>
+      <p>The result is softer skin, sharper lines and brows that frame your face the way nature intended.</p>
+      <a class="btn btn-outline" href="services.html">Explore the menu</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Featured services ===== -->
+<section class="section section-mist" aria-labelledby="svc-title">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Signature services</p>
+      <h2 id="svc-title">Precision for every face</h2>
+      <p>From a quick brow clean-up to a full-face refresh, every service begins with a short consultation about the shape you love.</p>
+    </div>
+    <div class="service-grid">
+      <article class="service-card reveal">
+        <div class="ph-photo" data-label="Photo · Brow threading"></div>
+        <div class="service-body">
+          <h3>Eyebrow Threading</h3>
+          <p>Our signature service. Clean arches, defined tails and a shape mapped to your features.</p>
+          <div class="service-foot"><span class="price" data-placeholder="Price"><small>from</small>$14</span><a class="text-link" href="services.html#threading">Details</a></div>
+        </div>
+      </article>
+      <article class="service-card reveal">
+        <div class="ph-photo tone-sage" data-label="Photo · Full face"></div>
+        <div class="service-body">
+          <h3>Full Face Threading</h3>
+          <p>Brows, lip, chin, cheeks and forehead in one visit — smooth skin that lasts for weeks.</p>
+          <div class="service-foot"><span class="price" data-placeholder="Price"><small>from</small>$45</span><a class="text-link" href="services.html#threading">Details</a></div>
+        </div>
+      </article>
+      <article class="service-card reveal">
+        <div class="ph-photo tone-deep" data-label="Photo · Lash lift"></div>
+        <div class="service-body">
+          <h3>Lash Lift &amp; Tint</h3>
+          <p>A natural curl and deeper colour for your own lashes. No extensions, no daily curler.</p>
+          <div class="service-foot"><span class="price" data-placeholder="Price"><small>from</small>$65</span><a class="text-link" href="services.html#lashes">Details</a></div>
+        </div>
+      </article>
+      <article class="service-card reveal">
+        <div class="ph-photo tone-lime" data-label="Photo · Brow henna"></div>
+        <div class="service-body">
+          <h3>Henna Brows</h3>
+          <p>Plant-based tint that stains hair and skin for fuller-looking brows for up to two weeks.</p>
+          <div class="service-foot"><span class="price" data-placeholder="Price"><small>from</small>$30</span><a class="text-link" href="services.html#henna">Details</a></div>
+        </div>
+      </article>
+      <article class="service-card reveal">
+        <div class="ph-photo" data-label="Photo · Facial"></div>
+        <div class="service-body">
+          <h3>Signature Facial</h3>
+          <p>Cleanse, gentle exfoliation, steam and a calming mask, tailored to your skin.</p>
+          <div class="service-foot"><span class="price" data-placeholder="Price"><small>from</small>$60</span><a class="text-link" href="services.html#skin">Details</a></div>
+        </div>
+      </article>
+      <article class="service-card reveal">
+        <div class="ph-photo tone-sage" data-label="Photo · Tinting"></div>
+        <div class="service-body">
+          <h3>Brow &amp; Lash Tinting</h3>
+          <p>Soft definition in minutes — the perfect finishing touch after threading.</p>
+          <div class="service-foot"><span class="price" data-placeholder="Price"><small>from</small>$20</span><a class="text-link" href="services.html#lashes">Details</a></div>
+        </div>
+      </article>
+    </div>
+    <div class="center-cta"><a class="btn btn-forest" href="services.html">See the full menu</a></div>
+  </div>
+</section>
+
+<!-- ===== The experience ===== -->
+<section class="section" aria-labelledby="exp-title">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">The NEHA experience</p>
+      <h2 id="exp-title">Fifteen calm minutes</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <span class="step-num">01</span>
+        <h3>Consult</h3>
+        <p>We look at your natural shape and talk through the look you want — soft, defined or bold.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">02</span>
+        <h3>Thread</h3>
+        <p>A fresh cotton thread removes each hair from the root, precisely and without chemicals.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">03</span>
+        <h3>Soothe</h3>
+        <p>Cool aloe calms the skin so you leave polished, comfortable and ready for your day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Reviews ===== -->
+<section class="section section-mist" id="reviews" aria-labelledby="reviews-title">
+  <div class="container">
+    <h2 class="sr-only" id="reviews-title">Client reviews</h2>
+    <figure class="quote-feature reveal" data-placeholder="Sample review">
+      <blockquote>I have tried every brow place in town. NEHA is the only one that listens — my brows have never looked this natural.</blockquote>
+      <figcaption><span class="stars" aria-label="5 out of 5 stars">★★★★★</span><br>Priya S. · Google review</figcaption>
+    </figure>
+    <div class="review-grid">
+      <figure class="review reveal" data-placeholder="Sample review">
+        <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+        <blockquote>Quick, gentle and spotless. In and out on my lunch break with perfect brows.</blockquote>
+        <figcaption>Amanda R.</figcaption>
+      </figure>
+      <figure class="review reveal" data-placeholder="Sample review">
+        <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+        <blockquote>The lash lift is incredible — six weeks later and I still don't need a curler.</blockquote>
+        <figcaption>Jessica L.</figcaption>
+      </figure>
+      <figure class="review reveal" data-placeholder="Sample review">
+        <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+        <blockquote>Sensitive skin and no redness after a full face. Such a calm, friendly place.</blockquote>
+        <figcaption>Maria G.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Gallery ===== -->
+<section class="section" id="gallery" aria-labelledby="gallery-title">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">@nehathreading</p>
+      <h2 id="gallery-title">Fresh from the chair</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="ph-photo g-tall reveal" data-label="Before / after brows"></div>
+      <div class="ph-photo tone-sage reveal" data-label="Brow detail"></div>
+      <div class="ph-photo tone-deep g-wide reveal" data-label="Treatment room"></div>
+      <div class="ph-photo tone-lime reveal" data-label="Henna art"></div>
+      <div class="ph-photo reveal" data-label="Lash lift"></div>
+      <div class="ph-photo tone-deep reveal" data-label="Brow shaping"></div>
+    </div>
+    <div class="center-cta"><a class="btn btn-outline" href="https://www.instagram.com/" target="_blank" rel="noopener" data-placeholder="Instagram link">Follow on Instagram</a></div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section section-mist" id="faq" aria-labelledby="faq-title">
+  <div class="container container-narrow">
+    <div class="section-head">
+      <p class="eyebrow">Good to know</p>
+      <h2 id="faq-title">Questions, answered</h2>
+    </div>
+    <details class="faq-item">
+      <summary>Does threading hurt?</summary>
+      <p>Most guests feel a quick tingle rather than pain, and it fades within minutes. Threading touches only the hair, not the skin, which makes it gentler than waxing for many people.</p>
+    </details>
+    <details class="faq-item">
+      <summary>How long does it last?</summary>
+      <p>Results typically last three to five weeks. Regular visits every three to four weeks keep your shape crisp, and over time hair can grow back finer.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Is it safe for sensitive skin?</summary>
+      <p>Yes — no chemicals or hot wax touch your skin. It is a popular choice for anyone using retinol or other skin treatments that make waxing risky. Tell us about any skin concerns before we start.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Do I need an appointment?</summary>
+      <p>Walk-ins are always welcome. Booking ahead guarantees your time, especially on weekends and for lash or facial services.</p>
+    </details>
+    <details class="faq-item">
+      <summary>How should I prepare?</summary>
+      <p>Come with clean, makeup-free brows if you can, and let a couple of weeks of growth come in if you want a full reshape.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ===== Visit / contact ===== -->
+<section class="section" id="visit" aria-labelledby="visit-title">
+  <div class="container visit-grid">
+    <div class="visit-info">
+      <p class="eyebrow">Visit us</p>
+      <h2 id="visit-title">Come in, slow down.</h2>
+      <div class="info-block">
+        <h3>Address</h3>
+        <p data-address data-placeholder="Address"></p>
+      </div>
+      <div class="info-block">
+        <h3>Phone &amp; email</h3>
+        <p><a data-phone data-placeholder="Phone" href="#visit"></a><br><a data-email href="#visit"></a></p>
+      </div>
+      <div class="info-block">
+        <h3>Hours</h3>
+        <ul class="hours-list" data-hours data-placeholder="Hours"></ul>
+      </div>
+      <div data-map class="ph-photo tone-sage map-ph" data-label="Map · set mapQuery in js/config.js"></div>
+    </div>
+
+    <form class="contact-form" id="contact-form" novalidate>
+      <h3>Send us a note</h3>
+      <p>Questions about a service, a bridal party or a gift card? We reply within one business day.</p>
+      <div class="form-row">
+        <label>Name
+          <input type="text" name="name" required minlength="2" maxlength="120" autocomplete="name" aria-describedby="contact-name-error">
+          <span class="field-error" id="contact-name-error" hidden></span>
+        </label>
+        <label>Email
+          <input type="email" name="email" required maxlength="254" autocomplete="email" inputmode="email" aria-describedby="contact-email-error">
+          <span class="field-error" id="contact-email-error" hidden></span>
+        </label>
+      </div>
+      <div class="form-row">
+        <label>Phone <span class="sr-only">(optional)</span>
+          <input type="tel" name="phone" maxlength="30" autocomplete="tel">
+        </label>
+        <label>Interested in
+          <select name="service">
+            <option>Threading</option>
+            <option>Henna</option>
+            <option>Lashes &amp; tinting</option>
+            <option>Facials</option>
+            <option>Waxing</option>
+            <option>Bridal / group</option>
+            <option>Gift cards</option>
+            <option>Something else</option>
+          </select>
+        </label>
+      </div>
+      <label>Message
+        <textarea name="message" rows="4" maxlength="2000"></textarea>
+      </label>
+      <p class="form-notice" id="contact-notice" role="status" tabindex="-1" hidden>Thank you! This is a preview of the new website, so your note was not sent — please call us and we'll be happy to help.</p>
+      <button type="submit" class="btn btn-forest">Send Message</button>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<div id="neha-footer"></div>
+
+<script src="js/config.js?v=1"></script>
+<script src="js/site.js?v=1"></script>
+<script src="js/main.js?v=1"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "neha-threading",
+  "version": "0.1.0",
+  "private": true,
+  "description": "NEHA Threading spa & threading salon website (prototype)",
+  "scripts": {
+    "test": "node tests/static-audit.mjs",
+    "start": "python3 -m http.server 4173 --bind 127.0.0.1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

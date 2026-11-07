@@ -1,0 +1,11 @@
+.git
+.github
+.gitignore
+.assetsignore
+docs
+tests
+node_modules
+README.md
+package.json
+wrangler.jsonc
+assets/img/logo-original.png

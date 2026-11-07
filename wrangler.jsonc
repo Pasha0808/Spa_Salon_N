@@ -1,0 +1,10 @@
+{
+  // Cloudflare Workers static-assets deployment (same host as Elite Dental Lab).
+  // Files listed in .assetsignore are not published.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "neha-threading",
+  "compatibility_date": "2026-08-27",
+  "assets": {
+    "directory": "."
+  }
+}
