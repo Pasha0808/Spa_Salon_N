@@ -29,7 +29,7 @@ Then open <http://127.0.0.1:4173/>. Add `?review` to any URL
 | `index.html` | Home page. |
 | `services.html` | Menu & prices with tabs; `services.html#lashes` opens a tab directly. |
 | `assets/img/neha-mark.svg` | Vector redraw of the leaf mark (favicon too). |
-| `assets/video/hero-loop.mp4` | **Placeholder** ambient loop (generated). Replace with real salon footage, keep the poster in `assets/img/hero-poster.jpg` in step. |
+| `assets/video/hero-loop.mp4` | **Placeholder** hero video: a third-party spa promo clip (Sharq Village & Spa), trimmed before its end logo, muted, 720p H.264. **Not licensed for launch**: replace it with NEHA footage, and regenerate `assets/img/hero-poster.jpg` from the new clip. |
 
 ## Booking
 
@@ -60,3 +60,12 @@ placeholders remain. GitHub Actions runs the same on pushes and pull requests.
 assets (files in `.assetsignore` are excluded), the same host as Elite.
 Connect the repository in Cloudflare → Workers & Pages → Create → Import a
 repository, with no build command.
+
+### Replacing the hero video
+
+```bash
+ffmpeg -i source.mp4 -t 17 -an -vf "fps=25,scale=1280:-2,fade=t=in:st=0:d=0.5,fade=t=out:st=16.4:d=0.6,format=yuv420p" -c:v libx264 -crf 26 -preset slow -movflags +faststart assets/video/hero-loop.mp4
+ffmpeg -ss 1.2 -i assets/video/hero-loop.mp4 -frames:v 1 -q:v 4 assets/img/hero-poster.jpg
+```
+
+Then bump the `?v=` number on `data-src` in `index.html` so browsers fetch the new file.

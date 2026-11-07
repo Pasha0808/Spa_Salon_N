@@ -50,7 +50,8 @@ the owner's request for green, so the prototype follows it most closely.
 ## Still needed from the owner
 
 - Real photos (salon interior, services, before/after) and **hero video
-  footage**. 10–20 s of slow, calm clips: threading close-up, the treatment
+  footage**. The prototype currently uses a Sharq Village & Spa promo clip
+  as a stand-in; it belongs to that hotel and must be replaced before launch. 10–20 s of slow, calm clips: threading close-up, the treatment
   room, plants, aloe. We compress it like the Elite clip.
 - Address, phone, email, hours, Instagram/Facebook links.
 - Real service list and prices (the menu currently has sample prices).
