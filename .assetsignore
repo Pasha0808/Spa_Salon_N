@@ -9,3 +9,6 @@ README.md
 package.json
 wrangler.jsonc
 assets/img/logo-original.png
+.nojekyll
+AGENTS.md
+CLAUDE.md
