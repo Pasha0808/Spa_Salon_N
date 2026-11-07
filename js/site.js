@@ -20,6 +20,16 @@
   const bookHref = C.bookingUrl || "index.html#visit";
   const bookAttrs = C.bookingUrl ? ' target="_blank" rel="noopener"' : "";
   const giftHref = C.giftCardUrl || "index.html#visit";
+  const locations = C.locations || [];
+  const socials = (C.socials || []).filter(item => item.url);
+  const external = ' target="_blank" rel="noopener"';
+
+  const hoursList = hours => (hours || [])
+    .map(([days, time]) => `<li><span>${esc(days)}</span><span>${esc(time)}</span></li>`).join("");
+  const directionsHref = loc => "https://www.google.com/maps/search/?api=1&query=" +
+    encodeURIComponent(loc.mapQuery || `${loc.addressLine1}, ${loc.addressLine2}`);
+  const socialLinks = socials
+    .map(item => `<a href="${esc(item.url)}"${external}>${esc(item.label)}</a>`).join("");
 
   /* The leaf mark is inlined so its overflow colour can follow the header
      (forest on light backgrounds, white on dark ones). Each copy gets its
@@ -72,15 +82,20 @@
         <a class="nav-book" href="${esc(bookHref)}"${bookAttrs}>Book Now</a>
       </nav>
       <div class="header-actions">
-        <a class="header-phone" href="${esc(C.phoneHref)}" data-placeholder="Phone">${esc(C.phone)}</a>
+        <a class="header-phone" href="index.html#visit">${locations.length > 1 ? `${locations.length} Locations` : esc(locations[0]?.phone || "")}</a>
         <a class="btn btn-book" href="${esc(bookHref)}"${bookAttrs}>Book Now</a>
         <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Open menu" aria-controls="main-nav" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </div>
   </header>`;
 
-  const hoursRows = (C.hours || [])
-    .map(([days, time]) => `<li><span>${esc(days)}</span><span>${esc(time)}</span></li>`).join("");
+  const footerLocations = locations.map(loc => `
+      <div class="footer-col" data-placeholder="Location">
+        <h3>${esc(loc.name)}</h3>
+        <span>${esc(loc.addressLine1)}<br>${esc(loc.addressLine2)}</span>
+        <a href="${esc(loc.phoneHref)}">${esc(loc.phone)}</a>
+        <ul class="hours-list">${hoursList(loc.hours)}</ul>
+      </div>`).join("");
 
   const footerHTML = `
   <section class="cta-trio" aria-label="Book, gift cards and offers">
@@ -107,10 +122,8 @@
       <div class="footer-brand">
         ${logo("logo-light")}
         <p>${esc(C.tagline)}. Gentle, precise threading and skin care with 100% cotton thread and no harsh chemicals.</p>
-        <div class="socials">
-          <a href="${esc(C.instagram)}" target="_blank" rel="noopener">Instagram</a>
-          <a href="${esc(C.facebook)}" target="_blank" rel="noopener">Facebook</a>
-        </div>
+        <div class="socials" data-placeholder="Social links">${socialLinks}</div>
+        <a class="footer-email" href="mailto:${esc(C.email)}">${esc(C.email)}</a>
       </div>
       <div class="footer-col">
         <h3>Explore</h3>
@@ -120,16 +133,7 @@
         <a href="index.html#gallery">Gallery</a>
         <a href="index.html#faq">FAQ</a>
       </div>
-      <div class="footer-col">
-        <h3>Visit</h3>
-        <span data-placeholder="Address">${esc(C.addressLine1)}<br>${esc(C.addressLine2)}</span>
-        <a href="${esc(C.phoneHref)}">${esc(C.phone)}</a>
-        <a href="mailto:${esc(C.email)}">${esc(C.email)}</a>
-      </div>
-      <div class="footer-col">
-        <h3>Hours</h3>
-        <ul class="hours-list" data-placeholder="Hours">${hoursRows}</ul>
-      </div>
+      ${footerLocations}
     </div>
     <div class="container footer-bottom">
       <span>© ${new Date().getFullYear()} ${esc(C.name)}. All rights reserved.</span>
@@ -150,23 +154,36 @@
     if (C.bookingUrl) { a.target = "_blank"; a.rel = "noopener"; }
   });
   document.querySelectorAll("[data-gift]").forEach(a => { a.href = giftHref; });
-  document.querySelectorAll("[data-phone]").forEach(a => { a.href = C.phoneHref; a.textContent = C.phone; });
   document.querySelectorAll("[data-email]").forEach(a => { a.href = "mailto:" + C.email; a.textContent = C.email; });
-  document.querySelectorAll("[data-address]").forEach(el => {
-    el.innerHTML = `${esc(C.addressLine1)}<br>${esc(C.addressLine2)}`;
+  document.querySelectorAll("[data-socials]").forEach(el => { el.innerHTML = socialLinks; });
+  document.querySelectorAll("[data-social]").forEach(a => {
+    const item = socials.find(s => s.label.toLowerCase() === a.dataset.social);
+    if (item) a.href = item.url; else a.hidden = true;
   });
-  document.querySelectorAll("[data-hours]").forEach(el => { el.innerHTML = hoursRows; });
-  if (C.mapQuery) {
-    document.querySelectorAll("[data-map]").forEach(el => {
-      const frame = document.createElement("iframe");
-      frame.className = "map-frame";
-      frame.loading = "lazy";
-      frame.title = `Map showing ${C.name}`;
-      frame.referrerPolicy = "no-referrer-when-downgrade";
-      frame.src = "https://www.google.com/maps?output=embed&q=" + encodeURIComponent(C.mapQuery);
-      el.replaceWith(frame);
-    });
-  }
+
+  // One card per location in the Visit section
+  document.querySelectorAll("[data-locations]").forEach(wrap => {
+    wrap.innerHTML = locations.map((loc, i) => {
+      const map = loc.mapQuery
+        ? `<iframe class="map-frame" loading="lazy" title="Map showing ${esc(C.name)} ${esc(loc.name)}" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?output=embed&amp;q=${esc(encodeURIComponent(loc.mapQuery))}"></iframe>`
+        : `<div class="ph-photo ${i % 2 ? "tone-deep" : "tone-sage"} map-ph" data-label="Map · set mapQuery in js/config.js"></div>`;
+      const book = loc.bookingUrl || C.bookingUrl;
+      return `
+      <article class="location-card reveal" data-placeholder="Location details">
+        ${map}
+        <div class="location-body">
+          <h3>${esc(loc.name)}</h3>
+          <p class="loc-address">${esc(loc.addressLine1)}<br>${esc(loc.addressLine2)}</p>
+          <p class="loc-phone"><a href="${esc(loc.phoneHref)}">${esc(loc.phone)}</a></p>
+          <ul class="hours-list">${hoursList(loc.hours)}</ul>
+          <div class="loc-actions">
+            <a class="btn btn-forest" href="${esc(book || "#contact-form")}"${book ? external : ""}>${book ? "Book here" : "Send a note"}</a>
+            <a class="text-link" href="${esc(directionsHref(loc))}"${external}>Directions</a>
+          </div>
+        </div>
+      </article>`;
+    }).join("");
+  });
 
   /* ---------------- Header: transparent over hero, solid after ---------------- */
 

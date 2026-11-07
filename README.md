@@ -65,6 +65,11 @@ website. Requests so far, in order:
    review.
 9. **A detailed README** (this file), so another tool such as ChatGPT Codex
    can read it and understand the project.
+10. **The salon's current website, <https://www.nehathreading.com/>, is for
+    facts only.** The owner does **not** like it at all, so take **no design
+    inspiration** from it. Use it as the source for **prices and factual
+    information**: they have **two locations**, so use its addresses, phone
+    numbers, email, and links to their social media and **Yelp**.
 
 ---
 
@@ -75,7 +80,9 @@ website. Requests so far, in order:
 | Business | NEHA Threading: eyebrow and face threading salon / spa |
 | Services (assumed for the prototype; confirm with owner) | Threading, henna, lash lift & tinting, facials, waxing |
 | Owner | Referred to as "he". Name not yet known. |
-| Location, phone, hours, booking system | **Unknown.** Placeholders in `js/config.js` |
+| Current website | <https://www.nehathreading.com/>: **facts only, no design inspiration** (the owner dislikes it) |
+| Locations | **Two.** Addresses, phones and hours to be copied from the current site into `locations` in `js/config.js` |
+| Email, social media, Yelp, booking system | To be copied from the current site. Placeholders in `js/config.js` until then |
 
 ### Logo
 
@@ -215,7 +222,7 @@ Principles:
 | # | Section | Notes |
 | --- | --- | --- |
 | 0 | Offer bar | Text from `announcement` in `js/config.js` (empty string hides it). |
-| 1 | Header | Logo, nav (Services, Menu & Prices, Our Story, Gallery, Visit), phone, **Book Now**. **Transparent over the hero, turns solid cream after 40 px of scroll.** Hamburger menu under 960 px. |
+| 1 | Header | Logo, nav (Services, Menu & Prices, Our Story, Gallery, Visit), "2 Locations" link (or the phone number if there is only one location), **Book Now**. **Transparent over the hero, turns solid cream after 40 px of scroll.** Hamburger menu under 960 px. |
 | 2 | Hero | Full-screen muted looping video, dark green gradient overlay, "Natural beauty, *shaped by hand.*", two CTAs, three selling points, pause/play button. |
 | 3 | What brings you in today? `#services` | Six icon links: Brows, Face, Lashes, Henna, Skin, Waxing. Each deep-links to a menu tab. |
 | 4 | Our Story `#about` | Photo placeholder with an overlapping white card (placeholder text). |
@@ -224,9 +231,9 @@ Principles:
 | 7 | Reviews `#reviews` | One featured quote + three cards. **Sample text, not real reviews.** |
 | 8 | Gallery `#gallery` | Grid of photo placeholders + Instagram button. |
 | 9 | FAQ `#faq` | `<details>` accordion, five questions. |
-| 10 | Visit `#visit` | Address, phone/email, hours (all from config), map (shown when `mapQuery` is set), contact form. |
+| 10 | Visit `#visit` | **One card per location**, rendered from `locations` in config: map (when `mapQuery` is set), name, address, phone, hours, *Book here* (or *Send a note* while there is no booking link), *Directions* (Google Maps). Below: email, social links (incl. Yelp), contact form. |
 | 11 | CTA band | Book a visit / Gift cards / Walk-ins welcome. |
-| 12 | Footer | Logo, tagline, socials, Explore links, address, hours. |
+| 12 | Footer | Logo, tagline, social links, email, Explore links, then one column per location (address, phone, hours). |
 
 ### `services.html` (menu & prices)
 
@@ -268,9 +275,10 @@ AGENTS.md / CLAUDE.md Working rules for AI coding agents
 - `<body class="header-over-hero">` makes the header start transparent
   (both current pages use it, because both open on a dark hero).
 - Elements marked `data-book` get the booking URL, and `data-gift` the gift
-  card URL. `data-phone`, `data-email`, `data-address` and `data-hours` are
-  filled from config. `data-map` is replaced by a Google Maps iframe when
-  `mapQuery` is set.
+  card URL. `data-email` gets the email, and `data-socials` gets the list of
+  social links. `data-social="instagram"` (any label, lowercase) links to
+  that one network, or is hidden if it has no URL. `data-locations` is
+  filled with one card per location.
 - Scripts load at the end of `<body>` in this order: `config.js`,
   `site.js`, `main.js`. Each URL has a `?v=N` cache-buster: **bump it when
   the file changes.**
@@ -337,12 +345,13 @@ also prints how many remain.
 | **Hero video** | `assets/video/hero-loop.mp4` | Placeholder: the *Sharq Village & Spa* (Ritz-Carlton) promo clip supplied by the developer, trimmed to 0–16.9 s to cut the hotel's end logo, muted, 1280×720 H.264, 0.5 s fades. **It belongs to that hotel. Do not launch with it.** Ask the salon for 10–20 s of calm footage (threading close-up, treatment room, plants, aloe). |
 | Hero poster | `assets/img/hero-poster.jpg` | Frame at 1.2 s of the video above. Regenerate with the new video. |
 | Photos | Every `.ph-photo` tile (green gradient + label) | Salon interior, each service, before/after, treatment room, front desk, henna art, lashes |
-| Phone, email, address, hours, map | `js/config.js` (`// TODO`) | Unknown |
-| Booking system & link | `bookingUrl` in config | Unknown (Vagaro, Square, Fresha, GlossGenius, Phorest, Meevo…). While empty, Book buttons scroll to *Visit*. |
+| **Both locations**: name, address, phone, hours, map address | `locations` in `js/config.js` (`// TODO`) | Copy from nehathreading.com. Third-party listings (MapQuest/Yelp aggregators) show *Neha Threading Salon and Spa, 1501 Reisterstown Rd, Pikesville, MD 21208* (Yelp 4.5★, 188 reviews). **Unverified; confirm against their site.** |
+| Email | `email` in config | Copy from nehathreading.com |
+| Social links: Instagram, Facebook, **Yelp**, Google, TikTok | `socials` in config | Copy from nehathreading.com. Empty URLs are hidden. |
+| Booking system & link | `bookingUrl` in config (or per location) | Copy from nehathreading.com if they book online. While empty, Book buttons scroll to *Visit*. |
 | Gift cards link | `giftCardUrl` in config | Unknown |
-| Instagram / Facebook | config + gallery button | Unknown |
 | New-client offer | `announcement` in config | "15% off first visit" is a **sample** borrowed from the references. Confirm or set `""`. |
-| Services & prices | `services.html`, home service cards | **Sample prices**, typical for threading salons |
+| Services & prices | `services.html`, home service cards | **Sample prices.** Replace with the real list and prices from nehathreading.com |
 | Owner story | Home *Our Story* card | Generic text; owner's name and story needed |
 | Reviews | Home *Reviews* | **Sample text. Must be replaced with real Google reviews before launch.** |
 | "Walk-ins welcome", "most services in 15 minutes", "sensitive-skin friendly" | Hero, CTA band, FAQ | Assumptions; confirm with owner |
@@ -412,6 +421,11 @@ ported.
 
 **Change business details:** edit `js/config.js`, then bump `config.js?v=` in both pages.
 
+**Add or remove a location:** add or remove an object in `locations` in
+`js/config.js`. The Visit cards, footer columns and the header "N Locations"
+link all update automatically. Set `mapQuery` to the full street address to
+show its map.
+
 **Turn on online booking:** set `bookingUrl` in `js/config.js`. Every Book
 button opens it in a new tab.
 
@@ -472,3 +486,4 @@ element so `?review` and `npm test` count it.
 | 2026-11-07 | Repository created. First prototype: home page, menu page, vector logo mark, green palette, generated ambient placeholder video, static audit, CI, Cloudflare config, client brief. |
 | 2026-11-07 | Placeholder video replaced with the supplied Sharq spa promo clip (logo trimmed, muted, H.264). |
 | 2026-11-07 | GitHub Pages preparation (`.nojekyll`, `noindex` for the review link). Client brief merged into this README; `AGENTS.md` added for AI agents. |
+| 2026-11-07 | Two-location support (Visit cards with map/directions/booking, footer columns, "2 Locations" header link) and social links incl. Yelp, all from `js/config.js`. Current site nehathreading.com recorded as the facts-only source. Its firewall blocks automated access, so the real details are still pending. |

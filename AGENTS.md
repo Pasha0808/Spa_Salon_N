@@ -13,6 +13,11 @@ It is a prototype for client review on GitHub Pages:
 https://pasha0808.github.io/Spa_Salon_N/
 
 ## Rules
+- **Facts come from the salon's current site, https://www.nehathreading.com/,
+  and nothing else.** Use it for prices, services, the two locations'
+  addresses, phones, hours, email, and social/Yelp links. **Never take design
+  inspiration from it.** The owner dislikes it. The design references are
+  the five sites in README §3.
 - **Keep it static.** No frameworks, bundlers or npm dependencies unless the
   developer asks. Relative links only, so it keeps working under the
   `/Spa_Salon_N/` GitHub Pages sub-path.
