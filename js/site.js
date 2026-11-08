@@ -64,7 +64,7 @@
   }
 
   const announcement = C.announcement
-    ? `<div class="announce" data-placeholder="Offer"><p>${esc(C.announcement)} · <a href="${esc(bookHref)}"${bookAttrs}>Book today</a></p></div>`
+    ? `<div class="announce"><p>${esc(C.announcement)} · <a href="${esc(bookHref)}"${bookAttrs}>Book today</a></p></div>`
     : "";
 
   const headerHTML = `

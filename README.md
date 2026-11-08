@@ -427,7 +427,7 @@ also prints how many remain.
 | Social links (Instagram, Facebook, Yelp, X) | `socials` in config | ✅ Done |
 | Online booking | `bookingUrl` in config (or per location) | They have none (phone booking). Add one if they adopt a booking system. |
 | Gift cards link | `giftCardUrl` in config | ✅ Their existing shop at nehathreading.com/gift-cards |
-| New-client offer | `announcement` in config | "15% off first visit" is a **sample** borrowed from the references. Confirm or set `""`. |
+| New-client offer | `announcement` in config | ✅ "New clients enjoy 15% off their first visit" confirmed (2026-11-08). |
 | Services & prices | `services.html`, home service cards | ✅ **Massages real.** ⏳ Threading, facials, waxing, henna, lashes and the home cards for brows, full face, henna and facial still have **sample prices**. Get the remaining pages listed in §2.1. |
 | Owner story | Home *Our Story* card | ✅ Written from the old site's About text. A photo of Neha / the salon is still needed. |
 | Reviews | Home *Reviews* | ✅ Real reviews from the old site |
@@ -566,3 +566,4 @@ element so `?review` and `npm test` count it.
 | 2026-11-07 | GitHub Pages preparation (`.nojekyll`, `noindex` for the review link). Client brief merged into this README; `AGENTS.md` added for AI agents. |
 | 2026-11-07 | Two-location support (Visit cards with map/directions/booking, footer columns, "2 Locations" header link) and social links incl. Yelp, all from `js/config.js`. Current site nehathreading.com recorded as the facts-only source. Its firewall blocks automated access, so the real details are still pending. |
 | 2026-11-08 | Real facts from nehathreading.com (saved pages): Pikesville + Canton addresses, phones, emails, hours, maps; socials (Instagram, Facebook, Yelp, X); gift card link; Neha Gupta's story; real reviews; Massages tab with real prices. Unconfirmed "walk-ins welcome" claims removed. Canton flagged as possibly closed. |
+| 2026-11-08 | 15% new-client offer confirmed (no longer a placeholder). Removed the hero's thin white "scroll" line, which read as a video glitch. |

@@ -64,5 +64,5 @@ window.NEHA_CONFIG = {
     { label: "X", url: "https://x.com/NehaSalonSpa" }
   ],
 
-  announcement: "New clients enjoy 15% off their first visit" // TODO sample offer: confirm with the owner, or "" to hide
+  announcement: "New clients enjoy 15% off their first visit" // confirmed by the developer 2026-11-08; "" hides the bar
 };

@@ -223,10 +223,6 @@ h1 em, h2 em { font-style: italic; color: inherit; }
   border-left: 11px solid currentColor; border-top: 7px solid transparent; border-bottom: 7px solid transparent;
   margin-left: 3px;
 }
-.scroll-cue {
-  position: absolute; left: 50%; bottom: 26px; z-index: 1; transform: translateX(-50%);
-  width: 1px; height: 54px; background: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0.8));
-}
 
 /* ---------- "What brings you in today?" ---------- */
 .needs { padding: 90px 0 30px; text-align: center; }
