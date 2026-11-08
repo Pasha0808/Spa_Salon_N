@@ -102,7 +102,7 @@
     <div class="container cta-trio-grid">
       <div class="cta-item">
         <h2>Book a visit</h2>
-        <p>Choose your service and time online in under a minute.</p>
+        <p>${C.bookingUrl ? "Choose your service and time online in under a minute." : "Call either salon and we'll find the perfect time for you."}</p>
         <a class="btn btn-lime" href="${esc(bookHref)}"${bookAttrs}>Book Now</a>
       </div>
       <div class="cta-item">
@@ -111,9 +111,9 @@
         <a class="btn btn-outline-light" href="${esc(giftHref)}">Buy a Gift Card</a>
       </div>
       <div class="cta-item">
-        <h2>Walk-ins welcome</h2>
-        <p>Short on time? Stop by — most threading services take 15 minutes.</p>
-        <a class="btn btn-outline-light" href="index.html#visit">Hours &amp; Directions</a>
+        <h2>Packages &amp; parties</h2>
+        <p>Make a day of it with a spa package, or bring your friends for a spa party.</p>
+        <a class="btn btn-outline-light" href="index.html#contact-form">Ask About Packages</a>
       </div>
     </div>
   </section>
@@ -121,7 +121,7 @@
     <div class="container footer-grid">
       <div class="footer-brand">
         ${logo("logo-light")}
-        <p>${esc(C.tagline)}. Gentle, precise threading and skin care with 100% cotton thread and no harsh chemicals.</p>
+        <p>${esc(C.tagline)}. Precise threading with pure cotton thread and a calm, full-service day spa in Pikesville and Baltimore.</p>
         <div class="socials" data-placeholder="Social links">${socialLinks}</div>
         <a class="footer-email" href="mailto:${esc(C.email)}">${esc(C.email)}</a>
       </div>
@@ -175,9 +175,10 @@
           <h3>${esc(loc.name)}</h3>
           <p class="loc-address">${esc(loc.addressLine1)}<br>${esc(loc.addressLine2)}</p>
           <p class="loc-phone"><a href="${esc(loc.phoneHref)}">${esc(loc.phone)}</a></p>
+          ${loc.email ? `<p class="loc-email"><a href="mailto:${esc(loc.email)}">${esc(loc.email)}</a></p>` : ""}
           <ul class="hours-list">${hoursList(loc.hours)}</ul>
           <div class="loc-actions">
-            <a class="btn btn-forest" href="${esc(book || "#contact-form")}"${book ? external : ""}>${book ? "Book here" : "Send a note"}</a>
+            <a class="btn btn-forest" href="${esc(book || loc.phoneHref)}"${book ? external : ""}>${book ? "Book here" : "Call to book"}</a>
             <a class="text-link" href="${esc(directionsHref(loc))}"${external}>Directions</a>
           </div>
         </div>

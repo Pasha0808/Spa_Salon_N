@@ -70,6 +70,10 @@ website. Requests so far, in order:
     inspiration** from it. Use it as the source for **prices and factual
     information**: they have **two locations**, so use its addresses, phone
     numbers, email, and links to their social media and **Yelp**.
+11. Because their firewall blocks automated access, the developer saved
+    the Home, Contact and Massages pages from a browser and supplied the
+    social links (Instagram, Facebook, Yelp, X). The extracted facts are in
+    [§2.1](#21-facts-from-the-current-website).
 
 ---
 
@@ -77,12 +81,81 @@ website. Requests so far, in order:
 
 | | |
 | --- | --- |
-| Business | NEHA Threading: eyebrow and face threading salon / spa |
-| Services (assumed for the prototype; confirm with owner) | Threading, henna, lash lift & tinting, facials, waxing |
-| Owner | Referred to as "he". Name not yet known. |
-| Current website | <https://www.nehathreading.com/>: **facts only, no design inspiration** (the owner dislikes it) |
-| Locations | **Two.** Addresses, phones and hours to be copied from the current site into `locations` in `js/config.js` |
-| Email, social media, Yelp, booking system | To be copied from the current site. Placeholders in `js/config.js` until then |
+| Business | **Neha Threading Salon and Spa**: threading specialist and full-service day spa |
+| Founder | **Neha Gupta** |
+| Current website | <https://www.nehathreading.com/>: **facts only, no design inspiration** (the owner dislikes it). The site also links a second domain, <http://www.nehasalonandspa.com/>. |
+| Locations | **Two**: Pikesville and Canton (see §2.1). Both are in `locations` in `js/config.js`. |
+
+### 2.1 Facts from the current website
+
+Taken from the Home, Contact and Massages pages of nehathreading.com. The
+developer saved them on 2026-11-08, because the site's firewall blocks
+automated access. Everything below is **already on the new site**.
+
+**Pikesville** (main location)
+- 1501 Reisterstown Road, Pikesville, MD 21208 ("half a mile south of the Beltway")
+- Phone **410-653-BROW (2769)**: `tel:+14106532769`
+- Email neha@nehathreading.com
+- Hours: Mon–Wed 10–7 · Thu–Fri 10–8 · Sat 9–6 · Sun 11–5
+
+**Canton**
+- 2931 O'Donnell Street, Baltimore, MD 21224
+- Phone **410-675-BROW (2769)**: `tel:+14106752769`
+- Email canton@nehathreading.com
+- Hours: Tue–Fri 11–7 · Sat 9–6 · Sun & Mon closed
+- ⚠️ **Status unclear.** The Contact page lists Canton, but in the site's
+  HTML the Canton phone (header) and Canton address/hours (footer) are
+  commented out, and there is a hidden banner reading *"We have closed our
+  Canton Locations"*. **Confirm with the owner that Canton is open.** To
+  remove it, delete its object from `locations` in `js/config.js`.
+
+**Shared**
+- Social: Instagram <https://www.instagram.com/nehathreading>, Facebook
+  <https://www.facebook.com/NehaThreadingSalonSpa/>, Yelp
+  <https://www.yelp.com/biz/neha-threading-salon-and-spa-pikesville>,
+  X <https://x.com/NehaSalonSpa> (all confirmed by the developer). One
+  footer on the old site links `instagram.com/nehasalonspa` instead; the
+  developer confirmed **nehathreading**.
+- Gift cards: <https://www.nehathreading.com/gift-cards> (design, preview,
+  send or print). The new site links there.
+- **No online booking.** Guests call. "Book" buttons on the new site lead to
+  the Visit section, and each location card has *Call to book*.
+- Policy: a Cancellation Policy page exists (content not yet captured).
+  Spa guests are asked to arrive 15 minutes early to change into a robe and
+  slippers, relax in the lobby and fill out paperwork.
+
+**About** (used in the *Our Story* section)
+- Neha Gupta has been part of the Baltimore community for 18+ years (the
+  site's wording; one client review says 19 years). She is known throughout
+  Maryland for her threading skill.
+- She dreamed of an upscale spa offering a wide range of services. The
+  Pikesville spa was formally inaugurated in **March 2013** by Baltimore
+  Mayor **Stephanie Rawlings-Blake**. It is **6,000+ sq ft**, with treatment
+  rooms for facials, massages and body treatments, and qualified, experienced
+  staff.
+- Pikesville highlights: **Vichy showers** and **Ayurvedic face and body
+  treatments**. They also sell skin and hair care products.
+
+**Service categories on the old site** (menu tabs to build out):
+Threading · Hair Styling · Facials · Massages · Nail Care · Vichy Shower ·
+Spa Treatments · Spa Parties · Waxing · Other Services · Microblading ·
+Slimming Treatments · Spa Packages · Specials · Gift Cards · Products.
+Mentioned on the home page: manicures/pedicures, makeup, henna tattoos,
+body treatments.
+
+**Prices captured so far:** **Massages only** (13 massages + enhancements),
+now in the *Massages* tab of `services.html`. Pages still needed (save from
+the browser): `/pikesville-services` (threading), `/hair-styling`,
+`/facials`, `/nail-care`, `/vichy-shower`, `/spa-treatments`,
+`/spa-parties`, `/waxing`, `/other-services`, `/microblading-pikes`,
+`/slimming-treatments`, `/spa-packages`, `/specials`,
+`/cancellation-policy`.
+
+**Reviews** (shown on the old site, now on the new home page): Erin L.
+("taken care of my brows for 19 years"), and Google reviews by Nancy S.,
+Kabir B. (praises threader **Sara**) and Cynthia B. Also on the old site:
+Shuree Cameron, ife allette, Landa McLaurin. All are 5-star. Names are
+shortened to first name + initial.
 
 ### Logo
 
@@ -232,17 +305,22 @@ Principles:
 | 8 | Gallery `#gallery` | Grid of photo placeholders + Instagram button. |
 | 9 | FAQ `#faq` | `<details>` accordion, five questions. |
 | 10 | Visit `#visit` | **One card per location**, rendered from `locations` in config: map (when `mapQuery` is set), name, address, phone, hours, *Book here* (or *Send a note* while there is no booking link), *Directions* (Google Maps). Below: email, social links (incl. Yelp), contact form. |
-| 11 | CTA band | Book a visit / Gift cards / Walk-ins welcome. |
+| 11 | CTA band | Book a visit (phone, until online booking exists) / Gift cards (their existing gift card shop) / Packages & parties. |
 | 12 | Footer | Logo, tagline, social links, email, Explore links, then one column per location (address, phone, hours). |
 
 ### `services.html` (menu & prices)
 
 - Green page hero ("Our *services*") + Book button.
-- Accessible tabs: **Threading, Henna, Lashes & Tinting, Facials, Waxing**.
-  Each item has a name, dotted line, price, optional description and
-  duration. **All prices are samples.**
-- The URL hash opens a tab: `services.html#threading`, `#henna`, `#lashes`,
-  `#skin`, `#wax`.
+- Accessible tabs: **Threading, Massages, Henna, Lashes & Tinting, Facials,
+  Waxing**. Each item has a name, dotted line, price, optional description
+  and duration.
+- **Massages** (with *Massage enhancements*) has the **real prices** from
+  nehathreading.com. Every other tab still has **sample prices**, and shows
+  a visible "Preview: sample prices" badge (`.sample-note`). Remove the
+  badge when a tab gets real data. Lashes & Tinting and Henna are not
+  confirmed categories; rebuild the tabs to match the real menu (§2.1).
+- The URL hash opens a tab: `services.html#threading`, `#massage`, `#henna`,
+  `#lashes`, `#skin`, `#wax`.
 - The page was first generated from a Python list. It is now maintained by
   hand as plain HTML.
 
@@ -345,16 +423,15 @@ also prints how many remain.
 | **Hero video** | `assets/video/hero-loop.mp4` | Placeholder: the *Sharq Village & Spa* (Ritz-Carlton) promo clip supplied by the developer, trimmed to 0–16.9 s to cut the hotel's end logo, muted, 1280×720 H.264, 0.5 s fades. **It belongs to that hotel. Do not launch with it.** Ask the salon for 10–20 s of calm footage (threading close-up, treatment room, plants, aloe). |
 | Hero poster | `assets/img/hero-poster.jpg` | Frame at 1.2 s of the video above. Regenerate with the new video. |
 | Photos | Every `.ph-photo` tile (green gradient + label) | Salon interior, each service, before/after, treatment room, front desk, henna art, lashes |
-| **Both locations**: name, address, phone, hours, map address | `locations` in `js/config.js` (`// TODO`) | Copy from nehathreading.com. Third-party listings (MapQuest/Yelp aggregators) show *Neha Threading Salon and Spa, 1501 Reisterstown Rd, Pikesville, MD 21208* (Yelp 4.5★, 188 reviews). **Unverified; confirm against their site.** |
-| Email | `email` in config | Copy from nehathreading.com |
-| Social links: Instagram, Facebook, **Yelp**, Google, TikTok | `socials` in config | Copy from nehathreading.com. Empty URLs are hidden. |
-| Booking system & link | `bookingUrl` in config (or per location) | Copy from nehathreading.com if they book online. While empty, Book buttons scroll to *Visit*. |
-| Gift cards link | `giftCardUrl` in config | Unknown |
+| Locations, phones, emails, hours, maps | `locations` in `js/config.js` | ✅ **Done** from nehathreading.com. ⚠️ **Confirm Canton is still open** (§2.1). |
+| Social links (Instagram, Facebook, Yelp, X) | `socials` in config | ✅ Done |
+| Online booking | `bookingUrl` in config (or per location) | They have none (phone booking). Add one if they adopt a booking system. |
+| Gift cards link | `giftCardUrl` in config | ✅ Their existing shop at nehathreading.com/gift-cards |
 | New-client offer | `announcement` in config | "15% off first visit" is a **sample** borrowed from the references. Confirm or set `""`. |
-| Services & prices | `services.html`, home service cards | **Sample prices.** Replace with the real list and prices from nehathreading.com |
-| Owner story | Home *Our Story* card | Generic text; owner's name and story needed |
-| Reviews | Home *Reviews* | **Sample text. Must be replaced with real Google reviews before launch.** |
-| "Walk-ins welcome", "most services in 15 minutes", "sensitive-skin friendly" | Hero, CTA band, FAQ | Assumptions; confirm with owner |
+| Services & prices | `services.html`, home service cards | ✅ **Massages real.** ⏳ Threading, facials, waxing, henna, lashes and the home cards for brows, full face, henna and facial still have **sample prices**. Get the remaining pages listed in §2.1. |
+| Owner story | Home *Our Story* card | ✅ Written from the old site's About text. A photo of Neha / the salon is still needed. |
+| Reviews | Home *Reviews* | ✅ Real reviews from the old site |
+| "Most services in 15 minutes" (steps heading), "sensitive-skin friendly" (FAQ) | Home | General threading claims; confirm with owner |
 | Logo file | `assets/img/logo-original.png` | Low resolution; ask for vector |
 | Domain | — | Unknown |
 
@@ -466,11 +543,12 @@ element so `?review` and `npm test` count it.
 ## 12. Roadmap
 
 - [ ] Owner reviews the prototype on GitHub Pages; collect feedback
-- [ ] Real business details in `js/config.js`
+- [x] Real business details in `js/config.js` (both locations, socials, gift cards)
+- [ ] Confirm Canton is open
 - [ ] Real hero video + poster; real photos
-- [ ] Real service list and prices
-- [ ] Owner story, real Google reviews
-- [ ] Booking system link and gift cards
+- [ ] Real prices for the remaining categories (massages done); rebuild menu tabs to the real categories
+- [x] Owner story, real reviews
+- [ ] Online booking, if the salon adopts a system
 - [ ] Contact form delivery: port the Elite Cloudflare Worker (Turnstile + Resend) to `/api/contact`
 - [ ] Production hosting (Cloudflare Workers like Elite) and custom domain
 - [ ] SEO at launch: remove `noindex`, add canonical + absolute `og:image`, LocalBusiness/BeautySalon JSON-LD (as Elite has), `sitemap.xml`, `robots.txt`
@@ -487,3 +565,4 @@ element so `?review` and `npm test` count it.
 | 2026-11-07 | Placeholder video replaced with the supplied Sharq spa promo clip (logo trimmed, muted, H.264). |
 | 2026-11-07 | GitHub Pages preparation (`.nojekyll`, `noindex` for the review link). Client brief merged into this README; `AGENTS.md` added for AI agents. |
 | 2026-11-07 | Two-location support (Visit cards with map/directions/booking, footer columns, "2 Locations" header link) and social links incl. Yelp, all from `js/config.js`. Current site nehathreading.com recorded as the facts-only source. Its firewall blocks automated access, so the real details are still pending. |
+| 2026-11-08 | Real facts from nehathreading.com (saved pages): Pikesville + Canton addresses, phones, emails, hours, maps; socials (Instagram, Facebook, Yelp, X); gift card link; Neha Gupta's story; real reviews; Massages tab with real prices. Unconfirmed "walk-ins welcome" claims removed. Canton flagged as possibly closed. |

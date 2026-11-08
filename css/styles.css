@@ -374,6 +374,7 @@ h1 em, h2 em { font-style: italic; color: inherit; }
 .location-body h3 { font-size: 2rem; }
 .loc-address { margin-top: 10px; color: var(--ink-soft); }
 .loc-phone { margin-top: 6px; font-size: 1.1rem; letter-spacing: 0.04em; }
+.loc-email { font-size: 0.95rem; }
 .location-body .hours-list { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 0.95rem; color: var(--ink-soft); flex: 1; }
 .loc-actions { display: flex; align-items: center; gap: 24px; margin-top: 26px; flex-wrap: wrap; }
 .contact-row { margin-top: 100px; }
@@ -525,3 +526,13 @@ h1 em, h2 em { font-style: italic; color: inherit; }
 
 .hero-ctas-center { justify-content: center; }
 .menu-panel:focus-visible { outline-offset: 12px; }
+.menu-subhead {
+  text-align: center; font-size: 1.9rem; margin: 64px 0 24px;
+  padding-top: 40px; border-top: 1px solid var(--line);
+}
+.sample-note {
+  display: inline-block; margin-top: 14px !important; padding: 4px 12px; border-radius: 999px;
+  background: var(--lime-soft); color: var(--forest-ink) !important; font-size: 0.8rem; font-weight: 400 !important;
+}
+.menu-note a { border-bottom: 1px solid currentColor; }
+.signature { font-family: var(--serif); font-style: italic; font-size: 1.5rem; color: var(--forest) !important; margin-top: 22px; }
