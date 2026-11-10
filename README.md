@@ -152,8 +152,8 @@ Put these attributes in a page and `js/site.js` fills them:
 ### Menus
 
 - Items: Services (submenu of the 12 services), Our Specialists, About Us
-  (submenu: The Founder, Careers), Gallery, Contact Us, and the Book Now
-  button. Gift Certificates is not in the menu for now.
+  (submenu: The Founder, Careers), Contact Us, and the Book Now button.
+  Gallery and Gift Certificates are not in the menu.
 - Desktop: "Services" and "About Us" are normal links. Their submenus open
   on hover and on keyboard focus.
 - Below 1120 px the menu becomes a panel behind the ☰ button, and each
@@ -169,8 +169,10 @@ Prices belong to specialists, not to services. Everything comes from
 `js/specialists.js` (the fields are explained at the top of that file).
 
 - **Service page:** `data-service-pros` lists who offers the service, with
-  their lowest price for it ("from $14"), **Prices & Work** and **Book with …**.
-  A service nobody offers shows an invitation to send a request.
+  their role, **Prices & Work** and **Book with …**. It shows **no prices**
+  on purpose: visitors should choose a specialist for their work, not for
+  the lowest price. A service nobody offers shows an invitation to send a
+  request.
 - **Our Specialists** (`specialists.html`): a portrait card per person.
 - **A specialist's page** is one template, `specialist.html`. The
   address picks the person: `specialist.html?p=<slug>`. Adding
@@ -178,8 +180,11 @@ Prices belong to specialists, not to services. Everything comes from
   and prices at the top and their work photos at the bottom. An unknown
   slug shows a "couldn't find" message with a link to the team page.
 - **Booking links** carry the choice: `booking.html?pro=<slug>&service=<slug>`.
-- `sample: true` on a profile shows a "Sample profile" note. Remove it when
-  the details are real.
+- **Sample team:** all 24 current profiles are placeholders, generated at
+  the bottom of `js/specialists.js` so that every service lists five. Real
+  people go in `REAL_SPECIALISTS` at the top of that file and appear first.
+  When the real team is complete, delete the sample section as the file's
+  header explains. `sample: true` shows a "Sample profile" note.
 
 ### Product strip (home page)
 
@@ -330,11 +335,12 @@ LocalBusiness data (as Elite has), and redirect the old site's addresses
 
 ## 11. How-to recipes
 
-**Add a specialist:** copy a block in `js/specialists.js` and edit it:
-`slug`, `name`, `title`, `bio`, `photo` (about 800 × 1000 px, in
-`assets/img/team/`), their `services` with their own `items` (name, price,
-time, note) and their `work` photos (square, in `assets/img/team/work/`).
-No new page is needed. Then raise `specialists.js?v=` in every page.
+**Add a specialist:** add a block to `REAL_SPECIALISTS` in
+`js/specialists.js`, following the example in that file's header: `slug`,
+`name`, `title`, `bio`, `photo` (about 800 × 1000 px, in `assets/img/team/`),
+their `services` with their own `items` (name, price, time, note) and their
+`work` photos (square, in `assets/img/team/work/`). No new page is needed.
+Then raise `specialists.js?v=` in every page.
 
 **Change someone's prices, or remove them:** edit or delete their block in
 `js/specialists.js`.
@@ -412,3 +418,4 @@ Desktop/Mobile view toggle, and the Supabase portal (not relevant here).
 | 2026-11-10 | **Homepage reorder and full-site audit.** Gallery moved above reviews; products moved below reviews. Removed the product description and gallery Instagram CTA, and tightened product-section spacing without changing tile sizes. Audited all 20 pages at desktop, 390 px and 320 px; fixed narrow-phone overflow, duplicate carousel announcements for screen readers and a hard-coded FAQ phone number. Remaining recommendations are in `PROJECT_BRIEF.md` §7. |
 | 2026-11-10 | **Specialists with their own prices.** New `js/specialists.js`, an Our Specialists page and one template page for every specialist (prices on top, work photos below). Service pages list the specialists who offer the service. The booking form has a specialist dropdown, preselected from "Book with …" links. Menu: Our Specialists added after Services; Our Team and Gift Certificates removed. "What brings you in today?" is a slim one-row band. Product strip uses the four supplied brand pictures. |
 | 2026-11-10 | **Renamed to "Our Specialists".** The team page, each person's page and the data file are now `specialists.html`, `specialist.html` and `js/specialists.js`; all visible wording says "specialist". CSS classes and `data-` hooks keep their short `pro-` prefix. |
+| 2026-11-11 | **No prices on service pages; five specialists per service; Gallery out of the menu.** "from $…" removed from the "Choose your specialist" rows. The sample team is now 24 generated placeholders, with a `REAL_SPECIALISTS` list ready for real people. Our Specialists shows four cards per row. |

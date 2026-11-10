@@ -117,7 +117,6 @@
         <a href="specialists.html">${esc(prosLabel)}</a>
         ${navGroup("about.html", "About Us", "sub-about",
           `<a href="about.html#founder">The Founder</a><a href="careers.html">Careers</a>`)}
-        <a href="index.html#gallery">Gallery</a>
         <a href="contact.html">Contact Us</a>
         <a class="nav-book" href="booking.html">Book Now</a>
       </nav>
@@ -268,12 +267,6 @@
     : `<div class="ph-photo ${cls}" data-label="Photo coming soon" role="img" aria-label="Photo of ${esc(p.name)} (coming soon)"></div>`;
   const sampleNote = p => p.sample ? `<p class="sample-note">Sample profile</p>` : "";
   const offers = (p, slug) => p.services.filter(entry => entry.service === slug);
-  // Lowest price a specialist lists for a service, e.g. "$14"
-  function fromPrice(p, slug) {
-    const amounts = offers(p, slug).flatMap(entry => entry.items)
-      .flatMap(item => (String(item.price).match(/\$\d+(?:\.\d+)?/g) || []).map(v => parseFloat(v.slice(1))));
-    return amounts.length ? "$" + Math.min(...amounts) : "";
-  }
   const priceList = items => `<ul class="menu-list">${items.map(item => `
         <li class="menu-item">
           <div class="menu-line"><h3>${esc(item.name)}</h3><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">${esc(item.price)}</span></div>
@@ -281,7 +274,10 @@
           ${item.time ? `<p><span class="dur">${esc(item.time)}</span></p>` : ""}
         </li>`).join("")}</ul>`;
 
-  // Service pages: the specialists who offer this service
+  // Service pages: the specialists who offer this service. No prices are
+  // shown here on purpose (dev request): people should choose a specialist
+  // for their work, not because they are the cheapest. Prices are on each
+  // specialist's own page.
   each("[data-service-pros]", wrap => {
     const slug = wrap.dataset.servicePros;
     const list = pros.filter(p => offers(p, slug).length);
@@ -296,7 +292,6 @@
         <div class="pro-row-body">
           <h3><a href="${proHref(p, slug)}">${esc(p.name)}</a></h3>
           <p class="pro-title">${esc(p.title)}</p>
-          ${fromPrice(p, slug) ? `<p class="pro-from"><small>from</small> ${fromPrice(p, slug)}</p>` : ""}
           ${sampleNote(p)}
         </div>
         <div class="pro-row-actions">

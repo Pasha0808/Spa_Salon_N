@@ -34,9 +34,9 @@ agents are in [AGENTS.md](AGENTS.md).
 | Home page | **Short**: hero → slim row of 12 service icons → gallery → reviews → product strip (with the four brand pictures) |
 | Header | **No phone number in the menu bar.** Phone is in the footer and on the Contact and Booking pages |
 | Locations | **One: Pikesville.** Canton is closed. No "two locations" wording anywhere |
-| Menu | Services ▾ · **Our Specialists** · About Us ▾ (The Founder, Careers) · Gallery · Contact Us · **Book Now**. Gift Certificates is out of the menu for now |
+| Menu | Services ▾ · **Our Specialists** · About Us ▾ (The Founder, Careers) · Contact Us · **Book Now**. Gallery and Gift Certificates are out of the menu |
 | Services | 12 services, each with **its own page**. A service page describes the service and lists **the specialists who offer it** |
-| Prices | **Per specialist, not one salon price list.** Each specialist has their own page with their prices at the top and photos of their work below |
+| Prices | **Per specialist, not one salon price list.** Prices appear **only on a specialist's own page** (prices at the top, work photos below). **Service pages show no prices**, so nobody is picked for being cheapest |
 | Booking | **Email request form** on its own page, with service tick boxes and a **specialist dropdown**. The salon does not want an integrated booking service |
 | Old website | nehathreading.com is for **facts and prices only. No design inspiration**: the owner dislikes it |
 | New-client offer | "New clients enjoy 15% off their first visit" stays |
@@ -47,6 +47,21 @@ agents are in [AGENTS.md](AGENTS.md).
 ## 2. Request log
 
 Newest first. "Dev" is the developer; "owner" is the salon owner.
+
+### 2026-11-11: no prices on service pages, five per service, no Gallery tab
+
+- **Remove the "from $10", "from $40" prices under "Choose your
+  specialist" on service pages.** The dev: people should not click on a
+  specialist just because their prices are lower. Done: a service page
+  shows each specialist's name and role only. Prices are on the
+  specialist's own page.
+- **Add more placeholders under "Choose your specialist", about five per
+  service.** Done: the sample team grew from 7 to 24 ("Specialist One" …
+  "Twenty-Four"), arranged so every service lists five. Spa Parties still
+  has none and invites a request. The Our Specialists page now shows four
+  cards per row to fit the larger team.
+- **Remove the Gallery tab.** Done: it is out of the menu. The "Fresh from
+  the chair" gallery section is still on the home page.
 
 ### 2026-11-10 (night): the team page is called "Our Specialists"
 
@@ -92,7 +107,7 @@ The dev, after more input from the salon. All **done** unless marked.
 How it was built: all specialists are in one file, `js/specialists.js`.
 One template page, `specialist.html?p=<slug>`, shows any specialist, so
 adding or removing staff means editing only that file.
-⏳ **The seven profiles are samples** ("Specialist One" … "Seven") with
+⏳ **All profiles are samples** (seven at first, 24 since 2026-11-11) with
 sample prices, until the salon supplies its real team (§7). The salon's
 real massage menu is kept under the sample massage therapist.
 The Gift Certificates page still exists but nothing links to it.
@@ -214,7 +229,7 @@ the old site's addresses where possible, which helps with redirects at launch.
 | --- | --- | --- |
 | Home | `index.html` | Video hero · 12 service icons · gallery · reviews · product strip |
 | Services | `services.html` | The 12 services with a one-line description each |
-| 12 service pages | `threading.html`, `hair-styling.html`, `facials.html`, `massages.html`, `nail-care.html`, `vichy-shower.html`, `spa-treatments.html`, `spa-parties.html`, `waxing.html`, `other-services.html`, `microblading.html`, `slimming-treatments.html` | A description, then **"Choose your specialist"**: everyone who offers the service, with their starting price, a link to their page and a booking link. Spa Parties has no specialists and invites a request instead |
+| 12 service pages | `threading.html`, `hair-styling.html`, `facials.html`, `massages.html`, `nail-care.html`, `vichy-shower.html`, `spa-treatments.html`, `spa-parties.html`, `waxing.html`, `other-services.html`, `microblading.html`, `slimming-treatments.html` | A description, then **"Choose your specialist"**: everyone who offers the service, with their role, a link to their page and a booking link. **No prices here.** Spa Parties has no specialists and invites a request instead |
 | About Us | `about.html` | The spa's story, then **The Founder** (`about.html#founder`) |
 | Our Specialists | `specialists.html` | Every specialist: portrait, role, short description, their services, **Prices & Work** and **Book with …** |
 | A specialist's page | `specialist.html?p=<slug>` | One template for everyone. **Top: their services and prices. Bottom: photos of their work.** Arriving from a service page (`&service=<slug>`) lists that service first |
@@ -224,8 +239,8 @@ the old site's addresses where possible, which helps with redirects at launch.
 | Book a Visit | `booking.html` | The booking request form: services, a specialist dropdown, message. `booking.html?service=massages&pro=<slug>` ticks the service and selects the specialist |
 
 Menu: **Services** (submenu: the 12 services) · **Our Specialists** ·
-**About Us** (submenu: The Founder, Careers) · **Gallery** (a section on the
-home page) · **Contact Us** · **Book Now** button. There is no phone number
+**About Us** (submenu: The Founder, Careers) · **Contact Us** · **Book Now**
+button. The gallery is a section on the home page, with no menu item. There is no phone number
 in the menu bar (dev request, 2026-11-10).
 
 ### The two routes to a specialist
@@ -368,7 +383,7 @@ Waiting on the dev or the owner:
 | ~~Product pictures~~ | ✅ Supplied by the dev on 2026-11-10 and in the strip |
 | **The salon's own video** (10–20 s, calm) | The hero uses a hotel's promo clip, which **must not go live** |
 | **Photos**: the spa, Neha, treatment rooms, before/after, team | Every green gradient tile is a photo placeholder |
-| **The real team.** For each specialist: name, role, short description, portrait, which services they offer, **their own price list**, photos of their work, and optionally Instagram. Also whether Neha takes clients herself | `js/specialists.js` holds seven sample profiles |
+| **The real team.** For each specialist: name, role, short description, portrait, which services they offer, **their own price list**, photos of their work, and optionally Instagram. Also whether Neha takes clients herself | `js/specialists.js` holds 24 sample profiles |
 | **Careers wording**: which roles, how to apply | `careers.html` |
 | **How many years** Neha has been in Baltimore (the old site's "over 18" is out of date; a client review says 19 as a customer) | `about.html` |
 | **Gift certificates**: removed from the menu for now. When it returns: keep the old online shop, move it, or sell in person only? Its address will change when the new site replaces the old one | `gift-certificates.html` (unlinked) |

@@ -33,6 +33,10 @@ https://pasha0808.github.io/Spa_Salon_N/
   on service pages. One template, `specialist.html?p=<slug>`, shows any
   specialist; do not create a page per person. Profiles marked
   `sample: true` are placeholders: never present them as real staff.
+- **Service pages show no prices**, not even "from $…". The developer does
+  not want visitors choosing a specialist because they are cheaper. Prices
+  appear only on a specialist's own page.
+- **Gallery is not a menu item.** The gallery section stays on the home page.
 - **Gift Certificates is unlinked for now.** Keep the page; do not add
   links to it until the developer asks.
 - **Keep it static.** No frameworks, bundlers or npm dependencies unless the
