@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Jost:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=7">
+<link rel="stylesheet" href="css/styles.css?v=9">
 </head>
 <body class="header-over-hero">
 
@@ -59,19 +59,20 @@
   </div>
 </section>
 
-<!-- ===== Products (auto-scrolling strip) ===== -->
-<section class="section section-mist products-section" id="products" aria-labelledby="products-title">
+<!-- ===== Gallery ===== -->
+<section class="section section-mist" id="gallery" aria-labelledby="gallery-title">
   <div class="container">
     <div class="section-head">
-      <p class="eyebrow">Take the glow home</p>
-      <h2 id="products-title">Our handpicked products</h2>
-      <p>Bioelements and Biotique for your skin. Davines and Moroccanoil for your hair. Ask us in the salon which is right for you.</p>
+      <p class="eyebrow">@nehathreading</p>
+      <h2 id="gallery-title">Fresh from the chair</h2>
     </div>
-  </div>
-  <div class="product-strip" data-placeholder="Product pictures">
-    <ul class="product-track" data-products></ul>
-    <div class="strip-foot">
-      <button class="strip-pause" type="button" aria-pressed="false" aria-label="Pause product slideshow"></button>
+    <div class="gallery-grid">
+      <div class="ph-photo g-tall reveal" data-label="Before / after brows"></div>
+      <div class="ph-photo tone-sage reveal" data-label="Brow detail"></div>
+      <div class="ph-photo tone-deep g-wide reveal" data-label="Treatment room"></div>
+      <div class="ph-photo tone-lime reveal" data-label="Henna art"></div>
+      <div class="ph-photo reveal" data-label="Massage room"></div>
+      <div class="ph-photo tone-deep reveal" data-label="The spa lobby"></div>
     </div>
   </div>
 </section>
@@ -104,22 +105,19 @@
   </div>
 </section>
 
-<!-- ===== Gallery ===== -->
-<section class="section section-mist" id="gallery" aria-labelledby="gallery-title">
+<!-- ===== Products (auto-scrolling strip) ===== -->
+<section class="section section-mist products-section" id="products" aria-labelledby="products-title">
   <div class="container">
     <div class="section-head">
-      <p class="eyebrow">@nehathreading</p>
-      <h2 id="gallery-title">Fresh from the chair</h2>
+      <p class="eyebrow">Take the glow home</p>
+      <h2 id="products-title">Our handpicked products</h2>
     </div>
-    <div class="gallery-grid">
-      <div class="ph-photo g-tall reveal" data-label="Before / after brows"></div>
-      <div class="ph-photo tone-sage reveal" data-label="Brow detail"></div>
-      <div class="ph-photo tone-deep g-wide reveal" data-label="Treatment room"></div>
-      <div class="ph-photo tone-lime reveal" data-label="Henna art"></div>
-      <div class="ph-photo reveal" data-label="Massage room"></div>
-      <div class="ph-photo tone-deep reveal" data-label="The spa lobby"></div>
+  </div>
+  <div class="product-strip" data-placeholder="Product pictures">
+    <ul class="product-track" data-products></ul>
+    <div class="strip-foot">
+      <button class="strip-pause" type="button" aria-pressed="false" aria-label="Pause product slideshow"></button>
     </div>
-    <div class="center-cta"><a class="btn btn-outline" href="contact.html" data-social="instagram">Follow on Instagram</a></div>
   </div>
 </section>
 
@@ -128,7 +126,7 @@
 <div id="neha-footer"></div>
 
 <script src="js/config.js?v=6"></script>
-<script src="js/site.js?v=6"></script>
+<script src="js/site.js?v=7"></script>
 <script src="js/main.js?v=5"></script>
 </body>
 </html>

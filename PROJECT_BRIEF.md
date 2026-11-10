@@ -31,7 +31,7 @@ agents are in [AGENTS.md](AGENTS.md).
 | Look | **Soft "botanical calm" style with crisp details** (§4). The hard-edged Craft-style version was tried and rejected |
 | Colour | Shades of green: the owner's preference from day one |
 | Hero | Full-screen background video in HD (placeholder clip for now) |
-| Home page | **Short**: hero → 12 service icons → product strip → reviews → gallery |
+| Home page | **Short**: hero → 12 service icons → gallery → reviews → product strip |
 | Header | **No phone number in the menu bar.** Phone is in the footer and on the Contact and Booking pages |
 | Locations | **One: Pikesville.** Canton is closed. No "two locations" wording anywhere |
 | Menu | Services ▾ · About Us ▾ (The Founder, Our Team, Careers) · Gallery · Gift Certificates · Contact Us · **Book Now** |
@@ -47,15 +47,30 @@ agents are in [AGENTS.md](AGENTS.md).
 
 Newest first. "Dev" is the developer; "owner" is the salon owner.
 
+### 2026-11-10 (latest follow-up): home-page order and full-site audit
+
+- **Remove the descriptive paragraph from “Our handpicked products” and
+  make the section slimmer without changing product sizes.** Done. The
+  tiles remain 230 px on desktop and 170 px on phones.
+- **Switch “Fresh from the chair” and “Our handpicked products.”** Done:
+  the gallery now follows the service icons; products come after reviews.
+- **Remove “Follow on Instagram” below the gallery.** Done. Instagram
+  remains available in the footer and on the Contact page.
+- **Review the whole site for glaring bugs and needed changes.** Done across
+  all 20 pages at desktop, 390 px and 320 px widths. The audit fixed a
+  narrow-phone horizontal overflow, repeated product names announced by
+  screen readers, and one hard-coded phone number. Remaining launch and
+  follow-up items are recorded in §7.
+
 ### 2026-11-10 (latest): dev feedback on home-page height
 
 - **Make the “What brings you in today?” section about half as tall.** Done:
   the 12 services now use one compact row on wide desktop screens, with
   tighter heading and tile spacing. They still wrap for tablets and phones.
 - **Reduce the space taken by the “Our handpicked products” intro, but keep
-  the brand tiles the same size.** Done: its heading and description sit
-  side by side on desktop, with tighter section spacing. The 230 px brand
-  tiles are unchanged.
+  the brand tiles the same size.** Done initially with a side-by-side intro;
+  the later follow-up above removed the description completely and made the
+  section slimmer again. The 230 px desktop brand tiles remain unchanged.
 
 ### 2026-11-10 (later): dev feedback on the sharper restyle
 
@@ -147,7 +162,7 @@ the old site's addresses where possible, which helps with redirects at launch.
 
 | Page | File | Notes |
 | --- | --- | --- |
-| Home | `index.html` | Video hero · 12 service icons · product strip · reviews · gallery |
+| Home | `index.html` | Video hero · 12 service icons · gallery · reviews · product strip |
 | Services | `services.html` | The 12 services with a one-line description each |
 | 12 service pages | `threading.html`, `hair-styling.html`, `facials.html`, `massages.html`, `nail-care.html`, `vichy-shower.html`, `spa-treatments.html`, `spa-parties.html`, `waxing.html`, `other-services.html`, `microblading.html`, `slimming-treatments.html` | Description, prices, a "Book this service" panel, links to the other services |
 | About Us | `about.html` | The spa's story, then **The Founder** (`about.html#founder`) |
@@ -294,8 +309,11 @@ Waiting on the dev or the owner:
 | **Team names, roles and photos** | `team.html` |
 | **Careers wording**: which roles, how to apply | `careers.html` |
 | **How many years** Neha has been in Baltimore (the old site's "over 18" is out of date; a client review says 19 as a customer) | `about.html` |
-| **Gift certificates**: keep the old online shop, move it, or sell in person only? Its address will change when the new site replaces the old one | `gift-certificates.html` |
-| **Where form emails should go** and a server to send them (`formEndpoint`) | Booking, contact and careers forms |
+| **Gift certificates**: keep the old online shop, move it, or sell in person only? Its address will change when the new site replaces the old one. The old site's firewall returns 403 to automated checks, so verify this link manually in a normal browser | `gift-certificates.html` |
+| **Where form emails should go** and a server to send them (`formEndpoint`). The prototype opens the visitor's email app, which is unreliable for visitors without one configured | Booking, contact and careers forms |
+| **Confirm the threading FAQ claims** about discomfort and how long results last. They are not identified as owner-supplied or old-site facts | `contact.html` |
+| **Strengthen the keyboard focus indicator.** The orange outline is about 2.46:1 against the cream background; use a dual light/dark ring or another treatment that reaches 3:1 on both light and dark surfaces | Accessibility before launch |
+| **Launch SEO:** remove `noindex`, add canonical URLs, absolute Open Graph image URLs, a sitemap, LocalBusiness structured data and old-URL redirects | Launch |
 | Vector logo; domain plan; cancellation policy text | Launch |
 
 Open any page with `?review` added to the address to see every placeholder

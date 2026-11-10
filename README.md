@@ -105,7 +105,7 @@ Every page has the same skeleton:
 <main id="main"> … </main>
 <div id="neha-footer"></div>
 <script src="js/config.js?v=6"></script>
-<script src="js/site.js?v=6"></script>
+<script src="js/site.js?v=7"></script>
 <script src="js/main.js?v=5"></script>
 ```
 
@@ -373,3 +373,4 @@ Desktop/Mobile view toggle, and the Supabase portal (not relevant here).
 | 2026-11-10 | **Owner feedback round 2.** Sharper Craft-style redesign (Bodoni Moda capitals, black-green and white, leaf background, square edges, 1080p video). Home page cut to about half its length. One location (Canton closed). New menu: Services ▾, About Us ▾ (The Founder, Our Team, Careers), Gallery, Gift Certificates, Contact Us, Book Now. New pages: 12 service pages, About, Team, Careers, Gift Certificates, Contact, Booking. Booking is an email request form with a link under each service. Product strip with the salon's four brands. Requests and decisions moved to `PROJECT_BRIEF.md`. |
 | 2026-11-10 | **Back to the soft style, keeping the sharpness.** The Craft-style look was rejected: Cormorant Garamond headings, cream and sage, rounded corners and soft shadows are restored. "What brings you in today?" is an icon row again, now for all 12 services; the Services page uses matching icon cards. Kept: 1080p video, lighter hero overlay, darker text. Phone number removed from the header. |
 | 2026-11-10 | **Compact home-page sections.** The 12 service icons use one wide desktop row with tighter spacing, making “What brings you in today?” about half as tall. The products intro is a compact two-column heading/description on desktop; brand tile sizes are unchanged. |
+| 2026-11-10 | **Homepage reorder and full-site audit.** Gallery moved above reviews; products moved below reviews. Removed the product description and gallery Instagram CTA, and tightened product-section spacing without changing tile sizes. Audited all 20 pages at desktop, 390 px and 320 px; fixed narrow-phone overflow, duplicate carousel announcements for screen readers and a hard-coded FAQ phone number. Remaining recommendations are in `PROJECT_BRIEF.md` §7. |

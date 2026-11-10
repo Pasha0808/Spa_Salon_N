@@ -254,10 +254,11 @@
     if (!products.length) return;
     let list = products;
     while (list.length < 8) list = list.concat(products);
-    const items = list.map(p => p.img
-      ? `<li class="product"><img src="${esc(p.img)}" alt="${esc(p.name)}: ${esc(p.kind)}" loading="lazy"></li>`
-      : `<li class="product product-ph"><span>${esc(p.name)}</span><small>${esc(p.kind)}</small></li>`).join("");
-    track.innerHTML = items + items.replace(/<li class="product/g, '<li aria-hidden="true" class="product');
+    const item = (p, hidden) => p.img
+      ? `<li${hidden ? ' aria-hidden="true"' : ""} class="product"><img src="${esc(p.img)}" alt="${esc(p.name)}: ${esc(p.kind)}" loading="lazy"></li>`
+      : `<li${hidden ? ' aria-hidden="true"' : ""} class="product product-ph"><span>${esc(p.name)}</span><small>${esc(p.kind)}</small></li>`;
+    const items = list.map((p, index) => item(p, index >= products.length)).join("");
+    track.innerHTML = items + list.map(p => item(p, true)).join("");
     const strip = track.closest(".product-strip");
     const button = strip?.querySelector(".strip-pause");
     button?.addEventListener("click", () => {
