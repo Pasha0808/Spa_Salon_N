@@ -48,6 +48,10 @@ window.NEHA_CONFIG = {
     { label: "X", url: "https://x.com/NehaSalonSpa" }
   ],
 
+  // Menu label for the team page. The professionals themselves, with their
+  // own services and prices, are in js/professionals.js.
+  professionalsLabel: "Our Professionals",
+
   announcement: "New clients enjoy 15% off their first visit", // confirmed 2026-11-08; "" hides the bar
 
   // The service list. Each service has its own page, <slug>.html.
@@ -71,12 +75,12 @@ window.NEHA_CONFIG = {
   ],
 
   // Home page product strip: the brands the salon carries (from
-  // nehathreading.com/products). Add `img` (square, about 500 × 500 px, in
-  // assets/img/products/) and the picture replaces the name tile.
+  // nehathreading.com/products). Pictures are square, 600 × 600 px, in
+  // assets/img/products/. Without `img`, a tile shows the brand name.
   products: [
-    { name: "Bioelements", kind: "Professional skin care", img: "" },   // TODO picture
-    { name: "Davines", kind: "Hair care from Parma, Italy", img: "" },  // TODO picture
-    { name: "Biotique", kind: "Ayurvedic skin care", img: "" },         // TODO picture
-    { name: "Moroccanoil", kind: "Oil-infused hair care", img: "" }     // TODO picture
+    { name: "Bioelements", kind: "Professional skin care", img: "assets/img/products/bioelements.jpg" },
+    { name: "Davines", kind: "Hair care from Parma, Italy", img: "assets/img/products/davines.jpg" },
+    { name: "Biotique", kind: "Ayurvedic skin care", img: "assets/img/products/biotique.jpg" },
+    { name: "Moroccanoil", kind: "Oil-infused hair care", img: "assets/img/products/moroccanoil.jpg" }
   ]
 };

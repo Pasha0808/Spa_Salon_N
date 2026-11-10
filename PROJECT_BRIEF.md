@@ -31,12 +31,13 @@ agents are in [AGENTS.md](AGENTS.md).
 | Look | **Soft "botanical calm" style with crisp details** (§4). The hard-edged Craft-style version was tried and rejected |
 | Colour | Shades of green: the owner's preference from day one |
 | Hero | Full-screen background video in HD (placeholder clip for now) |
-| Home page | **Short**: hero → 12 service icons → gallery → reviews → product strip |
+| Home page | **Short**: hero → slim row of 12 service icons → gallery → reviews → product strip (with the four brand pictures) |
 | Header | **No phone number in the menu bar.** Phone is in the footer and on the Contact and Booking pages |
 | Locations | **One: Pikesville.** Canton is closed. No "two locations" wording anywhere |
-| Menu | Services ▾ · About Us ▾ (The Founder, Our Team, Careers) · Gallery · Gift Certificates · Contact Us · **Book Now** |
-| Services | 12 services, each with **its own page** |
-| Booking | **Email request form** on its own page. The salon does not want an integrated booking service |
+| Menu | Services ▾ · **Our Professionals** · About Us ▾ (The Founder, Careers) · Gallery · Contact Us · **Book Now**. Gift Certificates is out of the menu for now |
+| Services | 12 services, each with **its own page**. A service page describes the service and lists **the professionals who offer it** |
+| Prices | **Per professional, not one salon price list.** Each professional has their own page with their prices at the top and photos of their work below |
+| Booking | **Email request form** on its own page, with service tick boxes and a **professional dropdown**. The salon does not want an integrated booking service |
 | Old website | nehathreading.com is for **facts and prices only. No design inspiration**: the owner dislikes it |
 | New-client offer | "New clients enjoy 15% off their first visit" stays |
 | Tech | Static HTML/CSS/JS on GitHub Pages, following the Elite Dental Lab site |
@@ -46,6 +47,45 @@ agents are in [AGENTS.md](AGENTS.md).
 ## 2. Request log
 
 Newest first. "Dev" is the developer; "owner" is the salon owner.
+
+### 2026-11-10 (evening): professionals with their own prices
+
+The dev, after more input from the salon. All **done** unless marked.
+
+1. **Prices are per worker, not one price for all.** The salon has many
+   workers who each set their own prices. Customers choose a worker and
+   then see that worker's services and prices. The model is
+   <https://craftsalonglendora.com/> (their Our Team page, per-stylist
+   portfolios, and a booking page with a "Select a Professional" filter).
+2. **Two ways to reach a worker's own page:**
+   - **Services → a service page**, which lists the workers who can do that
+     service. Clicking one opens their page.
+   - **Our Professionals**, a new menu item after Services, like
+     <https://craftsalonglendora.com/our-team>: each worker's picture, a
+     short description, a link to their own page and a **booking link**.
+3. **A worker's own page** shows **their pricing at the top and photos of
+   their work at the bottom.**
+4. **Booking:** add a **dropdown of workers** to "Your booking request".
+   A booking link from a worker arrives with that worker already selected.
+5. Menu changes: **remove Gift Certificates for now**; **remove Our Team
+   from About Us**; add **Our Professionals** after Services. The dev is
+   open to another name; "Our Specialists" was suggested as an alternative.
+   The label is one setting (`professionalsLabel` in `js/config.js`).
+6. **Make "What brings you in today?" much slimmer**, and remove the "Our
+   services" and "Shape. Smooth. Restore. Relax." lines. Done: one heading
+   and one row of icons, about 230 px tall on desktop.
+7. **Use the four supplied pictures in the product strip** (Bioelements,
+   Biotique, Davines, Moroccanoil). Done: they replace the name tiles.
+8. Before this round, the dev made changes with ChatGPT Codex (the two
+   entries below). Those were kept.
+
+How it was built: all professionals are in one file, `js/professionals.js`.
+One template page, `professional.html?p=<slug>`, shows any professional, so
+adding or removing staff means editing only that file.
+⏳ **The seven profiles are samples** ("Professional One" … "Seven") with
+sample prices, until the salon supplies its real team (§7). The salon's
+real massage menu is kept under the sample massage therapist.
+The Gift Certificates page still exists but nothing links to it.
 
 ### 2026-11-10 (latest follow-up): home-page order and full-site audit
 
@@ -164,18 +204,28 @@ the old site's addresses where possible, which helps with redirects at launch.
 | --- | --- | --- |
 | Home | `index.html` | Video hero · 12 service icons · gallery · reviews · product strip |
 | Services | `services.html` | The 12 services with a one-line description each |
-| 12 service pages | `threading.html`, `hair-styling.html`, `facials.html`, `massages.html`, `nail-care.html`, `vichy-shower.html`, `spa-treatments.html`, `spa-parties.html`, `waxing.html`, `other-services.html`, `microblading.html`, `slimming-treatments.html` | Description, prices, a "Book this service" panel, links to the other services |
+| 12 service pages | `threading.html`, `hair-styling.html`, `facials.html`, `massages.html`, `nail-care.html`, `vichy-shower.html`, `spa-treatments.html`, `spa-parties.html`, `waxing.html`, `other-services.html`, `microblading.html`, `slimming-treatments.html` | A description, then **"Choose your professional"**: everyone who offers the service, with their starting price, a link to their page and a booking link. Spa Parties has no professionals and invites a request instead |
 | About Us | `about.html` | The spa's story, then **The Founder** (`about.html#founder`) |
-| Our Team | `team.html` | Placeholder cards until names and photos arrive |
+| Our Professionals | `professionals.html` | Every professional: portrait, role, short description, their services, **Prices & Work** and **Book with …** |
+| A professional's page | `professional.html?p=<slug>` | One template for everyone. **Top: their services and prices. Bottom: photos of their work.** Arriving from a service page (`&service=<slug>`) lists that service first |
 | Careers | `careers.html` | Short text and an enquiry form |
-| Gift Certificates | `gift-certificates.html` | Buy online (their existing shop) or at the spa / by phone |
+| Gift Certificates | `gift-certificates.html` | **Not linked from anywhere for now** (dev request). The page is kept for later |
 | Contact Us | `contact.html` | Address, phone, email, hours, social links, message form, map, FAQ |
-| Book a Visit | `booking.html` | The booking request form. `booking.html?service=massages` ticks that service |
+| Book a Visit | `booking.html` | The booking request form: services, a professional dropdown, message. `booking.html?service=massages&pro=<slug>` ticks the service and selects the professional |
 
-Menu: **Services** (submenu: the 12 services) · **About Us** (submenu: The
-Founder, Our Team, Careers) · **Gallery** (a section on the home page) ·
-**Gift Certificates** · **Contact Us** · **Book Now** button. There is no
-phone number in the menu bar (dev request, 2026-11-10).
+Menu: **Services** (submenu: the 12 services) · **Our Professionals** ·
+**About Us** (submenu: The Founder, Careers) · **Gallery** (a section on the
+home page) · **Contact Us** · **Book Now** button. There is no phone number
+in the menu bar (dev request, 2026-11-10).
+
+### The two routes to a professional
+
+1. Services → a service (e.g. Threading) → "Choose your professional" →
+   **Prices & Work** → that professional's page → **Book with …**
+2. Our Professionals → a card → **Prices & Work**, or **Book with …** directly.
+
+Every "Book with …" link opens the booking form with that professional
+selected, and the service ticked when the visitor came through a service.
 
 ### How the forms deliver
 
@@ -285,8 +335,10 @@ yet captured).
 - **Davines** (hair care): made in Parma, Italy; B Corp
 - **Moroccanoil** (hair care): argan-oil-infused
 
-**Prices captured:** massages only (13 massages and 14 add-ons, on
-`massages.html`), and the Vichy shower scrub add-on ($60, 30 min).
+**Prices captured:** massages only (13 massages and 13 add-ons) and the
+Vichy shower scrub add-on ($60, 30 min). These are the old site's salon-wide
+prices. They now sit under the sample "Professional Four" in
+`js/professionals.js` until each therapist's own prices are known.
 
 **Reviews on the site** (from the old site): Erin L., Nancy S., Kabir B.
 (who praises a threader named Sara), Cynthia B.
@@ -302,14 +354,14 @@ Waiting on the dev or the owner:
 
 | Needed | For |
 | --- | --- |
-| **Content and prices for 11 service pages** (all except Massages). The dev will supply them; saving each old-site page from the browser works | The service pages now say "details and prices coming soon" |
-| **Product pictures** for Bioelements, Biotique, Davines, Moroccanoil (square, about 500 px). The saved Products page did not include its image files | The product strip shows brand names until then |
+| **Service descriptions** for 11 service pages (all except Massages). Prices no longer go on service pages: they belong to each professional | The service pages have short placeholder descriptions |
+| ~~Product pictures~~ | ✅ Supplied by the dev on 2026-11-10 and in the strip |
 | **The salon's own video** (10–20 s, calm) | The hero uses a hotel's promo clip, which **must not go live** |
 | **Photos**: the spa, Neha, treatment rooms, before/after, team | Every green gradient tile is a photo placeholder |
-| **Team names, roles and photos** | `team.html` |
+| **The real team.** For each professional: name, role, short description, portrait, which services they offer, **their own price list**, photos of their work, and optionally Instagram. Also whether Neha takes clients herself | `js/professionals.js` holds seven sample profiles |
 | **Careers wording**: which roles, how to apply | `careers.html` |
 | **How many years** Neha has been in Baltimore (the old site's "over 18" is out of date; a client review says 19 as a customer) | `about.html` |
-| **Gift certificates**: keep the old online shop, move it, or sell in person only? Its address will change when the new site replaces the old one. The old site's firewall returns 403 to automated checks, so verify this link manually in a normal browser | `gift-certificates.html` |
+| **Gift certificates**: removed from the menu for now. When it returns: keep the old online shop, move it, or sell in person only? Its address will change when the new site replaces the old one | `gift-certificates.html` (unlinked) |
 | **Where form emails should go** and a server to send them (`formEndpoint`). The prototype opens the visitor's email app, which is unreliable for visitors without one configured | Booking, contact and careers forms |
 | **Confirm the threading FAQ claims** about discomfort and how long results last. They are not identified as owner-supplied or old-site facts | `contact.html` |
 | **Strengthen the keyboard focus indicator.** The orange outline is about 2.46:1 against the cream background; use a dual light/dark ring or another treatment that reaches 3:1 on both light and dark surfaces | Accessibility before launch |

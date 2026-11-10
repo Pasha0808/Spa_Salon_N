@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Jost:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=9">
+<link rel="stylesheet" href="css/styles.css?v=10">
 </head>
 <body class="header-over-hero" data-no-cta>
 
@@ -30,7 +30,7 @@
   <div class="container">
     <p class="eyebrow">Appointments</p>
     <h1>Book a <em>visit</em></h1>
-    <p>Tell us what you would like and when. We will reply by email or phone to confirm your appointment.</p>
+    <p>Tell us what you would like, who you would like to see and when. We will reply by email or phone to confirm your appointment.</p>
   </div>
 </section>
 
@@ -62,6 +62,11 @@
         <div class="service-options" data-service-options></div>
         <p class="field-error services-error" role="alert" hidden>Please choose at least one service.</p>
       </fieldset>
+      <label>Professional <span class="optional">(optional)</span>
+        <select name="professional" data-label="Professional" data-pro-select>
+          <option>No preference</option>
+        </select>
+      </label>
       <label>Short message <span class="optional">(optional)</span>
         <textarea name="message" data-label="Message" rows="4" maxlength="500"></textarea>
       </label>
@@ -78,8 +83,8 @@
       <ul class="hours-list" data-hours></ul>
       <div class="aside-list">
         <h3>How it works</h3>
-        <p>1. Send your request.</p>
-        <p>2. We confirm a time by email or phone.</p>
+        <p>1. Choose your services and, if you like, a professional.</p>
+        <p>2. Send your request. We confirm a time by email or phone.</p>
         <p>3. For spa services, arrive 15 minutes early to change and relax.</p>
       </div>
     </aside>
@@ -90,8 +95,9 @@
 
 <div id="neha-footer"></div>
 
-<script src="js/config.js?v=6"></script>
-<script src="js/site.js?v=7"></script>
+<script src="js/config.js?v=7"></script>
+<script src="js/professionals.js?v=1"></script>
+<script src="js/site.js?v=8"></script>
 <script src="js/main.js?v=5"></script>
 </body>
 </html>

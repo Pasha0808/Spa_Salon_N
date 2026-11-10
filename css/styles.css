@@ -248,14 +248,13 @@ h1 em, h2 em { font-style: italic; color: inherit; }
 }
 
 /* ---------- "What brings you in today?" ---------- */
-.needs { padding: 48px 0 44px; text-align: center; }
-.needs .eyebrow { margin-bottom: 8px; }
-.needs h2 { font-size: clamp(1.9rem, 3vw, 2.6rem); margin-bottom: 6px; }
-.needs-sub { color: var(--ink-soft); }
-.needs-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 10px; margin-top: 28px; }
+/* A slim band: one heading and one row of icons (dev request, 2026-11-10) */
+.needs { padding: 30px 0 24px; text-align: center; }
+.needs h2 { font-size: clamp(1.6rem, 2.3vw, 2.05rem); }
+.needs-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 8px; margin-top: 16px; }
 .need {
-  display: flex; flex-direction: column; align-items: center; gap: 10px;
-  padding: 10px 2px 8px; color: var(--ink); border: 1px solid transparent; border-radius: var(--radius);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  padding: 8px 2px 6px; color: var(--ink); border: 1px solid transparent; border-radius: var(--radius);
   transition: border-color 0.25s ease, background 0.25s ease;
 }
 .need:hover { border-color: var(--line); background: #fff; color: var(--ink); }
@@ -265,8 +264,11 @@ h1 em, h2 em { font-style: italic; color: inherit; }
 }
 .need:hover .need-icon, .service-card:hover .need-icon { background: var(--lime-soft); }
 .need-icon svg { width: 38px; height: 38px; }
+.needs .need-icon { width: 58px; height: 58px; }
+.needs .need-icon svg { width: 30px; height: 30px; }
 .need-name { font-family: var(--serif); font-size: 1.32rem; font-weight: 500; line-height: 1.15; }
-.need small { font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); margin-top: -8px; }
+.needs .need-name { font-size: 1.14rem; }
+.need small { display: none; } /* the small tag under each name is hidden to keep the band slim */
 .center-cta { text-align: center; margin-top: 48px; }
 
 /* Services page: the same icons on soft cards, with a line of description */
@@ -403,6 +405,56 @@ h1 em, h2 em { font-style: italic; color: inherit; }
 .team-card .ph-photo { aspect-ratio: 4 / 5; }
 .team-card h3 { margin-top: 18px; }
 .team-card p { font-size: 0.74rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--forest); margin-top: 4px; }
+
+/* ---------- Professionals ---------- */
+.pro-title { font-size: 0.74rem !important; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--forest) !important; margin-top: 4px !important; }
+.sample-note {
+  display: inline-block; margin-top: 10px !important; padding: 3px 12px; border-radius: 999px;
+  background: var(--lime-soft); color: var(--forest-ink) !important; font-size: 0.78rem;
+}
+.pro-portrait { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius); display: block; }
+
+/* Our Professionals page: portrait cards */
+.pro-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 44px 34px; }
+.pro-card { display: flex; flex-direction: column; text-align: center; }
+.pro-card .sample-note { align-self: center; }
+.pro-card h2 { font-size: 1.9rem; margin-top: 20px; }
+.pro-card h2 a, .pro-row h3 a { color: var(--ink); }
+.pro-card h2 a:hover, .pro-row h3 a:hover { color: var(--forest); }
+.pro-bio { color: var(--ink-soft); margin-top: 12px; }
+.pro-tags { font-size: 0.9rem; color: var(--ink); margin-top: 10px; flex: 1; }
+.pro-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px; }
+.pro-actions .btn { padding: 12px 20px; }
+
+/* Service pages: one row per professional who offers the service */
+.pros-title { margin-top: 44px; }
+.pro-rows { display: grid; gap: 16px; margin-top: 26px; }
+.pro-row {
+  display: grid; grid-template-columns: 96px 1fr auto; gap: 22px; align-items: center;
+  background: #fff; border-radius: var(--radius); padding: 16px 22px 16px 16px;
+  box-shadow: 0 6px 24px rgba(16, 44, 42, 0.07);
+}
+.pro-thumb { width: 96px; height: 120px; object-fit: cover; border-radius: var(--radius); display: block; }
+.pro-thumb.ph-photo::after { content: none; }
+.pro-row h3 { font-size: 1.6rem; }
+.pro-row .pro-from { margin-top: 6px !important; font-family: var(--serif); font-size: 1.35rem; font-weight: 600; color: var(--forest) !important; font-variant-numeric: lining-nums; }
+.pro-from small { font-family: var(--sans); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); margin-right: 4px; }
+.pro-row-actions { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.pro-row-actions .btn { margin-top: 0; padding: 12px 20px; white-space: nowrap; }
+.pro-row-actions .text-link { margin-top: 0; }
+
+/* A professional's own page */
+.price-group { margin-top: 34px; }
+.price-group + .price-group { padding-top: 30px; border-top: 1px solid var(--line); }
+.price-group-title { font-size: 1.9rem; }
+.price-group-title a { color: var(--ink); }
+.price-group-title a:hover { color: var(--forest); }
+.price-group .menu-list { margin-top: 14px; }
+.pro-aside { text-align: center; }
+.pro-aside h2 { margin-top: 18px; }
+.pro-aside .pro-title + p { margin-top: 12px; }
+.work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.work-photo { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius); display: block; }
 
 /* ---------- Price lists ---------- */
 .menu-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 60px; margin-top: 30px; }
@@ -555,6 +607,8 @@ fieldset.service-field { border: 0; min-width: 0; }
 
   .needs-grid { grid-template-columns: repeat(6, 1fr); }
   .service-cards { grid-template-columns: repeat(2, 1fr); }
+  .pro-grid { grid-template-columns: repeat(2, 1fr); }
+  .pro-aside { max-width: 420px; margin: 0 auto; }
   .service-layout { grid-template-columns: 1fr; gap: 48px; }
   .aside-card { position: static; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -589,14 +643,19 @@ fieldset.service-field { border: 0; min-width: 0; }
   .hero .hero-content { padding-top: calc(var(--header-h) + 28px); padding-bottom: 60px; }
   .hero-overlay { background: rgba(10, 32, 30, 0.64); } /* phones show a still photo: darken it evenly so the text stays readable */
   .hero-meta { gap: 8px 18px; font-size: 0.72rem; }
-  .needs { padding: 44px 0 40px; }
-  .needs-grid { grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 22px; }
-  .need { gap: 8px; padding: 8px 1px 6px; }
-  .need-icon { width: 58px; height: 58px; }
-  .need-icon svg { width: 30px; height: 30px; }
-  .need-name { font-size: 1rem; }
-  .need small { display: none; }
+  .needs { padding: 28px 0 22px; }
+  .needs-grid { grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 14px; }
+  .need { gap: 6px; padding: 6px 1px 4px; }
+  .needs .need-icon { width: 52px; height: 52px; }
+  .needs .need-icon svg { width: 27px; height: 27px; }
+  .needs .need-name { font-size: 1rem; }
   .service-cards { grid-template-columns: 1fr; }
+  .pro-grid { grid-template-columns: 1fr; }
+  .pro-row { grid-template-columns: 72px 1fr; gap: 14px; padding: 14px; }
+  .pro-thumb { width: 72px; height: 90px; }
+  .pro-row h3 { font-size: 1.35rem; }
+  .pro-row-actions { grid-column: 1 / -1; flex-direction: row; justify-content: space-between; }
+  .work-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .product { width: 170px; height: 170px; margin-right: 14px; }
   .product-ph span { font-size: 1.4rem; }
   .form-row, .service-options { grid-template-columns: 1fr; }

@@ -10,7 +10,7 @@
      <div id="neha-footer"></div>  (after <main>)
    Add class "header-over-hero" to <body> when the page opens on a dark hero
    so the header starts transparent. Add data-no-cta to <body> to leave out
-   the Book / Gift certificates / Spa parties band above the footer.
+   the Book / Our Professionals / Spa parties band above the footer.
    ========================================================================== */
 
 (function () {
@@ -25,6 +25,10 @@
   const socials = (C.socials || []).filter(item => item.url);
   const external = ' target="_blank" rel="noopener"';
   const page = location.pathname.split("/").pop() || "index.html";
+  const params = new URLSearchParams(location.search);
+  const pros = window.NEHA_PROFESSIONALS || [];
+  const prosLabel = C.professionalsLabel || "Our Professionals";
+  const serviceBySlug = slug => services.find(s => s.slug === slug);
 
   const hoursList = hours => (hours || [])
     .map(([days, time]) => `<li><span>${esc(days)}</span><span>${esc(time)}</span></li>`).join("");
@@ -110,10 +114,10 @@
       ${logo()}
       <nav class="main-nav" id="main-nav" aria-label="Main navigation">
         ${navGroup("services.html", "Services", "sub-services", serviceLinks, true)}
+        <a href="professionals.html">${esc(prosLabel)}</a>
         ${navGroup("about.html", "About Us", "sub-about",
-          `<a href="about.html#founder">The Founder</a><a href="team.html">Our Team</a><a href="careers.html">Careers</a>`)}
+          `<a href="about.html#founder">The Founder</a><a href="careers.html">Careers</a>`)}
         <a href="index.html#gallery">Gallery</a>
-        <a href="gift-certificates.html">Gift Certificates</a>
         <a href="contact.html">Contact Us</a>
         <a class="nav-book" href="booking.html">Book Now</a>
       </nav>
@@ -125,7 +129,7 @@
   </header>`;
 
   const ctaTrio = document.body.hasAttribute("data-no-cta") ? "" : `
-  <section class="cta-trio" aria-label="Book, gift certificates and parties">
+  <section class="cta-trio" aria-label="Book, professionals and parties">
     <div class="container cta-trio-grid">
       <div class="cta-item">
         <h2>Book a visit</h2>
@@ -133,9 +137,9 @@
         <a class="btn btn-lime" href="booking.html">Book Now</a>
       </div>
       <div class="cta-item">
-        <h2>Gift certificates</h2>
-        <p>Treat someone you love to a little calm.</p>
-        <a class="btn btn-outline-light" href="gift-certificates.html">Gift Certificates</a>
+        <h2>${esc(prosLabel)}</h2>
+        <p>See each professional's prices and work, and book with your favourite.</p>
+        <a class="btn btn-outline-light" href="professionals.html">Meet the Team</a>
       </div>
       <div class="cta-item">
         <h2>Spa parties</h2>
@@ -161,9 +165,8 @@
       <div class="footer-col">
         <h3>Explore</h3>
         <a href="about.html">About Us</a>
-        <a href="team.html">Our Team</a>
+        <a href="professionals.html">${esc(prosLabel)}</a>
         <a href="careers.html">Careers</a>
-        <a href="gift-certificates.html">Gift Certificates</a>
         <a href="booking.html">Book a Visit</a>
         <a href="contact.html">Contact Us</a>
       </div>
@@ -239,12 +242,143 @@
 
   // Booking form: one checkbox per service, each with a link to its page
   each("[data-service-options]", wrap => {
-    const wanted = new URLSearchParams(location.search).get("service");
+    const wanted = params.get("service");
     wrap.innerHTML = services.map(s => `
       <div class="service-option">
         <label><input type="checkbox" name="services" value="${esc(s.name)}"${s.slug === wanted ? " checked" : ""}> <span>${esc(s.name)}</span></label>
         <a href="${esc(s.slug)}.html"${external} aria-label="About ${esc(s.name)} (opens in a new tab)">About this service ↗</a>
       </div>`).join("");
+  });
+
+  // Booking form: the professional dropdown. booking.html?pro=<slug> picks one.
+  each("[data-pro-select]", select => {
+    const wanted = params.get("pro");
+    select.innerHTML = `<option value="No preference">No preference</option>` + pros.map(p =>
+      `<option value="${esc(p.name)}"${p.slug === wanted ? " selected" : ""}>${esc(p.name)} · ${esc(p.title)}</option>`).join("");
+  });
+
+  /* ---------------- Professionals ---------------- */
+
+  // "Book with Priya". Sample profiles keep their whole placeholder name.
+  const firstName = p => p.shortName || (p.sample ? p.name : p.name.split(" ")[0]);
+  const proHref = (p, service) => `professional.html?p=${encodeURIComponent(p.slug)}${service ? "&service=" + encodeURIComponent(service) : ""}`;
+  const bookHref = (p, service) => `booking.html?pro=${encodeURIComponent(p.slug)}${service ? "&service=" + encodeURIComponent(service) : ""}`;
+  const proPhoto = (p, cls) => p.photo
+    ? `<img class="${cls}" src="${esc(p.photo)}" alt="${esc(p.name)}, ${esc(p.title)}" loading="lazy">`
+    : `<div class="ph-photo ${cls}" data-label="Photo coming soon" role="img" aria-label="Photo of ${esc(p.name)} (coming soon)"></div>`;
+  const sampleNote = p => p.sample ? `<p class="sample-note">Sample profile</p>` : "";
+  const offers = (p, slug) => p.services.filter(entry => entry.service === slug);
+  // Lowest price a professional lists for a service, e.g. "$14"
+  function fromPrice(p, slug) {
+    const amounts = offers(p, slug).flatMap(entry => entry.items)
+      .flatMap(item => (String(item.price).match(/\$\d+(?:\.\d+)?/g) || []).map(v => parseFloat(v.slice(1))));
+    return amounts.length ? "$" + Math.min(...amounts) : "";
+  }
+  const priceList = items => `<ul class="menu-list">${items.map(item => `
+        <li class="menu-item">
+          <div class="menu-line"><h3>${esc(item.name)}</h3><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">${esc(item.price)}</span></div>
+          ${item.note ? `<p>${esc(item.note)}</p>` : ""}
+          ${item.time ? `<p><span class="dur">${esc(item.time)}</span></p>` : ""}
+        </li>`).join("")}</ul>`;
+
+  // Service pages: the professionals who offer this service
+  each("[data-service-pros]", wrap => {
+    const slug = wrap.dataset.servicePros;
+    const list = pros.filter(p => offers(p, slug).length);
+    if (!list.length) {
+      wrap.outerHTML = `<div class="notice-soon"><p><strong>Tell us what you have in mind.</strong></p>
+        <p><a href="booking.html?service=${esc(slug)}">Send a request</a> or call <a href="${esc(main.phoneHref)}">${esc(main.phone)}</a> and we'll match you with the right professional.</p></div>`;
+      return;
+    }
+    wrap.innerHTML = list.map(p => `
+      <article class="pro-row">
+        <a class="pro-row-photo" href="${proHref(p, slug)}" tabindex="-1" aria-hidden="true">${proPhoto(p, "pro-thumb")}</a>
+        <div class="pro-row-body">
+          <h3><a href="${proHref(p, slug)}">${esc(p.name)}</a></h3>
+          <p class="pro-title">${esc(p.title)}</p>
+          ${fromPrice(p, slug) ? `<p class="pro-from"><small>from</small> ${fromPrice(p, slug)}</p>` : ""}
+          ${sampleNote(p)}
+        </div>
+        <div class="pro-row-actions">
+          <a class="btn btn-ink" href="${proHref(p, slug)}">Prices &amp; Work</a>
+          <a class="text-link" href="${bookHref(p, slug)}">Book with ${esc(firstName(p))}</a>
+        </div>
+      </article>`).join("");
+  });
+
+  // Our Professionals page
+  each("[data-pro-list]", wrap => {
+    wrap.innerHTML = pros.map(p => {
+      const names = [...new Set(p.services.map(entry => serviceBySlug(entry.service)?.name).filter(Boolean))];
+      return `
+      <article class="pro-card">
+        <a href="${proHref(p)}" tabindex="-1" aria-hidden="true">${proPhoto(p, "pro-portrait")}</a>
+        <h2><a href="${proHref(p)}">${esc(p.name)}</a></h2>
+        <p class="pro-title">${esc(p.title)}</p>
+        ${sampleNote(p)}
+        <p class="pro-bio">${esc(p.bio)}</p>
+        <p class="pro-tags">${names.map(esc).join(" · ")}</p>
+        <div class="pro-actions">
+          <a class="btn btn-outline" href="${proHref(p)}">Prices &amp; Work</a>
+          <a class="btn btn-ink" href="${bookHref(p)}">Book with ${esc(firstName(p))}</a>
+        </div>
+      </article>`;
+    }).join("");
+  });
+
+  // A professional's own page: professional.html?p=<slug>[&service=<slug>]
+  each("[data-pro-page]", wrap => {
+    const p = pros.find(item => item.slug === params.get("p"));
+    if (!p) {
+      wrap.innerHTML = `<section class="section"><div class="container container-narrow prose">
+        <h2>We couldn't find that professional</h2>
+        <p>They may have moved on, or the link may be out of date.</p>
+        <a class="btn btn-ink" href="professionals.html">See ${esc(prosLabel)}</a></div></section>`;
+      return;
+    }
+    const wanted = params.get("service");
+    // The service the visitor came from is listed first
+    const entries = [...p.services].sort((a, b) => (b.service === wanted) - (a.service === wanted));
+    document.title = `${p.name}, ${p.title} — ${C.name}`;
+    each("[data-pro-name]", el => { el.textContent = p.name; });
+    each("[data-pro-title]", el => { el.textContent = p.title; });
+    const work = p.work && p.work.length
+      ? p.work.map(w => `<img class="work-photo" src="${esc(w.img)}" alt="${esc(w.label || `Work by ${p.name}`)}" loading="lazy">`).join("")
+      : ["", " tone-sage", " tone-deep", " tone-lime", "", " tone-sage"].map(tone =>
+          `<div class="ph-photo work-photo${tone}" data-label="Work photo"></div>`).join("");
+    wrap.innerHTML = `
+    <section class="section" id="prices" aria-labelledby="prices-title">
+      <div class="container service-layout">
+        <div class="prose">
+          <h2 id="prices-title">Services &amp; prices</h2>
+          ${p.sample ? `<p class="sample-note">Sample profile: the name, prices and photos are placeholders</p>` : ""}
+          ${entries.map(entry => {
+            const service = serviceBySlug(entry.service);
+            return `
+          <div class="price-group">
+            <h3 class="price-group-title">${entry.title ? esc(entry.title) : `<a href="${esc(entry.service)}.html">${esc(service ? service.name : entry.service)}</a>`}</h3>
+            ${priceList(entry.items)}
+          </div>`;
+          }).join("")}
+        </div>
+        <aside class="aside-card pro-aside" aria-label="About ${esc(p.name)}">
+          ${proPhoto(p, "pro-portrait")}
+          <h2>${esc(p.name)}</h2>
+          <p class="pro-title">${esc(p.title)}</p>
+          <p>${esc(p.bio)}</p>
+          ${p.instagram ? `<p><a href="${esc(p.instagram)}"${external}>Instagram</a></p>` : ""}
+          <a class="btn btn-ink" href="${bookHref(p, wanted)}">Book with ${esc(firstName(p))}</a>
+          <a class="btn btn-outline" href="#work">See ${esc(firstName(p))}'s Work</a>
+        </aside>
+      </div>
+    </section>
+    <section class="section section-mist" id="work" aria-labelledby="work-title">
+      <div class="container">
+        <div class="section-head"><h2 id="work-title">${esc(firstName(p))}'s work</h2></div>
+        <div class="work-grid"${p.work && p.work.length ? "" : ' data-placeholder="Work photos"'}>${work}</div>
+        <div class="center-cta"><a class="btn btn-ink" href="${bookHref(p, wanted)}">Book with ${esc(firstName(p))}</a></div>
+      </div>
+    </section>`;
   });
 
   // Product strip: the list is repeated so the strip is always wider than
@@ -334,12 +468,14 @@
 
   /* ---------------- Current page highlight ---------------- */
 
-  const aboutPages = ["about.html", "team.html", "careers.html"];
+  const aboutPages = ["about.html", "careers.html"];
+  const proPages = ["professionals.html", "professional.html"];
   const isService = page === "services.html" || services.some(s => s.slug + ".html" === page);
   mainNav.querySelectorAll(":scope > a, .has-sub > a").forEach(a => {
     const href = a.getAttribute("href");
     if (href === page || (href === "services.html" && isService) ||
-        (href === "about.html" && aboutPages.includes(page))) a.classList.add("current");
+        (href === "about.html" && aboutPages.includes(page)) ||
+        (href === "professionals.html" && proPages.includes(page))) a.classList.add("current");
   });
   mainNav.querySelectorAll(".sub-menu a").forEach(a => {
     if (a.getAttribute("href") === page) a.setAttribute("aria-current", "page");

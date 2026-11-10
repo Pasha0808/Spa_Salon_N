@@ -57,6 +57,32 @@ for (const page of pages) {
 }
 const todos = (config.match(/\/\/ TODO/g) || []).length;
 
+// Professionals: every one needs a unique slug, real services, and files that exist
+{
+  const vm = await import("node:vm");
+  const sandbox = { window: {} };
+  vm.runInNewContext(config, sandbox);
+  vm.runInNewContext(await readFile(join(root, "js/professionals.js"), "utf8"), sandbox);
+  const serviceSlugs = new Set(sandbox.window.NEHA_CONFIG.services.map(s => s.slug));
+  const seen = new Set();
+  for (const pro of sandbox.window.NEHA_PROFESSIONALS) {
+    if (!/^[a-z0-9-]+$/.test(pro.slug)) fail(`professionals.js: bad slug "${pro.slug}"`);
+    if (seen.has(pro.slug)) fail(`professionals.js: duplicate slug "${pro.slug}"`);
+    seen.add(pro.slug);
+    for (const entry of pro.services) {
+      if (!serviceSlugs.has(entry.service)) fail(`professionals.js: ${pro.slug} lists unknown service "${entry.service}"`);
+      if (!entry.items?.length) fail(`professionals.js: ${pro.slug} has no prices for "${entry.service}"`);
+    }
+    for (const file of [pro.photo, ...(pro.work || []).map(w => w.img)].filter(Boolean)) {
+      if (!(await exists(join(root, file)))) fail(`professionals.js: ${pro.slug} references missing file ${file}`);
+    }
+  }
+  for (const product of sandbox.window.NEHA_CONFIG.products) {
+    if (product.img && !(await exists(join(root, product.img)))) fail(`config.js: missing product picture ${product.img}`);
+  }
+  console.log(`Checked ${seen.size} professionals (${sandbox.window.NEHA_PROFESSIONALS.filter(p => p.sample).length} still sample profiles).`);
+}
+
 console.log(`Checked ${pages.length} pages.`);
 console.log(`Still to replace: ${placeholders} marked placeholders in pages, ${todos} TODO values in js/config.js (open any page with ?review to see them).`);
 if (failures.length) {
