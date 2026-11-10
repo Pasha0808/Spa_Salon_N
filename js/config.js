@@ -48,9 +48,9 @@ window.NEHA_CONFIG = {
     { label: "X", url: "https://x.com/NehaSalonSpa" }
   ],
 
-  // Menu label for the team page. The professionals themselves, with their
-  // own services and prices, are in js/professionals.js.
-  professionalsLabel: "Our Professionals",
+  // Menu label for the team page. The specialists themselves, with their
+  // own services and prices, are in js/specialists.js.
+  specialistsLabel: "Our Specialists",
 
   announcement: "New clients enjoy 15% off their first visit", // confirmed 2026-11-08; "" hides the bar
 

@@ -70,8 +70,8 @@ index.html                Home
 services.html             The 12 services
 threading.html … slimming-treatments.html   One page per service (12)
 about.html                About Us (story + The Founder at #founder)
-professionals.html        Our Professionals (everyone, with links to book)
-professional.html         One template for every professional: ?p=<slug>
+specialists.html        Our Specialists (everyone, with links to book)
+specialist.html         One template for every specialist: ?p=<slug>
 careers.html              Careers (with enquiry form)
 gift-certificates.html    Gift Certificates (kept, but not linked for now)
 contact.html              Contact Us (details, form, map, FAQ)
@@ -79,7 +79,7 @@ booking.html              Book a Visit (booking request form)
 
 css/styles.css            All styles: tokens at the top, responsive rules at the bottom
 js/config.js              ★ Business details, the service list, product brands
-js/professionals.js       ★ The professionals: their services, prices and work photos
+js/specialists.js       ★ The specialists: their services, prices and work photos
 js/site.js                Header, menus, footer, and everything filled in from config
 js/main.js                Hero video rules and the request forms
 
@@ -108,7 +108,7 @@ Every page has the same skeleton:
 <main id="main"> … </main>
 <div id="neha-footer"></div>
 <script src="js/config.js?v=7"></script>
-<script src="js/professionals.js?v=1"></script>
+<script src="js/specialists.js?v=1"></script>
 <script src="js/site.js?v=8"></script>
 <script src="js/main.js?v=5"></script>
 ```
@@ -143,11 +143,11 @@ Put these attributes in a page and `js/site.js` fills them:
 | `data-other-services` | Links to every service except the current page |
 | `data-service-options` | The booking form's service checkboxes with "About this service" links |
 | `data-products` (on the strip's `<ul>`) | The product strip items |
-| `data-service-pros="<slug>"` | Service pages: a row for each professional who offers that service |
-| `data-pro-list` | The cards on the Our Professionals page |
-| `data-pro-page` | The whole body of `professional.html` |
-| `data-pro-name`, `data-pro-title` | The professional's name and role in that page's heading |
-| `data-pro-select` (on a `<select>`) | The booking form's professional dropdown |
+| `data-service-pros="<slug>"` | Service pages: a row for each specialist who offers that service |
+| `data-pro-list` | The cards on the Our Specialists page |
+| `data-pro-page` | The whole body of `specialist.html` |
+| `data-pro-name`, `data-pro-title` | The specialist's name and role in that page's heading |
+| `data-pro-select` (on a `<select>`) | The booking form's specialist dropdown |
 
 ### Menus
 
@@ -160,17 +160,17 @@ Put these attributes in a page and `js/site.js` fills them:
 - The header has no phone number (dev request). The phone is in the footer
   and on the Contact and Booking pages.
 
-### Professionals and prices
+### Specialists and prices
 
-Prices belong to professionals, not to services. Everything comes from
-`js/professionals.js` (the fields are explained at the top of that file).
+Prices belong to specialists, not to services. Everything comes from
+`js/specialists.js` (the fields are explained at the top of that file).
 
 - **Service page:** `data-service-pros` lists who offers the service, with
   their lowest price for it ("from $14"), **Prices & Work** and **Book with …**.
   A service nobody offers shows an invitation to send a request.
-- **Our Professionals** (`professionals.html`): a portrait card per person.
-- **A professional's page** is one template, `professional.html`. The
-  address picks the person: `professional.html?p=<slug>`. Adding
+- **Our Specialists** (`specialists.html`): a portrait card per person.
+- **A specialist's page** is one template, `specialist.html`. The
+  address picks the person: `specialist.html?p=<slug>`. Adding
   `&service=<slug>` lists that service first. The page shows their services
   and prices at the top and their work photos at the bottom. An unknown
   slug shows a "couldn't find" message with a link to the team page.
@@ -199,7 +199,7 @@ an `img` shows the picture; without one it shows the brand name.
 | `announcement` | Text of the top bar. `""` hides the bar |
 | `services` | **The service list.** `slug` is the page's file name without `.html`; `tag` is the small label under the name on the home page; `blurb` is the one-line description |
 | `products` | Brands in the home page strip: `name`, `kind`, optional `img` |
-| `professionalsLabel` | The menu name of the team page ("Our Professionals") |
+| `specialistsLabel` | The menu name of the team page ("Our Specialists") |
 
 ---
 
@@ -223,7 +223,7 @@ contact (`contact.html`) and careers (`careers.html`). Any
     and add spam protection.
 
 `booking.html?service=<slug>` ticks that service, and `&pro=<slug>` selects
-that professional in the dropdown. Service and professional pages link to
+that specialist in the dropdown. Service and specialist pages link to
 it that way.
 
 ---
@@ -327,18 +327,18 @@ LocalBusiness data (as Elite has), and redirect the old site's addresses
 
 ## 11. How-to recipes
 
-**Add a professional:** copy a block in `js/professionals.js` and edit it:
+**Add a specialist:** copy a block in `js/specialists.js` and edit it:
 `slug`, `name`, `title`, `bio`, `photo` (about 800 × 1000 px, in
 `assets/img/team/`), their `services` with their own `items` (name, price,
 time, note) and their `work` photos (square, in `assets/img/team/work/`).
-No new page is needed. Then raise `professionals.js?v=` in every page.
+No new page is needed. Then raise `specialists.js?v=` in every page.
 
 **Change someone's prices, or remove them:** edit or delete their block in
-`js/professionals.js`.
+`js/specialists.js`.
 
 **Fill in a service page** (e.g. `facials.html`): replace the
 `<p data-placeholder="Service details">` text and remove that attribute.
-Prices do not go here; they come from the professionals who list the service.
+Prices do not go here; they come from the specialists who list the service.
 
 **Add a service:** add `{ slug, name, tag, blurb }` to `services` in
 `js/config.js`, copy an existing service page to `<slug>.html` and edit its
@@ -407,4 +407,5 @@ Desktop/Mobile view toggle, and the Supabase portal (not relevant here).
 | 2026-11-10 | **Back to the soft style, keeping the sharpness.** The Craft-style look was rejected: Cormorant Garamond headings, cream and sage, rounded corners and soft shadows are restored. "What brings you in today?" is an icon row again, now for all 12 services; the Services page uses matching icon cards. Kept: 1080p video, lighter hero overlay, darker text. Phone number removed from the header. |
 | 2026-11-10 | **Compact home-page sections.** The 12 service icons use one wide desktop row with tighter spacing, making “What brings you in today?” about half as tall. The products intro is a compact two-column heading/description on desktop; brand tile sizes are unchanged. |
 | 2026-11-10 | **Homepage reorder and full-site audit.** Gallery moved above reviews; products moved below reviews. Removed the product description and gallery Instagram CTA, and tightened product-section spacing without changing tile sizes. Audited all 20 pages at desktop, 390 px and 320 px; fixed narrow-phone overflow, duplicate carousel announcements for screen readers and a hard-coded FAQ phone number. Remaining recommendations are in `PROJECT_BRIEF.md` §7. |
-| 2026-11-10 | **Professionals with their own prices.** New `js/professionals.js`, an Our Professionals page and one template page for every professional (prices on top, work photos below). Service pages list the professionals who offer the service. The booking form has a professional dropdown, preselected from "Book with …" links. Menu: Our Professionals added after Services; Our Team and Gift Certificates removed. "What brings you in today?" is a slim one-row band. Product strip uses the four supplied brand pictures. |
+| 2026-11-10 | **Specialists with their own prices.** New `js/specialists.js`, an Our Specialists page and one template page for every specialist (prices on top, work photos below). Service pages list the specialists who offer the service. The booking form has a specialist dropdown, preselected from "Book with …" links. Menu: Our Specialists added after Services; Our Team and Gift Certificates removed. "What brings you in today?" is a slim one-row band. Product strip uses the four supplied brand pictures. |
+| 2026-11-10 | **Renamed to "Our Specialists".** The team page, each person's page and the data file are now `specialists.html`, `specialist.html` and `js/specialists.js`; all visible wording says "specialist". CSS classes and `data-` hooks keep their short `pro-` prefix. |

@@ -1,11 +1,11 @@
 /* ==========================================================================
-   NEHA Threading — professionals.js
-   The salon's professionals, each with their own services and prices.
+   NEHA Threading — specialists.js
+   The salon's specialists, each with their own services and prices.
    This one list feeds:
-     - the Our Professionals page (professionals.html)
-     - each professional's own page (professional.html?p=<slug>)
-     - the "Choose your professional" cards on every service page
-     - the professional dropdown on the booking form
+     - the Our Specialists page (specialists.html)
+     - each specialist's own page (specialist.html?p=<slug>)
+     - the "Choose your specialist" cards on every service page
+     - the specialist dropdown on the booking form
 
    To add someone, copy a block and change it. To remove someone, delete
    their block. Nothing else needs editing.
@@ -29,15 +29,15 @@
 
    ALL SEVEN PROFILES BELOW ARE SAMPLES. Names, bios and prices are
    placeholders until the salon supplies its real team. One exception: the
-   massage prices under "Professional Four" are the salon's real menu from
+   massage prices under "Specialist Four" are the salon's real menu from
    nehathreading.com/massages, kept here until each therapist's own prices
    are known.
    ========================================================================== */
 
-window.NEHA_PROFESSIONALS = [
+window.NEHA_SPECIALISTS = [
   {
-    slug: "professional-one",
-    name: "Professional One",
+    slug: "specialist-one",
+    name: "Specialist One",
     title: "Senior Threading Artist",
     sample: true,
     photo: "",
@@ -61,8 +61,8 @@ window.NEHA_PROFESSIONALS = [
     work: []
   },
   {
-    slug: "professional-two",
-    name: "Professional Two",
+    slug: "specialist-two",
+    name: "Specialist Two",
     title: "Threading Artist",
     sample: true,
     photo: "",
@@ -84,8 +84,8 @@ window.NEHA_PROFESSIONALS = [
     work: []
   },
   {
-    slug: "professional-three",
-    name: "Professional Three",
+    slug: "specialist-three",
+    name: "Specialist Three",
     title: "Esthetician",
     sample: true,
     photo: "",
@@ -113,8 +113,8 @@ window.NEHA_PROFESSIONALS = [
     work: []
   },
   {
-    slug: "professional-four",
-    name: "Professional Four",
+    slug: "specialist-four",
+    name: "Specialist Four",
     title: "Massage Therapist",
     sample: true,
     photo: "",
@@ -159,8 +159,8 @@ window.NEHA_PROFESSIONALS = [
     work: []
   },
   {
-    slug: "professional-five",
-    name: "Professional Five",
+    slug: "specialist-five",
+    name: "Specialist Five",
     title: "Senior Massage Therapist",
     sample: true,
     photo: "",
@@ -180,8 +180,8 @@ window.NEHA_PROFESSIONALS = [
     work: []
   },
   {
-    slug: "professional-six",
-    name: "Professional Six",
+    slug: "specialist-six",
+    name: "Specialist Six",
     title: "Hair Stylist",
     sample: true,
     photo: "",
@@ -198,8 +198,8 @@ window.NEHA_PROFESSIONALS = [
     work: []
   },
   {
-    slug: "professional-seven",
-    name: "Professional Seven",
+    slug: "specialist-seven",
+    name: "Specialist Seven",
     title: "Nail Technician",
     sample: true,
     photo: "",
