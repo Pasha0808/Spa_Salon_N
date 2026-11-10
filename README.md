@@ -107,9 +107,9 @@ Every page has the same skeleton:
 <div id="neha-header"></div>
 <main id="main"> … </main>
 <div id="neha-footer"></div>
-<script src="js/config.js?v=7"></script>
+<script src="js/config.js?v=8"></script>
 <script src="js/specialists.js?v=1"></script>
-<script src="js/site.js?v=8"></script>
+<script src="js/site.js?v=9"></script>
 <script src="js/main.js?v=5"></script>
 ```
 
@@ -119,7 +119,7 @@ one place**, `js/site.js`.
 
 - `class="header-over-hero"` makes the header start transparent over the
   dark page heading and turn solid white on scroll. Every page uses it.
-- `data-no-cta` on `<body>` leaves out the Book / Gift certificates / Spa
+- `data-no-cta` on `<body>` leaves out the Book / Our Specialists / Spa
   parties band (used on `booking.html`).
 - The `?v=N` on CSS and JS addresses is a cache-buster. **Raise it on every
   page when that file changes**, or returning visitors see the old version.
@@ -151,6 +151,9 @@ Put these attributes in a page and `js/site.js` fills them:
 
 ### Menus
 
+- Items: Services (submenu of the 12 services), Our Specialists, About Us
+  (submenu: The Founder, Careers), Gallery, Contact Us, and the Book Now
+  button. Gift Certificates is not in the menu for now.
 - Desktop: "Services" and "About Us" are normal links. Their submenus open
   on hover and on keyboard focus.
 - Below 1120 px the menu becomes a panel behind the ☰ button, and each
@@ -197,7 +200,7 @@ an `img` shows the picture; without one it shows the brand name.
 | `giftCardUrl` | The "Choose a Design" button on the gift certificates page |
 | `socials` | Footer and Contact page links. An empty `url` hides that network |
 | `announcement` | Text of the top bar. `""` hides the bar |
-| `services` | **The service list.** `slug` is the page's file name without `.html`; `tag` is the small label under the name on the home page; `blurb` is the one-line description |
+| `services` | **The service list.** `slug` is the page's file name without `.html`; `tag` is a short label (not shown at present: the home icon row was slimmed down); `blurb` is the one-line description |
 | `products` | Brands in the home page strip: `name`, `kind`, optional `img` |
 | `specialistsLabel` | The menu name of the team page ("Our Specialists") |
 

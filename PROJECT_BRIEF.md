@@ -65,7 +65,7 @@ The dev, after more input from the salon. All **done** unless marked.
    workers who each set their own prices. Customers choose a worker and
    then see that worker's services and prices. The model is
    <https://craftsalonglendora.com/> (their Our Team page, per-stylist
-   portfolios, and a booking page with a "Select a Specialist" filter).
+   portfolios, and a booking page with a "Select a Professional" filter).
 2. **Two ways to reach a worker's own page:**
    - **Services → a service page**, which lists the workers who can do that
      service. Clicking one opens their page.
