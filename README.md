@@ -81,8 +81,8 @@ js/config.js              ★ Business details, the service list, product brands
 js/site.js                Header, menus, footer, and everything filled in from config
 js/main.js                Hero video rules and the request forms
 
-assets/img/               neha-mark.svg (logo mark + favicon), botanical-dark.svg
-                          (leaf background), hero-poster.jpg, logo-original.png
+assets/img/               neha-mark.svg (logo mark + favicon), leaf-line.svg
+                          (leaf drawing for backgrounds), hero-poster.jpg, logo-original.png
 assets/video/             hero-loop.mp4 (placeholder)
 
 tests/static-audit.mjs    npm test
@@ -104,8 +104,8 @@ Every page has the same skeleton:
 <div id="neha-header"></div>
 <main id="main"> … </main>
 <div id="neha-footer"></div>
-<script src="js/config.js?v=5"></script>
-<script src="js/site.js?v=5"></script>
+<script src="js/config.js?v=6"></script>
+<script src="js/site.js?v=6"></script>
 <script src="js/main.js?v=5"></script>
 ```
 
@@ -117,7 +117,7 @@ one place**, `js/site.js`.
   dark page heading and turn solid white on scroll. Every page uses it.
 - `data-no-cta` on `<body>` leaves out the Book / Gift certificates / Spa
   parties band (used on `booking.html`).
-- The `?v=5` on CSS and JS addresses is a cache-buster. **Raise it on every
+- The `?v=N` on CSS and JS addresses is a cache-buster. **Raise it on every
   page when that file changes**, or returning visitors see the old version.
 
 ### Hooks filled in from `js/config.js`
@@ -135,7 +135,7 @@ Put these attributes in a page and `js/site.js` fills them:
 | `data-socials` | All social links |
 | `data-social="instagram"` (on a link) | That one network's address |
 | `data-gift-shop` (on a link) | The online gift card shop |
-| `data-service-tiles` / `="detailed"` | Tiles for all services (home / Services page) |
+| `data-service-tiles` / `="detailed"` | All services: the icon row on the home page / cards with a description on the Services page |
 | `data-other-services` | Links to every service except the current page |
 | `data-service-options` | The booking form's service checkboxes with "About this service" links |
 | `data-products` (on the strip's `<ul>`) | The product strip items |
@@ -146,8 +146,10 @@ Put these attributes in a page and `js/site.js` fills them:
   on hover and on keyboard focus.
 - Below 1120 px the menu becomes a panel behind the ☰ button, and each
   submenu opens with its small arrow button.
-- The service submenu, the footer service list, the tiles and the booking
-  checkboxes all come from the `services` list in `js/config.js`.
+- The service submenu, the footer service list, the service icons and the
+  booking checkboxes all come from the `services` list in `js/config.js`.
+- The header has no phone number (dev request). The phone is in the footer
+  and on the Contact and Booking pages.
 
 ### Product strip (home page)
 
@@ -168,7 +170,7 @@ an `img` shows the picture; without one it shows the brand name.
 | `giftCardUrl` | The "Choose a Design" button on the gift certificates page |
 | `socials` | Footer and Contact page links. An empty `url` hides that network |
 | `announcement` | Text of the top bar. `""` hides the bar |
-| `services` | **The service list.** `slug` is the page's file name without `.html` |
+| `services` | **The service list.** `slug` is the page's file name without `.html`; `tag` is the small label under the name on the home page; `blurb` is the one-line description |
 | `products` | Brands in the home page strip: `name`, `kind`, optional `img` |
 
 ---
@@ -199,26 +201,32 @@ that way.
 
 ## 6. Design system
 
-"Sharp botanical", after craftsalonglendora.com (see the brief, §4).
+"Botanical calm": soft, with crisp details. The reasoning and the rejected
+hard-edged version are in the brief, §4.
 
 | Token (`css/styles.css`) | Value | Use |
 | --- | --- | --- |
-| `--ink` | `#0b1615` | Text, borders, footer, solid buttons |
-| `--night` | `#081a18` | Base colour of the leaf background |
-| `--forest` | `#285f5f` | Logo teal: links, small labels, call-to-action band |
-| `--lime` | `#aecd54` | Logo lime: Book buttons, accents on dark. Not for text on white |
+| `--forest` | `#285f5f` | Logo teal: buttons, links, small labels, call-to-action band |
+| `--forest-deep` / `--forest-ink` | `#173f3d` / `#102c2a` | Hover / footer, offer bar, hero overlay |
+| `--lime` / `--lime-soft` | `#aecd54` / `#e9f1d2` | Book buttons and accents on dark / notices, ticked options. Lime is not for text on light backgrounds |
 | `--sun` | `#e6883c` | Logo orange: stars, bullets, focus ring |
-| `--paper` / `--mist` | `#ffffff` / `#f3f5f1` | Page / form fields |
-| `--leaves` | — | The dark leaf background (`assets/img/botanical-dark.svg`) |
+| `--cream` / `--mist` | `#f8f7f1` / `#edf2ea` | Page background / alternating pale sage sections |
+| `--ink` / `--ink-soft` | `#16211f` / `#46534f` | Text |
+| `--radius`, `--shadow` | `6px`, soft | Rounded corners and soft shadows on cards |
 
-- **Headings:** Bodoni Moda, uppercase. Large headings use a fixed optical
-  size (`"opsz" 28`) so the thin strokes stay readable.
-- **Body, menu, buttons, wordmark:** Jost.
-- Square corners, 1 px `--ink` borders, no shadows.
-- Useful classes: `.section`, `.section-dark`, `.section-line`,
-  `.page-hero`, `.split` (photo + text), `.card`, `.service-layout`
-  (content + side panel), `.menu-list` (price list with dotted lines),
-  `.notice-soon`, `.request-form`, `.ph-photo` (photo placeholder).
+- **Headings:** Cormorant Garamond, mixed case, weight 500, italic `<em>` accents.
+- **Body, menu, buttons, wordmark:** Jost, weight 400.
+- Cards are white with a soft shadow and no border. Sections alternate
+  cream and `.section-mist`.
+- Photo placeholders (`.ph-photo`) are green gradient tiles with a leaf
+  drawing (`assets/img/leaf-line.svg`) and a label.
+- Service icons are small line drawings in `js/site.js` (`ICONS`), keyed by
+  the service's slug. A service without one gets a leaf.
+- Useful classes: `.section`, `.section-mist`, `.page-hero`, `.needs` /
+  `.needs-grid` (home icon row), `.service-cards` (Services page), `.split`
+  (photo + text), `.card`, `.service-layout` (content + side panel),
+  `.menu-list` (price list with dotted lines), `.notice-soon`,
+  `.request-form`, `.ph-photo`.
 
 A price list item:
 
@@ -262,7 +270,7 @@ A price list item:
 
 - Anything unconfirmed carries `data-placeholder="…"`. Add `?review` to a
   page address (e.g. `index.html?review`) to outline them in orange.
-- Photo placeholders are `.ph-photo` tiles (the leaf pattern with a label).
+- Photo placeholders are `.ph-photo` tiles (a green gradient with a label).
 - `// TODO` comments in `js/config.js` mark settings still to confirm.
 - The list of what is still needed is in
   [PROJECT_BRIEF.md §7](PROJECT_BRIEF.md#7-open-items).
@@ -295,10 +303,11 @@ LocalBusiness data (as Elite has), and redirect the old site's addresses
 `<ul class="menu-list">` of `menu-item`s (§6) and delete the
 `<div class="notice-soon">` block. `massages.html` is the finished example.
 
-**Add a service:** add `{ slug, name, blurb }` to `services` in
+**Add a service:** add `{ slug, name, tag, blurb }` to `services` in
 `js/config.js`, copy an existing service page to `<slug>.html` and edit its
 title, description, heading and the `booking.html?service=<slug>` link.
-Menus, tiles, footer and booking form update on their own.
+Optionally draw an icon for it in `ICONS` in `js/site.js`. Menus, icons,
+footer and booking form update on their own.
 
 **Rename or remove a service:** edit or delete its entry in `services` and
 rename or delete its page.
@@ -362,3 +371,4 @@ Desktop/Mobile view toggle, and the Supabase portal (not relevant here).
 | 2026-11-07 | Two-location support and social links from `js/config.js`. |
 | 2026-11-08 | Real facts from nehathreading.com: addresses, phones, hours, maps, socials, story, reviews, massage prices. 15% offer confirmed. |
 | 2026-11-10 | **Owner feedback round 2.** Sharper Craft-style redesign (Bodoni Moda capitals, black-green and white, leaf background, square edges, 1080p video). Home page cut to about half its length. One location (Canton closed). New menu: Services ▾, About Us ▾ (The Founder, Our Team, Careers), Gallery, Gift Certificates, Contact Us, Book Now. New pages: 12 service pages, About, Team, Careers, Gift Certificates, Contact, Booking. Booking is an email request form with a link under each service. Product strip with the salon's four brands. Requests and decisions moved to `PROJECT_BRIEF.md`. |
+| 2026-11-10 | **Back to the soft style, keeping the sharpness.** The Craft-style look was rejected: Cormorant Garamond headings, cream and sage, rounded corners and soft shadows are restored. "What brings you in today?" is an icon row again, now for all 12 services; the Services page uses matching icon cards. Kept: 1080p video, lighter hero overlay, darker text. Phone number removed from the header. |

@@ -9,7 +9,7 @@ agents are in [AGENTS.md](AGENTS.md).
 - **Developer / repo owner:** Pasha0808
 - **Review link:** <https://pasha0808.github.io/Spa_Salon_N/>
 - **Status:** prototype under client review. Second round of owner feedback
-  applied on 2026-11-10.
+  applied on 2026-11-10, then restyled back to the soft look the same day.
 
 ## Contents
 
@@ -28,10 +28,11 @@ agents are in [AGENTS.md](AGENTS.md).
 
 | Topic | Decision |
 | --- | --- |
-| Look | **Sharp and high-contrast**, like craftsalonglendora.com, in the salon's greens (§4) |
+| Look | **Soft "botanical calm" style with crisp details** (§4). The hard-edged Craft-style version was tried and rejected |
 | Colour | Shades of green: the owner's preference from day one |
-| Hero | Full-screen background video (placeholder clip for now) |
-| Home page | **Short**: hero → 12 service tiles → product strip → reviews → gallery |
+| Hero | Full-screen background video in HD (placeholder clip for now) |
+| Home page | **Short**: hero → 12 service icons → product strip → reviews → gallery |
+| Header | **No phone number in the menu bar.** Phone is in the footer and on the Contact and Booking pages |
 | Locations | **One: Pikesville.** Canton is closed. No "two locations" wording anywhere |
 | Menu | Services ▾ · About Us ▾ (The Founder, Our Team, Careers) · Gallery · Gift Certificates · Contact Us · **Book Now** |
 | Services | 12 services, each with **its own page** |
@@ -46,13 +47,25 @@ agents are in [AGENTS.md](AGENTS.md).
 
 Newest first. "Dev" is the developer; "owner" is the salon owner.
 
+### 2026-11-10 (later): dev feedback on the sharper restyle
+
+- **Remove the phone number from the navigation menu.** Done, on every page.
+- "I like the sharpness, but I strongly prefer the older, softer edging and
+  contours, and general style. Let's go back to it, but keep the sharpness.
+  For example, the old *What brings you in today?* section looked much
+  nicer." Done: the soft style is back (§4). Kept: the HD video with a
+  lighter overlay, and darker, clearer text. The icon row now covers all
+  12 services.
+- The new structure from round 2 (pages, menu, booking form, product strip)
+  is unchanged.
+
 ### 2026-11-10: owner consultation (round 2)
 
 The owner likes the prototype. Requests, all **done** unless marked:
 
-1. **Make it sharper, similar to <https://craftsalonglendora.com/>.** Done
-   as a restyle: more contrast, crisp edges, new heading type, a sharper
-   1080p video (§4).
+1. **Make it sharper, similar to <https://craftsalonglendora.com/>.** First
+   done as a full Craft-style restyle. The dev then asked to go back to the
+   soft style and keep only the sharpness (see the entry above and §4).
 2. **The home page was too long.** Shortened from about 9,000 px to about
    4,700 px on a desktop screen.
 3. Remove the **"Precision for every face"** section (featured service cards). Removed.
@@ -124,7 +137,7 @@ the old site's addresses where possible, which helps with redirects at launch.
 
 | Page | File | Notes |
 | --- | --- | --- |
-| Home | `index.html` | Video hero · 12 service tiles · product strip · reviews · gallery |
+| Home | `index.html` | Video hero · 12 service icons · product strip · reviews · gallery |
 | Services | `services.html` | The 12 services with a one-line description each |
 | 12 service pages | `threading.html`, `hair-styling.html`, `facials.html`, `massages.html`, `nail-care.html`, `vichy-shower.html`, `spa-treatments.html`, `spa-parties.html`, `waxing.html`, `other-services.html`, `microblading.html`, `slimming-treatments.html` | Description, prices, a "Book this service" panel, links to the other services |
 | About Us | `about.html` | The spa's story, then **The Founder** (`about.html#founder`) |
@@ -136,8 +149,8 @@ the old site's addresses where possible, which helps with redirects at launch.
 
 Menu: **Services** (submenu: the 12 services) · **About Us** (submenu: The
 Founder, Our Team, Careers) · **Gallery** (a section on the home page) ·
-**Gift Certificates** · **Contact Us** · **Book Now** button. The phone
-number shows in the header on wide screens.
+**Gift Certificates** · **Contact Us** · **Book Now** button. There is no
+phone number in the menu bar (dev request, 2026-11-10).
 
 ### How the forms deliver
 
@@ -152,26 +165,34 @@ be ported) and requests arrive by email without that extra step.
 
 ## 4. Design direction
 
-**"Sharp botanical":** the high-contrast, editorial feel of Craft Salon, in
-the salon's own greens.
+**"Botanical calm": the soft look, with crisp details.** This is the
+owner's settled preference after trying a harder-edged version.
 
-What "sharper" means here, and what was changed on 2026-11-10:
+**The style (keep this):**
+- Cream and pale sage backgrounds, deep green for the footer and page headings.
+- **Soft edges and contours:** gently rounded corners, soft shadows, no hard
+  black borders.
+- Headings in *Cormorant Garamond*, mixed case with italic accents. Body
+  text and the NEHA wordmark in *Jost*.
+- "What brings you in today?" is a row of **round icons** with the service
+  name underneath, as in the first prototype. The dev singled this out as
+  looking much nicer than the boxed tiles.
+- Logo colours as accents: lime `#AECD54` for Book buttons, orange `#E6883C`
+  for tiny details, teal `#285F5F` for buttons and the call-to-action band.
 
-- **Contrast:** near-black green (`#0b1615`) and pure white replaced the
-  earlier cream and pale sage. Body text is darker and heavier.
-- **Dark leaf background** (like Craft's): `assets/img/botanical-dark.svg`,
-  used behind page headings and the product strip.
-- **Headings:** high-contrast capitals in *Bodoni Moda*, close to Craft's
-  headline face. (Before: soft, mixed-case *Cormorant Garamond*.)
-- **Edges:** square corners, 1 px black borders, no soft shadows, no
-  gradients on tiles.
-- **Video:** re-encoded at 1920×1080 with light sharpening (was 1280×720),
-  and the green haze over it was reduced so the footage shows clearly.
-- **Buttons:** solid, square, bold labels.
+**The sharpness (keep this too):**
+- The hero video in full HD (1920×1080), lightly sharpened, with only a
+  light dark overlay behind the text so the footage stays clear.
+- Darker text and regular-weight body copy, for clearer reading than the
+  first prototype.
 
-Unchanged: logo colours as accents (lime `#AECD54` for Book buttons, orange
-`#E6883C` for tiny details, teal `#285F5F` for the call-to-action band),
-*Jost* for body text and the NEHA wordmark.
+**Tried and rejected (do not bring back):** on 2026-11-10 the site was
+restyled after craftsalonglendora.com: black-green and pure white, all-caps
+*Bodoni Moda* headings, square corners, thin black borders, boxed service
+tiles, a dark leaf-pattern background. The dev liked the added sharpness
+but **strongly preferred the older, softer edging, contours and general
+style**, so it was reverted the same day. That version is in the git
+history at commit `b0d84ff`.
 
 Logo notes: the owner's file is low resolution (434 × 116 px). The leaf
 mark was redrawn as a vector (`assets/img/neha-mark.svg`, and inline in
@@ -185,8 +206,8 @@ The owner's five (2026-11-07), plus what each contributed.
 
 | Site | What stands out | Used for |
 | --- | --- | --- |
-| [Craft Salon, Glendora](https://craftsalonglendora.com/) | Black background with leaves, white card over a photo, tall serif capitals, black-and-white contrast, one BOOK button | **The overall sharp look** (owner's pick on 2026-11-10) |
-| [The Pearl Spa](https://www.thepearlspa.com/) | Full-screen background video, deep green and cream, "What do you need today?" strip | Video hero; "What brings you in today?" service tiles |
+| [Craft Salon, Glendora](https://craftsalonglendora.com/) | Black background with leaves, white card over a photo, tall serif capitals, black-and-white contrast, one BOOK button | The owner's example of "sharper". Its hard-edged style was tried and rejected; only the crispness was kept (HD video, clearer text) |
+| [The Pearl Spa](https://www.thepearlspa.com/) | Full-screen background video, deep green and cream, soft serif headings, "What do you need today?" strip | **The overall soft look**; video hero; "What brings you in today?" icon row |
 | [Nordine Salon & Day Spa](https://salonnordine.com/) ([Reston page](https://salonnordine.com/locations/reston/)) | Auto-scrolling product brand strip; menu with dotted lines to prices; menu: Home, About Us ▾, Locations ▾, Gift Certificate ▾, Contact Us, Booking | **Product strip**; price lists; the menu structure the owner asked for |
 | [Christie Adam Salon & Spa](https://www.christieadam.com/) | Offer bar ("15% off your first visit"), phone and Book button in the header, one large testimonial | Offer bar; header layout; featured review |
 | [Spa in the Valley](https://www.spainthevalley.com/) | Band of three calls to action (mailing list / book / gift cards) | Book / Gift certificates / Spa parties band above the footer |
@@ -259,7 +280,7 @@ Waiting on the dev or the owner:
 | **Content and prices for 11 service pages** (all except Massages). The dev will supply them; saving each old-site page from the browser works | The service pages now say "details and prices coming soon" |
 | **Product pictures** for Bioelements, Biotique, Davines, Moroccanoil (square, about 500 px). The saved Products page did not include its image files | The product strip shows brand names until then |
 | **The salon's own video** (10–20 s, calm) | The hero uses a hotel's promo clip, which **must not go live** |
-| **Photos**: the spa, Neha, treatment rooms, before/after, team | Every leaf-pattern tile is a photo placeholder |
+| **Photos**: the spa, Neha, treatment rooms, before/after, team | Every green gradient tile is a photo placeholder |
 | **Team names, roles and photos** | `team.html` |
 | **Careers wording**: which roles, how to apply | `careers.html` |
 | **How many years** Neha has been in Baltimore (the old site's "over 18" is out of date; a client review says 19 as a customer) | `about.html` |

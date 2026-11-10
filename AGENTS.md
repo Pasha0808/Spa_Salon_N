@@ -10,8 +10,8 @@ Read these two files before changing anything:
 ## Project in one paragraph
 Static website (HTML + CSS + vanilla JS, no framework, no build step) for
 Neha Threading Salon & Spa, one location in Pikesville, Maryland. The owner
-wants shades of green, a full-screen background video, and a sharp,
-high-contrast look like craftsalonglendora.com. The code follows the
+wants shades of green, a full-screen background video, and a soft, calm
+look with crisp details (HD video, clear text). The code follows the
 developer's earlier Elite Dental Lab site (github.com/Pasha0808/EliteDentalLab).
 It is a prototype under client review at
 https://pasha0808.github.io/Spa_Salon_N/
@@ -50,9 +50,14 @@ https://pasha0808.github.io/Spa_Salon_N/
   the phone / save-data / reduced-motion rules in `js/main.js`.
 - **Logo:** the leaf mark exists in `assets/img/neha-mark.svg` and inline in
   `js/site.js` (`markSVG`). Keep both in sync.
-- **Design:** use the tokens at the top of `css/styles.css`. Square corners,
-  1 px ink borders, no soft shadows. Lime is never text on white; orange is
-  for tiny accents only.
+- **Design: soft, not hard-edged.** Use the tokens at the top of
+  `css/styles.css`: rounded corners, soft shadows, cream and sage, Cormorant
+  Garamond headings in mixed case. A hard-edged version (square corners,
+  black borders, all-caps Bodoni, boxed tiles) was tried and **rejected**;
+  see PROJECT_BRIEF.md §4. Keep the "sharpness": HD video, light hero
+  overlay, dark readable text. Lime is never text on light backgrounds;
+  orange is for tiny accents only.
+- **No phone number in the header menu bar.**
 - **Accessibility:** keep alt text, labels, keyboard support, visible focus,
   the product strip's pause button and reduced-motion handling.
 - Never commit secrets or API keys.

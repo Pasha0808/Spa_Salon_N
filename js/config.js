@@ -51,21 +51,23 @@ window.NEHA_CONFIG = {
   announcement: "New clients enjoy 15% off their first visit", // confirmed 2026-11-08; "" hides the bar
 
   // The service list. Each service has its own page, <slug>.html.
-  // This one list feeds the Services menu, the home page tiles, the
-  // Services page, the booking form and the footer.
+  // This one list feeds the Services menu, the home page icons, the
+  // Services page, the booking form and the footer. `tag` is the small
+  // label under the name on the home page. Each service's icon is in
+  // js/site.js (ICONS), under the same slug.
   services: [
-    { slug: "threading", name: "Threading", blurb: "Eyebrow and facial threading with pure cotton thread — Neha's signature." },
-    { slug: "hair-styling", name: "Hair Styling", blurb: "Cuts, colour, styling and treatments from an experienced team." },
-    { slug: "facials", name: "Facials", blurb: "Customized facials in our state-of-the-art treatment rooms." },
-    { slug: "massages", name: "Massages", blurb: "From Swedish relaxation to hot stone and Ayurvedic massage." },
-    { slug: "nail-care", name: "Nail Care", blurb: "Manicures and pedicures." },
-    { slug: "vichy-shower", name: "Vichy Shower", blurb: "Warm cascading water and a full-body scrub." },
-    { slug: "spa-treatments", name: "Spa Treatments", blurb: "Ayurvedic face and body treatments." },
-    { slug: "spa-parties", name: "Spa Parties", blurb: "Celebrate together with a private spa party." },
-    { slug: "waxing", name: "Waxing", blurb: "Face and body waxing." },
-    { slug: "other-services", name: "Other Services", blurb: "Henna tattoos, makeup and more." },
-    { slug: "microblading", name: "Microblading", blurb: "Semi-permanent brows, stroke by stroke." },
-    { slug: "slimming-treatments", name: "Slimming Treatments", blurb: "Body treatments to tone and contour." }
+    { slug: "threading", name: "Threading", tag: "Brows & face", blurb: "Eyebrow and facial threading with pure cotton thread — Neha's signature." },
+    { slug: "hair-styling", name: "Hair Styling", tag: "Cut & colour", blurb: "Cuts, colour, styling and treatments from an experienced team." },
+    { slug: "facials", name: "Facials", tag: "Skin", blurb: "Customized facials in our state-of-the-art treatment rooms." },
+    { slug: "massages", name: "Massages", tag: "Hot stone & more", blurb: "From Swedish relaxation to hot stone and Ayurvedic massage." },
+    { slug: "nail-care", name: "Nail Care", tag: "Mani & pedi", blurb: "Manicures and pedicures." },
+    { slug: "vichy-shower", name: "Vichy Shower", tag: "Water therapy", blurb: "Warm cascading water and a full-body scrub." },
+    { slug: "spa-treatments", name: "Spa Treatments", tag: "Ayurvedic", blurb: "Ayurvedic face and body treatments." },
+    { slug: "spa-parties", name: "Spa Parties", tag: "Celebrate", blurb: "Celebrate together with a private spa party." },
+    { slug: "waxing", name: "Waxing", tag: "Face & body", blurb: "Face and body waxing." },
+    { slug: "other-services", name: "Other Services", tag: "Henna & makeup", blurb: "Henna tattoos, makeup and more." },
+    { slug: "microblading", name: "Microblading", tag: "Brows", blurb: "Semi-permanent brows, stroke by stroke." },
+    { slug: "slimming-treatments", name: "Slimming Treatments", tag: "Body", blurb: "Body treatments to tone and contour." }
   ],
 
   // Home page product strip: the brands the salon carries (from

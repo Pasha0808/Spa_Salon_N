@@ -35,6 +35,25 @@
   const serviceLinks = services
     .map(s => `<a href="${esc(s.slug)}.html">${esc(s.name)}</a>`).join("");
 
+  /* Line icons for the services, drawn on a 48 × 48 grid. The key is the
+     service's slug in js/config.js. A service without an icon gets the leaf. */
+  const ICONS = {
+    "threading": '<path d="M6 20c5-5 12-6 16-3"/><path d="M42 20c-5-5-12-6-16-3"/><path d="M8 30c4-4 10-4 13 0-3 4-9 4-13 0Z"/><path d="M40 30c-4-4-10-4-13 0 3 4 9 4 13 0Z"/>',
+    "hair-styling": '<circle cx="14" cy="35" r="5"/><circle cx="34" cy="35" r="5"/><path d="M17 31 35 7"/><path d="M31 31 13 7"/>',
+    "facials": '<path d="M24 6c-9 0-14 7-14 16 0 10 7 20 14 20s14-10 14-20c0-9-5-16-14-16Z"/><path d="M18 21h4M26 21h4"/><path d="M20 32c2.5 2 5.5 2 8 0"/>',
+    "massages": '<ellipse cx="24" cy="38" rx="16" ry="5"/><ellipse cx="24" cy="27" rx="12" ry="4.5"/><ellipse cx="24" cy="17.5" rx="8" ry="3.5"/><path d="M30 9c2-3 5-4 8-3-1 3-4 5-8 3Z"/>',
+    "nail-care": '<path d="M19 22h10l3 6v12a2 2 0 0 1-2 2H18a2 2 0 0 1-2-2V28l3-6Z"/><path d="M20 22V7h8v15"/><path d="M16 31h16"/>',
+    "vichy-shower": '<path d="M10 16h28"/><path d="M14 16a10 10 0 0 1 20 0"/><path d="M24 6V3"/><path d="M16 22v4M24 22v4M32 22v4M20 30v4M28 30v4M16 38v4M24 38v4M32 38v4"/>',
+    "spa-treatments": '<path d="M24 10c5 6 5 17 0 25-5-8-5-19 0-25Z"/><path d="M24 35c-8 0-14-5-16-14 7 0 12 3 16 14Z"/><path d="M24 35c8 0 14-5 16-14-7 0-12 3-16 14Z"/><path d="M12 41h24"/>',
+    "spa-parties": '<path d="M24 14c1 6 4 9 10 10-6 1-9 4-10 10-1-6-4-9-10-10 6-1 9-4 10-10Z"/><path d="M38 6v8M34 10h8"/><path d="M10 32v8M6 36h8"/><path d="M12 8v4M10 10h4"/>',
+    "waxing": '<path d="M24 6c6 9 12 16 12 23a12 12 0 0 1-24 0c0-7 6-14 12-23Z"/><path d="M18 30a6 6 0 0 0 6 6"/>',
+    "other-services": '<circle cx="24" cy="24" r="4"/><path d="M24 20c-3-6 0-12 0-12s3 6 0 12M28 24c6-3 12 0 12 0s-6 3-12 0M24 28c3 6 0 12 0 12s-3-6 0-12M20 24c-6 3-12 0-12 0s6-3 12 0"/><path d="M27 21c4-4 9-4 9-4s0 5-4 9M21 27c-4 4-9 4-9 4s0-5 4-9"/>',
+    "microblading": '<path d="M5 30c9-12 26-14 38-5"/><path d="M11 27l-3-6M18 22l-2-7M25 20v-7M32 20l2-7M39 23l3-5"/><path d="M12 38h24"/>',
+    "slimming-treatments": '<path d="M15 5c0 9 6 11 6 19s-6 10-6 19"/><path d="M33 5c0 9-6 11-6 19s6 10 6 19"/><path d="M11 24h26"/><path d="M14 22v4M18 22v4M30 22v4M34 22v4"/>'
+  };
+  const LEAF = '<path d="M10 40C10 22 22 10 40 8c0 18-10 30-30 32Z"/><path d="M10 40 30 18"/>';
+  const icon = slug => `<span class="need-icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[slug] || LEAF}</svg></span>`;
+
   /* The leaf mark is inlined so its overflow colour can follow the header
      (forest on light backgrounds, white on dark ones). Each copy gets its
      own ids because the header and footer both carry one. */
@@ -99,7 +118,6 @@
         <a class="nav-book" href="booking.html">Book Now</a>
       </nav>
       <div class="header-actions">
-        <a class="header-phone" href="${esc(main.phoneHref)}">${esc(main.phone)}</a>
         <a class="btn btn-book" href="booking.html">Book Now</a>
         <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Open menu" aria-controls="main-nav" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
@@ -196,15 +214,20 @@
     el.replaceWith(frame);
   });
 
-  // Service tiles (home page and Services page)
+  // Service icons: the row on the home page, and cards on the Services page
   each("[data-service-tiles]", wrap => {
     const detailed = wrap.dataset.serviceTiles === "detailed";
-    wrap.innerHTML = services.map((s, i) => `
-      <a class="service-tile${detailed ? " service-tile-detailed" : ""}" href="${esc(s.slug)}.html">
-        <span class="tile-num">${String(i + 1).padStart(2, "0")}</span>
-        <span class="tile-name">${esc(s.name)}</span>
-        ${detailed ? `<span class="tile-blurb">${esc(s.blurb)}</span>` : ""}
-        <span class="tile-arrow" aria-hidden="true">→</span>
+    wrap.innerHTML = services.map(s => detailed ? `
+      <a class="service-card" href="${esc(s.slug)}.html">
+        ${icon(s.slug)}
+        <span class="need-name">${esc(s.name)}</span>
+        <span class="card-blurb">${esc(s.blurb)}</span>
+        <span class="text-link">Details</span>
+      </a>` : `
+      <a class="need" href="${esc(s.slug)}.html">
+        ${icon(s.slug)}
+        <span class="need-name">${esc(s.name)}</span>
+        <small>${esc(s.tag || "")}</small>
       </a>`).join("");
   });
 
