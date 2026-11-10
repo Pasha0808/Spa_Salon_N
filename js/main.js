@@ -1,47 +1,11 @@
 /* ==========================================================================
    NEHA Threading — main.js
-   Page behaviour carried over from the Elite Dental Lab site:
-   hero background video (with the same phone / data-saver / reduced-motion
-   rules), accessible menu tabs, and contact-form validation.
+   Page behaviour: hero background video (rules carried over from the Elite
+   Dental Lab site) and the request forms (booking, contact, careers).
    ========================================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
-  /* ---------------- Menu tabs ---------------- */
-
-  document.querySelectorAll("[data-tabs]").forEach(group => {
-    const tabs = Array.from(group.querySelectorAll('[role="tab"]'));
-    const panels = tabs.map(tab => document.getElementById(tab.getAttribute("aria-controls")));
-
-    function activate(selected, moveFocus) {
-      tabs.forEach((tab, i) => {
-        const on = tab === selected;
-        tab.classList.toggle("active", on);
-        tab.setAttribute("aria-selected", String(on));
-        tab.tabIndex = on ? 0 : -1;
-        panels[i].hidden = !on;
-      });
-      if (moveFocus) selected.focus();
-    }
-
-    tabs.forEach((tab, index) => {
-      tab.addEventListener("click", () => activate(tab, false));
-      tab.addEventListener("keydown", event => {
-        let next = null;
-        if (event.key === "ArrowRight") next = (index + 1) % tabs.length;
-        if (event.key === "ArrowLeft") next = (index - 1 + tabs.length) % tabs.length;
-        if (event.key === "Home") next = 0;
-        if (event.key === "End") next = tabs.length - 1;
-        if (next !== null) {
-          event.preventDefault();
-          activate(tabs[next], true);
-        }
-      });
-    });
-
-    // Deep links such as services.html#lashes open the matching tab
-    const fromHash = tabs.find(tab => "#" + tab.dataset.tab === location.hash);
-    activate(fromHash || tabs.find(tab => tab.classList.contains("active")) || tabs[0], false);
-  });
+  const C = window.NEHA_CONFIG || {};
 
   /* ---------------- Hero video ----------------
      Phones keep the poster and download nothing: the clip is decorative.
@@ -96,10 +60,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* ---------------- Contact form ----------------
-     Validation is the Elite site's. Delivery is not wired up in the
-     prototype; the Elite Cloudflare Worker (Turnstile + Resend) can be
-     ported once the salon's inbox is known. */
+  /* ---------------- Request forms ----------------
+     Any <form data-request-form="Subject"> is handled here: booking,
+     contact and careers. The salon wants each request as an email.
+
+     - With formEndpoint set in js/config.js, the request is POSTed there
+       as JSON and the server sends the email.
+     - Without it, the visitor's own email app opens with the request
+       already written and addressed to the salon; they press Send.
+
+     Field rules: name and email are always checked (validation from the
+     Elite site). A form with data-require-services needs at least one
+     service ticked. Each field's label text is used in the email. */
 
   function isValidName(value) {
     const normalized = value.trim().replace(/\s+/g, " ");
@@ -122,42 +94,103 @@ document.addEventListener("DOMContentLoaded", () => {
       /^[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?$/.test(label));
   }
 
-  const form = document.getElementById("contact-form");
-  if (form) {
-    const fields = {
-      name: [form.elements.name, document.getElementById("contact-name-error"),
-        v => !v ? "Please enter your name." : !isValidName(v) ? "Please use letters for your name." : ""],
-      email: [form.elements.email, document.getElementById("contact-email-error"),
-        v => !v ? "Please enter your email." : !isValidEmail(v) ? "Please check your email address." : ""]
-    };
-    const notice = document.getElementById("contact-notice");
+  document.querySelectorAll("form[data-request-form]").forEach(form => {
+    const subjectBase = form.dataset.requestForm;
+    const nameInput = form.elements.name;
+    const emailInput = form.elements.email;
+    const notice = form.querySelector(".form-notice");
+    const failure = form.querySelector(".form-failure");
+    const servicesError = form.querySelector(".services-error");
+    const submitButton = form.querySelector('button[type="submit"]');
+    const errorFor = input => form.querySelector(`#${input.getAttribute("aria-describedby")}`);
+
+    const rules = [
+      [nameInput, v => !v ? "Please enter your name." : !isValidName(v) ? "Please use letters for your name." : ""],
+      [emailInput, v => !v ? "Please enter your email." : !isValidEmail(v) ? "Please check your email address." : ""]
+    ];
+
+    const chosenServices = () =>
+      Array.from(form.querySelectorAll('input[name="services"]:checked')).map(box => box.value);
 
     function validate(focusInvalid) {
       let firstInvalid = null;
-      Object.values(fields).forEach(([input, errorEl, rule]) => {
+      rules.forEach(([input, rule]) => {
         const message = rule(input.value.trim());
+        const errorEl = errorFor(input);
         input.setAttribute("aria-invalid", String(Boolean(message)));
         errorEl.textContent = message;
         errorEl.hidden = !message;
         if (message && !firstInvalid) firstInvalid = input;
       });
+      if (servicesError) {
+        const missing = form.hasAttribute("data-require-services") && chosenServices().length === 0;
+        servicesError.hidden = !missing;
+        if (missing && !firstInvalid) firstInvalid = form.querySelector('input[name="services"]');
+      }
       if (focusInvalid && firstInvalid) firstInvalid.focus();
       return !firstInvalid;
     }
 
-    Object.values(fields).forEach(([input]) => {
+    rules.forEach(([input]) => {
       input.addEventListener("blur", () => validate(false));
       input.addEventListener("input", () => {
         if (input.getAttribute("aria-invalid") === "true") validate(false);
       });
     });
+    form.addEventListener("change", event => {
+      if (event.target.name === "services" && servicesError && !servicesError.hidden) validate(false);
+    });
 
-    form.addEventListener("submit", event => {
+    // Collect "Label: value" pairs in the order the fields appear
+    function collect() {
+      const fields = [];
+      const services = chosenServices();
+      form.querySelectorAll("input, select, textarea").forEach(field => {
+        if (!field.name || field.name === "services" || field.type === "hidden") return;
+        const value = field.value.trim();
+        if (!value) return;
+        const label = field.dataset.label || field.closest("label")?.firstChild?.textContent?.trim() || field.name;
+        fields.push([label, value]);
+      });
+      if (services.length) fields.splice(Math.min(fields.length, 3), 0, ["Services", services.join(", ")]);
+      return fields;
+    }
+
+    form.addEventListener("submit", async event => {
       event.preventDefault();
       notice.hidden = true;
+      if (failure) failure.hidden = true;
       if (!validate(true) || !form.reportValidity()) return;
+
+      const fields = collect();
+      const subject = `${subjectBase} — ${nameInput.value.trim()}`;
+
+      if (C.formEndpoint) {
+        submitButton.disabled = true;
+        try {
+          const response = await fetch(C.formEndpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ subject, fields: Object.fromEntries(fields) })
+          });
+          if (!response.ok) throw new Error("delivery");
+          form.reset();
+          notice.textContent = "Thank you! Your request is on its way. We'll be in touch soon.";
+          notice.hidden = false;
+          notice.focus();
+        } catch {
+          if (failure) { failure.hidden = false; failure.focus(); }
+        } finally {
+          submitButton.disabled = false;
+        }
+        return;
+      }
+
+      const body = fields.map(([label, value]) => `${label}: ${value}`).join("\n") +
+        "\n\nSent from the website.";
+      window.location.href = `mailto:${C.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       notice.hidden = false;
       notice.focus();
     });
-  }
+  });
 });

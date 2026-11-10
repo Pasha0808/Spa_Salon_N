@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<!-- Prototype for client review: keep search engines out until launch. -->
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; img-src 'self' data:; media-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://cloudflareinsights.com">
+<title>Contact Us — Neha Threading Salon &amp; Spa</title>
+<meta name="description" content="Contact Neha Threading Salon &amp; Spa: 1501 Reisterstown Road, Pikesville, MD 21208. Phone 410-653-BROW (2769). Hours, map, directions and a message form.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Neha Threading Salon &amp; Spa">
+<meta property="og:title" content="Contact Us — Neha Threading Salon &amp; Spa">
+<meta property="og:description" content="Contact Neha Threading Salon &amp; Spa: 1501 Reisterstown Road, Pikesville, MD 21208. Phone 410-653-BROW (2769). Hours, map, directions and a message form.">
+<meta property="og:image" content="assets/img/hero-poster.jpg">
+<meta name="theme-color" content="#081a18">
+<link rel="icon" type="image/svg+xml" href="assets/img/neha-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&amp;family=Jost:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css?v=5">
+</head>
+<body class="header-over-hero">
+
+<div id="neha-header"></div>
+
+<main id="main">
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Get in touch</p>
+    <h1>Contact <em>us</em></h1>
+    <p>Questions about a service, a spa party or a gift certificate? We would love to hear from you.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container visit-grid">
+    <div>
+      <p class="eyebrow">Visit us</p>
+      <h2>Pikesville, Maryland</h2>
+      <div class="info-block">
+        <h3>Address</h3>
+        <p data-address></p>
+        <p><a data-directions href="contact.html">Get directions</a></p>
+      </div>
+      <div class="info-block">
+        <h3>Phone</h3>
+        <p><a data-phone href="contact.html"></a></p>
+      </div>
+      <div class="info-block">
+        <h3>Email</h3>
+        <p><a data-email href="contact.html"></a></p>
+      </div>
+      <div class="info-block">
+        <h3>Hours</h3>
+        <ul class="hours-list" data-hours></ul>
+      </div>
+      <div class="info-block">
+        <h3>Follow &amp; review us</h3>
+        <p class="socials-inline" data-socials></p>
+      </div>
+    </div>
+
+    <form class="request-form" data-request-form="Website message" novalidate>
+      <h2>Send us a message</h2>
+      <p>To request an appointment, please use the <a href="booking.html">booking page</a>.</p>
+      <div class="form-row">
+        <label>Name
+          <input type="text" name="name" data-label="Name" required minlength="2" maxlength="120" autocomplete="name" aria-describedby="contact-name-error">
+          <span class="field-error" id="contact-name-error" hidden></span>
+        </label>
+        <label>Email
+          <input type="email" name="email" data-label="Email" required maxlength="254" autocomplete="email" inputmode="email" aria-describedby="contact-email-error">
+          <span class="field-error" id="contact-email-error" hidden></span>
+        </label>
+      </div>
+      <div class="form-row">
+        <label>Phone <span class="optional">(optional)</span>
+          <input type="tel" name="phone" data-label="Phone" maxlength="30" autocomplete="tel">
+        </label>
+        <label>Topic
+          <select name="topic" data-label="Topic">
+            <option>General question</option>
+            <option>A service</option>
+            <option>Spa parties &amp; packages</option>
+            <option>Gift certificates</option>
+            <option>Products</option>
+            <option>Something else</option>
+          </select>
+        </label>
+      </div>
+      <label>Message
+        <textarea name="message" data-label="Message" rows="5" maxlength="1500"></textarea>
+      </label>
+      <p class="form-notice" role="status" tabindex="-1" hidden>Almost done: your email app should now open with your request ready to go. Press <strong>Send</strong> there to deliver it. If nothing opened, email <a data-email href="contact.html"></a> or call <a data-phone href="contact.html"></a>.</p>
+      <p class="form-failure" role="alert" tabindex="-1" hidden>Sorry, your request could not be sent. Please email <a data-email href="contact.html"></a> or call <a data-phone href="contact.html"></a>.</p>
+      <button type="submit" class="btn btn-ink">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<section aria-label="Map">
+  <div data-map class="ph-photo map-ph" data-label="Map"></div>
+</section>
+
+<section class="section" id="faq" aria-labelledby="faq-title">
+  <div class="container container-narrow">
+    <div class="section-head">
+      <p class="eyebrow">Good to know</p>
+      <h2 id="faq-title">Questions, answered</h2>
+    </div>
+    <details class="faq-item">
+      <summary>How do I book?</summary>
+      <p>Send a request on our <a href="booking.html">booking page</a> and we will confirm by email or phone, or call us at 410-653-BROW (2769).</p>
+    </details>
+    <details class="faq-item">
+      <summary>When should I arrive?</summary>
+      <p>For massages and spa treatments, please arrive 15 minutes early to change into your robe and slippers, relax in our lobby and enjoy refreshments while you fill out any paperwork.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Does threading hurt?</summary>
+      <p>Most guests feel a quick tingle rather than pain, and it fades within minutes. Threading touches only the hair, not the skin, which makes it gentler than waxing for many people.</p>
+    </details>
+    <details class="faq-item">
+      <summary>How long does threading last?</summary>
+      <p>Results typically last three to five weeks. Regular visits keep your shape crisp.</p>
+    </details>
+  </div>
+</section>
+
+</main>
+
+<div id="neha-footer"></div>
+
+<script src="js/config.js?v=5"></script>
+<script src="js/site.js?v=5"></script>
+<script src="js/main.js?v=5"></script>
+</body>
+</html>

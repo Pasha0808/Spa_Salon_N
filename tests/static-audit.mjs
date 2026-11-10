@@ -43,6 +43,18 @@ for (const file of (await readdir(join(root, "js"))).filter(f => f.endsWith(".js
 }
 
 const config = await readFile(join(root, "js/config.js"), "utf8");
+
+// Every service in js/config.js needs its own page, and every page needs the
+// shared mount points and scripts.
+for (const [, slug] of config.matchAll(/slug: "([^"]+)"/g)) {
+  if (!pages.includes(`${slug}.html`)) fail(`js/config.js: service "${slug}" has no ${slug}.html page`);
+}
+for (const page of pages) {
+  const html = await readFile(join(root, page), "utf8");
+  for (const needle of ['id="neha-header"', 'id="neha-footer"', "js/config.js", "js/site.js", "js/main.js"]) {
+    if (!html.includes(needle)) fail(`${page}: missing ${needle}`);
+  }
+}
 const todos = (config.match(/\/\/ TODO/g) || []).length;
 
 console.log(`Checked ${pages.length} pages.`);

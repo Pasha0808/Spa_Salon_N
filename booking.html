@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<!-- Prototype for client review: keep search engines out until launch. -->
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; img-src 'self' data:; media-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://cloudflareinsights.com">
+<title>Book a Visit — Neha Threading Salon &amp; Spa</title>
+<meta name="description" content="Request an appointment at Neha Threading Salon &amp; Spa in Pikesville, MD. Choose your services, send your request and we will confirm by email or phone.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Neha Threading Salon &amp; Spa">
+<meta property="og:title" content="Book a Visit — Neha Threading Salon &amp; Spa">
+<meta property="og:description" content="Request an appointment at Neha Threading Salon &amp; Spa in Pikesville, MD. Choose your services, send your request and we will confirm by email or phone.">
+<meta property="og:image" content="assets/img/hero-poster.jpg">
+<meta name="theme-color" content="#081a18">
+<link rel="icon" type="image/svg+xml" href="assets/img/neha-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&amp;family=Jost:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css?v=5">
+</head>
+<body class="header-over-hero" data-no-cta>
+
+<div id="neha-header"></div>
+
+<main id="main">
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Appointments</p>
+    <h1>Book a <em>visit</em></h1>
+    <p>Tell us what you would like and when. We will reply by email or phone to confirm your appointment.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container service-layout">
+    <form class="request-form" data-request-form="Booking request" data-require-services novalidate>
+      <h2>Your booking request</h2>
+      <div class="form-row">
+        <label>Name
+          <input type="text" name="name" data-label="Name" required minlength="2" maxlength="120" autocomplete="name" aria-describedby="booking-name-error">
+          <span class="field-error" id="booking-name-error" hidden></span>
+        </label>
+        <label>Email
+          <input type="email" name="email" data-label="Email" required maxlength="254" autocomplete="email" inputmode="email" aria-describedby="booking-email-error">
+          <span class="field-error" id="booking-email-error" hidden></span>
+        </label>
+      </div>
+      <div class="form-row">
+        <label>Phone <span class="optional">(optional)</span>
+          <input type="tel" name="phone" data-label="Phone" maxlength="30" autocomplete="tel">
+        </label>
+        <label>Preferred day and time <span class="optional">(optional)</span>
+          <input type="text" name="when" data-label="Preferred day and time" maxlength="80" placeholder="e.g. Saturday morning">
+        </label>
+      </div>
+      <fieldset class="service-field">
+        <legend>Choose your services</legend>
+        <p class="form-small">Tick one or more. Not sure? Each service has a link to its page, which opens in a new tab.</p>
+        <div class="service-options" data-service-options></div>
+        <p class="field-error services-error" role="alert" hidden>Please choose at least one service.</p>
+      </fieldset>
+      <label>Short message <span class="optional">(optional)</span>
+        <textarea name="message" data-label="Message" rows="4" maxlength="500"></textarea>
+      </label>
+      <p class="form-notice" role="status" tabindex="-1" hidden>Almost done: your email app should now open with your request ready to go. Press <strong>Send</strong> there to deliver it. If nothing opened, email <a data-email href="contact.html"></a> or call <a data-phone href="contact.html"></a>.</p>
+      <p class="form-failure" role="alert" tabindex="-1" hidden>Sorry, your request could not be sent. Please email <a data-email href="contact.html"></a> or call <a data-phone href="contact.html"></a>.</p>
+      <button type="submit" class="btn btn-ink">Send Booking Request</button>
+      <p class="form-small">This sends a request, not a confirmed appointment. We will confirm by email or phone.</p>
+    </form>
+
+    <aside class="aside-card" aria-label="Other ways to book">
+      <h2>Prefer to call?</h2>
+      <p>We are happy to book you by phone.</p>
+      <a class="btn btn-outline" data-phone href="contact.html"></a>
+      <ul class="hours-list" data-hours></ul>
+      <div class="aside-list">
+        <h3>How it works</h3>
+        <p>1. Send your request.</p>
+        <p>2. We confirm a time by email or phone.</p>
+        <p>3. For spa services, arrive 15 minutes early to change and relax.</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+</main>
+
+<div id="neha-footer"></div>
+
+<script src="js/config.js?v=5"></script>
+<script src="js/site.js?v=5"></script>
+<script src="js/main.js?v=5"></script>
+</body>
+</html>
