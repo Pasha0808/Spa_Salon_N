@@ -47,6 +47,16 @@ agents are in [AGENTS.md](AGENTS.md).
 
 Newest first. "Dev" is the developer; "owner" is the salon owner.
 
+### 2026-11-10 (latest): dev feedback on home-page height
+
+- **Make the “What brings you in today?” section about half as tall.** Done:
+  the 12 services now use one compact row on wide desktop screens, with
+  tighter heading and tile spacing. They still wrap for tablets and phones.
+- **Reduce the space taken by the “Our handpicked products” intro, but keep
+  the brand tiles the same size.** Done: its heading and description sit
+  side by side on desktop, with tighter section spacing. The 230 px brand
+  tiles are unchanged.
+
 ### 2026-11-10 (later): dev feedback on the sharper restyle
 
 - **Remove the phone number from the navigation menu.** Done, on every page.
