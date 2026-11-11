@@ -32,8 +32,6 @@
   const pros = window.NEHA_SPECIALISTS || [];
   const tagline = I.language === "es" ? (C.taglineEs || C.tagline) : C.tagline;
   const prosLabel = I.language === "es" ? (C.specialistsLabelEs || t(C.specialistsLabel || "Our Specialists")) : (C.specialistsLabel || "Our Specialists");
-  const nextLanguage = I.language === "en" ? "es" : "en";
-  const languageToggleLabel = t(I.language === "en" ? "Switch to Spanish" : "Switch to English");
   const serviceBySlug = slug => services.find(s => s.slug === slug);
   const serviceText = (service, name) => itemText(service, name) || "";
   const proText = (pro, name) => itemText(pro, name) || "";
@@ -130,10 +128,15 @@
         <a class="nav-book" href="booking.html">${esc(t("Book Now"))}</a>
       </nav>
       <div class="header-actions">
-        <button class="lang-switch" type="button" data-language="${nextLanguage}" aria-label="${esc(languageToggleLabel)}" title="${esc(languageToggleLabel)}">
-          <span class="lang-code lang-current" aria-hidden="true">${I.language.toUpperCase()}</span>
-          <span class="lang-code lang-next" aria-hidden="true">${nextLanguage.toUpperCase()}</span>
-        </button>
+        <div class="language-menu">
+          <button class="lang-switch" id="language-toggle" type="button" aria-label="${esc(t("Change language"))}" aria-haspopup="menu" aria-expanded="false" aria-controls="language-options">
+            <span aria-hidden="true">${I.language.toUpperCase()}</span>
+          </button>
+          <div class="language-options" id="language-options" role="menu" aria-label="${esc(t("Language"))}" hidden>
+            <button type="button" role="menuitemradio" data-language="en" aria-checked="${I.language === "en"}" lang="en">EN<span class="sr-only"> English</span></button>
+            <button type="button" role="menuitemradio" data-language="es" aria-checked="${I.language === "es"}" lang="es">ES<span class="sr-only"> Español</span></button>
+          </div>
+        </div>
         <a class="btn btn-book" href="booking.html">${esc(t("Book Now"))}</a>
         <button class="nav-toggle" id="nav-toggle" type="button" aria-label="${esc(t("Open menu"))}" aria-controls="main-nav" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
@@ -417,9 +420,31 @@
   const navToggle = document.getElementById("nav-toggle");
   const mainNav = document.getElementById("main-nav");
   const overHero = document.body.classList.contains("header-over-hero");
+  const languageMenu = document.querySelector(".language-menu");
+  const languageToggle = document.getElementById("language-toggle");
+  const languageOptions = document.getElementById("language-options");
+
+  function setLanguageMenu(open) {
+    languageOptions.hidden = !open;
+    languageToggle.setAttribute("aria-expanded", String(open));
+  }
+
+  languageToggle.addEventListener("click", event => {
+    event.stopPropagation();
+    setLanguageMenu(languageOptions.hidden);
+  });
 
   document.querySelectorAll("[data-language]").forEach(button => {
     button.addEventListener("click", () => I.setLanguage?.(button.dataset.language));
+  });
+  document.addEventListener("click", event => {
+    if (!languageOptions.hidden && !languageMenu.contains(event.target)) setLanguageMenu(false);
+  });
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && !languageOptions.hidden) {
+      setLanguageMenu(false);
+      languageToggle.focus();
+    }
   });
 
   function syncHeader() {

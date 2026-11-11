@@ -50,6 +50,14 @@ agents are in [AGENTS.md](AGENTS.md).
 
 Newest first. "Dev" is the developer; "owner" is the salon owner.
 
+### 2026-11-10 (latest): language dropdown and reliable English return
+
+- **Replace the hover language interaction with a dropdown and fix switching
+  back to English.** Done: the compact translucent circle opens a frosted
+  `EN` / `ES` menu on click or tap. Both choices are always explicit, and
+  navigation now writes `?lang=en` or `?lang=es` so either direction is
+  deterministic while other URL parameters remain intact.
+
 ### 2026-11-10 (latest): quieter language control
 
 - **Make the language switch smaller and less prominent.** Done: the header

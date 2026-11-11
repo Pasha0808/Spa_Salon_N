@@ -115,8 +115,8 @@ Every page has the same skeleton:
 <div id="neha-footer"></div>
 <script src="js/config.js?v=10"></script>
 <script src="js/specialists.js?v=3"></script>
-<script src="js/i18n.js?v=4"></script>
-<script src="js/site.js?v=13"></script>
+<script src="js/i18n.js?v=5"></script>
+<script src="js/site.js?v=14"></script>
 <script src="js/main.js?v=6"></script>
 ```
 
@@ -134,12 +134,11 @@ one place**, `js/site.js`.
 ### English and Spanish
 
 `js/i18n.js` sets English by default and switches the site from the compact
-single-code header control. It shows the current language (`EN` or `ES`),
-reveals the alternate language on hover or keyboard focus, and switches on
-click or tap. It stores the choice as `neha-language` in
-`localStorage`; `?lang=es` also selects Spanish and makes the choice
-shareable. Other query parameters, such as a specialist's `?p=`, are kept
-when the language changes.
+single-code header control. Clicking or tapping the translucent circle opens
+an `EN` / `ES` dropdown; choosing either language writes an explicit
+`?lang=en` or `?lang=es` URL and stores the choice as `neha-language` in
+`localStorage`. Other query parameters, such as a specialist's `?p=`, are
+kept when the language changes.
 
 - Shared/static copy is translated in the `ES` dictionary in `js/i18n.js`.
 - Services use `nameEs`, `tagEs` and `blurbEs` in `js/config.js`.
@@ -447,3 +446,4 @@ Desktop/Mobile view toggle, and the Supabase portal (not relevant here).
 | 2026-11-10 | **Larger service choices, bilingual site and photography.** Home service icons and labels are 50% larger, with a stronger heading and responsive columns. Added persistent EN/ES switching and Spanish copy across navigation, pages, forms and specialist menus. Added six supplied WebP gallery images and 24 distinct fictional AI sample portraits. Verified desktop and exact 390 px layouts in both languages; `npm test` passes all 21 pages. |
 | 2026-11-10 | **Full-width home grids and clearer specialist spacing.** Added two supplied treatment-room photos as WebP, rebuilt Fresh from the chair as a hole-free eight-cell grid that uses the viewport width, and changed the service choices to one 12-item desktop row with fluid icon sizing. Increased the vertical separation between specialist cards and service-page specialist rows. |
 | 2026-11-10 | **Quieter language switch.** Replaced the two-option `EN / ES` control with one compact translucent pill that shows the active code, previews the alternate language on hover/focus and toggles on click or tap. |
+| 2026-11-10 | **Explicit language dropdown.** Replaced the hover-swap interaction with a translucent circular control and an `EN` / `ES` dropdown. Both language URLs are now explicit, fixing the return from Spanish to English. |

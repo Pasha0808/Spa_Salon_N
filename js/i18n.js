@@ -11,8 +11,7 @@
     "Language": "Idioma",
     "English": "Inglés",
     "Spanish": "Español",
-    "Switch to English": "Cambiar a inglés",
-    "Switch to Spanish": "Cambiar a español",
+    "Change language": "Cambiar idioma",
     "Skip to main content": "Saltar al contenido principal",
     "Book today": "Reserva hoy",
     "Services": "Servicios",
@@ -364,9 +363,8 @@
     if (next !== "en" && next !== "es") return;
     try { localStorage.setItem("neha-language", next); } catch (_) {}
     const url = new URL(location.href);
-    if (next === "es") url.searchParams.set("lang", "es");
-    else url.searchParams.delete("lang");
-    location.href = url.pathname.split("/").pop() + (url.searchParams.toString() ? `?${url.searchParams}` : "") + url.hash;
+    url.searchParams.set("lang", next);
+    location.assign(url.href);
   }
 
   function translateTextNode(node) {
