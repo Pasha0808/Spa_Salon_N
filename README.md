@@ -79,13 +79,16 @@ booking.html              Book a Visit (booking request form)
 
 css/styles.css            All styles: tokens at the top, responsive rules at the bottom
 js/config.js              ★ Business details, the service list, product brands
-js/specialists.js       ★ The specialists: their services, prices and work photos
+js/specialists.js         ★ The specialists: their services, prices and work photos
+js/i18n.js                English/Spanish selection and Spanish copy
 js/site.js                Header, menus, footer, and everything filled in from config
 js/main.js                Hero video rules and the request forms
 
 assets/img/               neha-mark.svg (logo mark + favicon), leaf-line.svg
                           (leaf drawing for backgrounds), hero-poster.jpg, logo-original.png
 assets/img/products/      The four brand pictures in the home page strip
+assets/img/gallery/       Six supplied photos used by Fresh from the chair
+assets/img/specialists/   24 fictional AI sample portraits, 800 × 1000 WebP
 assets/video/             hero-loop.mp4 (placeholder)
 
 tests/static-audit.mjs    npm test
@@ -95,6 +98,9 @@ AGENTS.md / CLAUDE.md     Rules for AI coding agents
 wrangler.jsonc, .assetsignore   Optional Cloudflare deploy (untested)
 .nojekyll                 Tells GitHub Pages to serve files as they are
 ```
+
+The two image folders include their own `README.md` manifests with source
+mapping and, for the fictional portraits, the generation prompt pattern.
 
 ---
 
@@ -107,10 +113,11 @@ Every page has the same skeleton:
 <div id="neha-header"></div>
 <main id="main"> … </main>
 <div id="neha-footer"></div>
-<script src="js/config.js?v=8"></script>
-<script src="js/specialists.js?v=1"></script>
-<script src="js/site.js?v=9"></script>
-<script src="js/main.js?v=5"></script>
+<script src="js/config.js?v=10"></script>
+<script src="js/specialists.js?v=3"></script>
+<script src="js/i18n.js?v=2"></script>
+<script src="js/site.js?v=12"></script>
+<script src="js/main.js?v=6"></script>
 ```
 
 `js/site.js` replaces the two mount points with the offer bar + header and
@@ -123,6 +130,21 @@ one place**, `js/site.js`.
   parties band (used on `booking.html`).
 - The `?v=N` on CSS and JS addresses is a cache-buster. **Raise it on every
   page when that file changes**, or returning visitors see the old version.
+
+### English and Spanish
+
+`js/i18n.js` sets English by default and switches the site to Spanish from
+the `EN / ES` header control. It stores the choice as `neha-language` in
+`localStorage`; `?lang=es` also selects Spanish and makes the choice
+shareable. Other query parameters, such as a specialist's `?p=`, are kept
+when the language changes.
+
+- Shared/static copy is translated in the `ES` dictionary in `js/i18n.js`.
+- Services use `nameEs`, `tagEs` and `blurbEs` in `js/config.js`.
+- Specialist samples use `nameEs`, `titleEs` and `bioEs` in
+  `js/specialists.js`. Real people can use the same optional fields.
+- Add both languages whenever new visible copy is introduced, then raise
+  `i18n.js?v=` (and the data file's version when applicable) on every page.
 
 ### Hooks filled in from `js/config.js`
 
@@ -255,8 +277,9 @@ hard-edged version are in the brief, §4.
 - **Body, menu, buttons, wordmark:** Jost, weight 400.
 - Cards are white with a soft shadow and no border. Sections alternate
   cream and `.section-mist`.
-- Photo placeholders (`.ph-photo`) are green gradient tiles with a leaf
-  drawing (`assets/img/leaf-line.svg`) and a label.
+- Remaining photo placeholders (`.ph-photo`) are green gradient tiles with
+  a leaf drawing (`assets/img/leaf-line.svg`) and a label. The home gallery
+  and the sample portrait cards now use optimized WebP photography.
 - Service icons are small line drawings in `js/site.js` (`ICONS`), keyed by
   the service's slug. A service without one gets a leaf.
 - Useful classes: `.section`, `.section-mist`, `.page-hero`, `.needs` /
@@ -419,3 +442,4 @@ Desktop/Mobile view toggle, and the Supabase portal (not relevant here).
 | 2026-11-10 | **Specialists with their own prices.** New `js/specialists.js`, an Our Specialists page and one template page for every specialist (prices on top, work photos below). Service pages list the specialists who offer the service. The booking form has a specialist dropdown, preselected from "Book with …" links. Menu: Our Specialists added after Services; Our Team and Gift Certificates removed. "What brings you in today?" is a slim one-row band. Product strip uses the four supplied brand pictures. |
 | 2026-11-10 | **Renamed to "Our Specialists".** The team page, each person's page and the data file are now `specialists.html`, `specialist.html` and `js/specialists.js`; all visible wording says "specialist". CSS classes and `data-` hooks keep their short `pro-` prefix. |
 | 2026-11-11 | **No prices on service pages; five specialists per service; Gallery out of the menu.** "from $…" removed from the "Choose your specialist" rows. The sample team is now 24 generated placeholders, with a `REAL_SPECIALISTS` list ready for real people. Our Specialists shows four cards per row. |
+| 2026-11-10 | **Larger service choices, bilingual site and photography.** Home service icons and labels are 50% larger, with a stronger heading and responsive columns. Added persistent EN/ES switching and Spanish copy across navigation, pages, forms and specialist menus. Added six supplied WebP gallery images and 24 distinct fictional AI sample portraits. Verified desktop and exact 390 px layouts in both languages; `npm test` passes all 21 pages. |

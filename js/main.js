@@ -6,6 +6,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   const C = window.NEHA_CONFIG || {};
+  const t = window.NEHA_I18N?.t || (value => String(value));
 
   /* ---------------- Hero video ----------------
      Phones keep the poster and download nothing: the clip is decorative.
@@ -49,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const playing = !video.paused;
       pauseBtn.classList.toggle("is-paused", !playing);
       pauseBtn.setAttribute("aria-pressed", String(!playing));
-      pauseBtn.setAttribute("aria-label", playing ? "Pause background video" : "Play background video");
+      pauseBtn.setAttribute("aria-label", t(playing ? "Pause background video" : "Play background video"));
     }
     video.addEventListener("play", syncPauseBtn);
     video.addEventListener("pause", syncPauseBtn);
@@ -105,8 +106,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const errorFor = input => form.querySelector(`#${input.getAttribute("aria-describedby")}`);
 
     const rules = [
-      [nameInput, v => !v ? "Please enter your name." : !isValidName(v) ? "Please use letters for your name." : ""],
-      [emailInput, v => !v ? "Please enter your email." : !isValidEmail(v) ? "Please check your email address." : ""]
+      [nameInput, v => !v ? t("Please enter your name.") : !isValidName(v) ? t("Please use letters for your name.") : ""],
+      [emailInput, v => !v ? t("Please enter your email.") : !isValidEmail(v) ? t("Please check your email address.") : ""]
     ];
 
     const chosenServices = () =>
@@ -152,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const label = field.dataset.label || field.closest("label")?.firstChild?.textContent?.trim() || field.name;
         fields.push([label, value]);
       });
-      if (services.length) fields.splice(Math.min(fields.length, 3), 0, ["Services", services.join(", ")]);
+      if (services.length) fields.splice(Math.min(fields.length, 3), 0, [t("Services"), services.join(", ")]);
       return fields;
     }
 
@@ -175,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
           });
           if (!response.ok) throw new Error("delivery");
           form.reset();
-          notice.textContent = "Thank you! Your request is on its way. We'll be in touch soon.";
+          notice.textContent = t("Thank you! Your request is on its way. We'll be in touch soon.");
           notice.hidden = false;
           notice.focus();
         } catch {
@@ -187,7 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const body = fields.map(([label, value]) => `${label}: ${value}`).join("\n") +
-        "\n\nSent from the website.";
+        `\n\n${t("Sent from the website.")}`;
       window.location.href = `mailto:${C.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       notice.hidden = false;
       notice.focus();

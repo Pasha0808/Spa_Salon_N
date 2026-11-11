@@ -8,6 +8,7 @@
 window.NEHA_CONFIG = {
   name: "Neha Threading Salon & Spa",
   tagline: "Threading · Spa · Massage · Skin",
+  taglineEs: "Depilación con hilo · Spa · Masaje · Piel",
   email: "neha@nehathreading.com",
 
   // One salon: Pikesville. (The Canton location is closed, confirmed by
@@ -51,8 +52,10 @@ window.NEHA_CONFIG = {
   // Menu label for the team page. The specialists themselves, with their
   // own services and prices, are in js/specialists.js.
   specialistsLabel: "Our Specialists",
+  specialistsLabelEs: "Nuestros especialistas",
 
   announcement: "New clients enjoy 15% off their first visit", // confirmed 2026-11-08; "" hides the bar
+  announcementEs: "Los clientes nuevos reciben un 15 % de descuento en su primera visita",
 
   // The service list. Each service has its own page, <slug>.html.
   // This one list feeds the Services menu, the home page icons, the
@@ -60,18 +63,18 @@ window.NEHA_CONFIG = {
   // label under the name on the home page. Each service's icon is in
   // js/site.js (ICONS), under the same slug.
   services: [
-    { slug: "threading", name: "Threading", tag: "Brows & face", blurb: "Eyebrow and facial threading with pure cotton thread — Neha's signature." },
-    { slug: "hair-styling", name: "Hair Styling", tag: "Cut & colour", blurb: "Cuts, colour, styling and treatments from an experienced team." },
-    { slug: "facials", name: "Facials", tag: "Skin", blurb: "Customized facials in our state-of-the-art treatment rooms." },
-    { slug: "massages", name: "Massages", tag: "Hot stone & more", blurb: "From Swedish relaxation to hot stone and Ayurvedic massage." },
-    { slug: "nail-care", name: "Nail Care", tag: "Mani & pedi", blurb: "Manicures and pedicures." },
-    { slug: "vichy-shower", name: "Vichy Shower", tag: "Water therapy", blurb: "Warm cascading water and a full-body scrub." },
-    { slug: "spa-treatments", name: "Spa Treatments", tag: "Ayurvedic", blurb: "Ayurvedic face and body treatments." },
-    { slug: "spa-parties", name: "Spa Parties", tag: "Celebrate", blurb: "Celebrate together with a private spa party." },
-    { slug: "waxing", name: "Waxing", tag: "Face & body", blurb: "Face and body waxing." },
-    { slug: "other-services", name: "Other Services", tag: "Henna & makeup", blurb: "Henna tattoos, makeup and more." },
-    { slug: "microblading", name: "Microblading", tag: "Brows", blurb: "Semi-permanent brows, stroke by stroke." },
-    { slug: "slimming-treatments", name: "Slimming Treatments", tag: "Body", blurb: "Body treatments to tone and contour." }
+    { slug: "threading", name: "Threading", nameEs: "Depilación con hilo", tag: "Brows & face", tagEs: "Cejas y rostro", blurb: "Eyebrow and facial threading with pure cotton thread — Neha's signature.", blurbEs: "Depilación de cejas y rostro con hilo de algodón puro, la especialidad de Neha." },
+    { slug: "hair-styling", name: "Hair Styling", nameEs: "Peluquería", tag: "Cut & colour", tagEs: "Corte y color", blurb: "Cuts, colour, styling and treatments from an experienced team.", blurbEs: "Cortes, color, peinados y tratamientos de un equipo con experiencia." },
+    { slug: "facials", name: "Facials", nameEs: "Faciales", tag: "Skin", tagEs: "Piel", blurb: "Customized facials in our state-of-the-art treatment rooms.", blurbEs: "Faciales personalizados en nuestras modernas salas de tratamiento." },
+    { slug: "massages", name: "Massages", nameEs: "Masajes", tag: "Hot stone & more", tagEs: "Piedras calientes y más", blurb: "From Swedish relaxation to hot stone and Ayurvedic massage.", blurbEs: "Desde masaje sueco relajante hasta piedras calientes y masaje ayurvédico." },
+    { slug: "nail-care", name: "Nail Care", nameEs: "Cuidado de uñas", tag: "Mani & pedi", tagEs: "Manicura y pedicura", blurb: "Manicures and pedicures.", blurbEs: "Manicuras y pedicuras." },
+    { slug: "vichy-shower", name: "Vichy Shower", nameEs: "Ducha Vichy", tag: "Water therapy", tagEs: "Terapia de agua", blurb: "Warm cascading water and a full-body scrub.", blurbEs: "Agua tibia en cascada y exfoliación corporal completa." },
+    { slug: "spa-treatments", name: "Spa Treatments", nameEs: "Tratamientos de spa", tag: "Ayurvedic", tagEs: "Ayurvédicos", blurb: "Ayurvedic face and body treatments.", blurbEs: "Tratamientos ayurvédicos para rostro y cuerpo." },
+    { slug: "spa-parties", name: "Spa Parties", nameEs: "Fiestas de spa", tag: "Celebrate", tagEs: "Celebra", blurb: "Celebrate together with a private spa party.", blurbEs: "Celebra en compañía con una fiesta de spa privada." },
+    { slug: "waxing", name: "Waxing", nameEs: "Depilación con cera", tag: "Face & body", tagEs: "Rostro y cuerpo", blurb: "Face and body waxing.", blurbEs: "Depilación con cera para rostro y cuerpo." },
+    { slug: "other-services", name: "Other Services", nameEs: "Otros servicios", tag: "Henna & makeup", tagEs: "Henna y maquillaje", blurb: "Henna tattoos, makeup and more.", blurbEs: "Tatuajes de henna, maquillaje y más." },
+    { slug: "microblading", name: "Microblading", nameEs: "Microblading", tag: "Brows", tagEs: "Cejas", blurb: "Semi-permanent brows, stroke by stroke.", blurbEs: "Cejas semipermanentes, trazo a trazo." },
+    { slug: "slimming-treatments", name: "Slimming Treatments", nameEs: "Tratamientos reductores", tag: "Body", tagEs: "Cuerpo", blurb: "Body treatments to tone and contour.", blurbEs: "Tratamientos corporales para tonificar y definir." }
   ],
 
   // Home page product strip: the brands the salon carries (from

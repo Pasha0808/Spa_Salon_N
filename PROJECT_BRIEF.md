@@ -9,7 +9,8 @@ agents are in [AGENTS.md](AGENTS.md).
 - **Developer / repo owner:** Pasha0808
 - **Review link:** <https://pasha0808.github.io/Spa_Salon_N/>
 - **Status:** prototype under client review. Second round of owner feedback
-  applied on 2026-11-10, then restyled back to the soft look the same day.
+  applied on 2026-11-10, then restyled back to the soft look and expanded
+  with bilingual content and review photography.
 
 ## Contents
 
@@ -31,8 +32,9 @@ agents are in [AGENTS.md](AGENTS.md).
 | Look | **Soft "botanical calm" style with crisp details** (§4). The hard-edged Craft-style version was tried and rejected |
 | Colour | Shades of green: the owner's preference from day one |
 | Hero | Full-screen background video in HD (placeholder clip for now) |
-| Home page | **Short**: hero → slim row of 12 service icons → gallery → reviews → product strip (with the four brand pictures) |
+| Home page | Hero → **large responsive grid of 12 service icons** → gallery with six supplied photos → reviews → product strip (with the four brand pictures) |
 | Header | **No phone number in the menu bar.** Phone is in the footer and on the Contact and Booking pages |
+| Languages | Header switch for **English and Spanish**. The choice persists and Spanish links can be shared with `?lang=es` |
 | Locations | **One: Pikesville.** Canton is closed. No "two locations" wording anywhere |
 | Menu | Services ▾ · **Our Specialists** · About Us ▾ (The Founder, Careers) · Contact Us · **Book Now**. Gallery and Gift Certificates are out of the menu |
 | Services | 12 services, each with **its own page**. A service page describes the service and lists **the specialists who offer it** |
@@ -47,6 +49,29 @@ agents are in [AGENTS.md](AGENTS.md).
 ## 2. Request log
 
 Newest first. "Dev" is the developer; "owner" is the salon owner.
+
+### 2026-11-10 (latest): larger service choices, English/Spanish and photography
+
+- **Make every home-page service icon and service name 50% larger.** Done.
+  The heading now uses the same stronger 600 weight as “Fresh from the
+  chair.” The larger tiles use six columns on desktop, three on English
+  phones, and two on Spanish phones so the longer labels never overflow.
+- **Add a language tab with English and Spanish.** Done with a compact
+  `EN / ES` control in the header. Spanish covers shared navigation,
+  marketing pages, forms, services, specialist roles and menus. The
+  selection is stored in the browser; `?lang=es` makes a Spanish URL
+  shareable. English remains the no-JavaScript default.
+- **Fill the specialist portrait placeholders with AI-generated images.**
+  Done for all 24 sample profiles: one distinct fictional portrait per
+  profile, optimized to 800 × 1000 WebP. The names, bios and prices are
+  still visibly marked **Sample profile** and must not be confused with the
+  real salon team.
+- **Put the six supplied photos in “Fresh from the chair.”** Done: two brow
+  photos, nail art, massage, reception and treatment room, all served as
+  WebP in a responsive editorial grid.
+- **Review after Claude's changes.** `npm test` passes all 21 pages and 24
+  profiles. Browser QA covered desktop and exact 390 px English/Spanish
+  layouts; a Spanish mobile overflow found during review was fixed.
 
 ### 2026-11-11: no prices on service pages, five per service, no Gallery tab
 
@@ -274,9 +299,9 @@ owner's settled preference after trying a harder-edged version.
   black borders.
 - Headings in *Cormorant Garamond*, mixed case with italic accents. Body
   text and the NEHA wordmark in *Jost*.
-- "What brings you in today?" is a row of **round icons** with the service
-  name underneath, as in the first prototype. The dev singled this out as
-  looking much nicer than the boxed tiles.
+- "What brings you in today?" uses **large round icons** with the service
+  name underneath, as in the first prototype. Icons and names are 50%
+  larger than the earlier compact version and form a responsive grid.
 - Logo colours as accents: lime `#AECD54` for Book buttons, orange `#E6883C`
   for tiny details, teal `#285F5F` for buttons and the call-to-action band.
 
@@ -382,7 +407,8 @@ Waiting on the dev or the owner:
 | **Service descriptions** for 11 service pages (all except Massages). Prices no longer go on service pages: they belong to each specialist | The service pages have short placeholder descriptions |
 | ~~Product pictures~~ | ✅ Supplied by the dev on 2026-11-10 and in the strip |
 | **The salon's own video** (10–20 s, calm) | The hero uses a hotel's promo clip, which **must not go live** |
-| **Photos**: the spa, Neha, treatment rooms, before/after, team | Every green gradient tile is a photo placeholder |
+| **Remaining real photos**: Neha, the actual spa, the real team and each specialist's work | The home gallery now has six supplied photos. About/founder and work-photo tiles are still placeholders; the 24 portraits are fictional AI samples |
+| **Confirm rights and attribution for the six supplied gallery images**, and confirm any pictured interiors are actually appropriate for the salon | Required before public launch; source-to-output mapping is in `assets/img/gallery/README.md` |
 | **The real team.** For each specialist: name, role, short description, portrait, which services they offer, **their own price list**, photos of their work, and optionally Instagram. Also whether Neha takes clients herself | `js/specialists.js` holds 24 sample profiles |
 | **Careers wording**: which roles, how to apply | `careers.html` |
 | **How many years** Neha has been in Baltimore (the old site's "over 18" is out of date; a client review says 19 as a customer) | `about.html` |
@@ -406,6 +432,6 @@ Suggestions to raise with the owner; none are built.
 - **Spa Packages** and **Specials** pages (the old site has both).
 - A real **Gallery page** once photos arrive; the home page then shows a few.
 - A **newsletter signup** (the old site has one).
-- **Spanish** or other languages, using Elite Dental Lab's translation system.
+- Additional languages beyond the completed English/Spanish switch.
 - **Online gift certificate sales** built into the new site.
 - Redirects from the old site's addresses to the new pages at launch.

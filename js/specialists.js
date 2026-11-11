@@ -163,6 +163,29 @@ const NUMBER_WORDS = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Ei
   "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen",
   "Twenty", "Twenty-One", "Twenty-Two", "Twenty-Three", "Twenty-Four"];
 
+const NUMBER_WORDS_ES = ["Uno", "Dos", "Tres", "Cuatro", "Cinco", "Seis", "Siete", "Ocho", "Nueve", "Diez",
+  "Once", "Doce", "Trece", "Catorce", "Quince", "Dieciséis", "Diecisiete", "Dieciocho", "Diecinueve",
+  "Veinte", "Veintiuno", "Veintidós", "Veintitrés", "Veinticuatro"];
+
+const TITLES_ES = {
+  "Senior Threading Artist": "Especialista sénior en depilación con hilo",
+  "Threading Artist": "Especialista en depilación con hilo",
+  "Esthetician": "Esteticista",
+  "Massage Therapist": "Masajista",
+  "Senior Massage Therapist": "Masajista sénior",
+  "Hair Stylist": "Estilista",
+  "Nail Technician": "Técnica de uñas",
+  "Brow Specialist": "Especialista en cejas",
+  "Senior Esthetician": "Esteticista sénior",
+  "Esthetician & Makeup Artist": "Esteticista y maquilladora",
+  "Spa Therapist": "Terapeuta de spa",
+  "Hair Stylist & Makeup Artist": "Estilista y maquilladora",
+  "Senior Hair Stylist": "Estilista sénior",
+  "Colour Specialist": "Especialista en color",
+  "Senior Nail Technician": "Técnica sénior de uñas",
+  "Nail Artist": "Artista de uñas"
+};
+
 function samplePrice(base, step) {
   const one = amount => "$" + (amount + step * (amount >= 100 ? 10 : 2));
   return Array.isArray(base) ? base.map(one).join(" · ") : one(base);
@@ -174,10 +197,13 @@ const SAMPLE_SPECIALISTS = SAMPLE_TEAM.map(([title, offered, step], index) => {
   return {
     slug: "specialist-" + word.toLowerCase(),
     name: "Specialist " + word,
+    nameEs: "Especialista " + NUMBER_WORDS_ES[index],
     title,
+    titleEs: TITLES_ES[title] || title,
     sample: true,   // shows a "Sample profile" note on the site
-    photo: "",
+    photo: `assets/img/specialists/specialist-${String(index + 1).padStart(2, "0")}.webp`,
     bio: "A short introduction goes here: years of experience, specialities, and what clients love about their work.",
+    bioEs: "Aquí irá una breve presentación: años de experiencia, especialidades y lo que más valoran sus clientes.",
     instagram: "",
     services: offered.flatMap(service => service === "massages" && usesRealMassageMenu
       ? REAL_MASSAGE_MENU
