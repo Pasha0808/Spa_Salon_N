@@ -475,16 +475,18 @@ h1 em, h2 em { font-style: italic; color: inherit; }
 /* No boxes: each review is written in the site's italic serif, the same
    lettering as "shaped by hand." in the hero (dev request, 2026-11-11). */
 .reviews-slim { padding: 40px 0 44px; }
+/* The row runs the full width of the screen, like the gallery above it (dev request, 2026-11-11) */
+.reviews-slim .container { max-width: none; padding-inline: clamp(12px, 1.6vw, 40px); }
 .reviews-slim .review-grid { grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 0; }
 .reviews-slim .review {
   background: none; box-shadow: none; border-radius: 0;
-  padding: 6px 30px; display: flex; flex-direction: column; text-align: center;
+  padding: 6px clamp(20px, 2.4vw, 56px); display: flex; flex-direction: column; text-align: center;
 }
 .reviews-slim .review + .review { border-left: 1px solid var(--line); }
 .reviews-slim .review blockquote {
   margin-top: 10px; flex: 1;
   font-family: var(--serif); font-style: italic; font-weight: 500;
-  font-size: 1.36rem; line-height: 1.34; color: var(--forest-ink);
+  font-size: clamp(1.36rem, 1.45vw, 1.9rem); line-height: 1.34; color: var(--forest-ink);
 }
 .reviews-slim .review figcaption { margin-top: 14px; font-size: 0.68rem; letter-spacing: 0.18em; }
 .review { background: #fff; padding: 34px 30px; border-radius: var(--radius); box-shadow: 0 6px 24px rgba(47, 52, 39, 0.07); }
@@ -823,7 +825,8 @@ fieldset.service-field { border: 0; min-width: 0; }
   .info-strip li + li::before { content: none; }
   .reviews-slim { padding: 34px 0; }
   /* Phones: the four reviews sit in one row you swipe sideways, so the section stays short */
-  .reviews-slim .review-grid { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; margin: 0 -20px; padding-inline: 20px; }
+  .reviews-slim .container { padding-inline: 0; }
+  .reviews-slim .review-grid { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; margin: 0; padding-inline: 20px; }
   .reviews-slim .review { flex: 0 0 82%; scroll-snap-align: center; padding: 4px 20px; }
   .reviews-slim .review:nth-child(odd) { border-left: 1px solid var(--line); }
   .reviews-slim .review:first-child { border-left: 0; }

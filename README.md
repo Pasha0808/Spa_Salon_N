@@ -228,7 +228,8 @@ Prices belong to specialists, not to services. Everything comes from
 In order: video hero with three selling points (`.hero-features`), the
 facts strip (`.info-strip`), "Our services" photo cards
 (`.services-showcase`), the gallery, one slim row of reviews
-(`.reviews-slim`: no boxes, set in the italic serif), the product strip.
+(`.reviews-slim`: full screen width, no boxes, set in the italic serif),
+the product strip.
 The gallery, reviews and product strip all carry `section-mist`, so the
 three share one background. The "Give the Gift of Self Care" band
 (`.gift-band` + `.gift-banner`, generated in `js/site.js`) sits above the
@@ -495,3 +496,4 @@ Desktop/Mobile view toggle, and the Supabase portal (not relevant here).
 | 2026-11-11 | **Slower handpicked-products strip.** Increased its CSS animation cycle from 45 to 67.5 seconds while preserving hover pause, the pause button and reduced-motion behaviour. Updated the audit to accept price groups explicitly marked pending while still rejecting accidental empty menus. |
 | 2026-11-11 | **Published cancellation policy.** Reconciled the source document’s 24/48-hour contradiction into one 24-hour cancellation cutoff, clarified deposit timing and late arrivals, placed the shared policy on Services and Booking, and added a footer link from the bottom of the home page. |
 | 2026-11-11 | **Reviews without boxes; one background for three sections.** Home reviews are set in the italic serif with thin dividers instead of white cards. The reviews section now uses the same mist background as the gallery and the product strip. |
+| 2026-11-11 | **Reviews fill the screen width.** The home reviews row is no longer limited to the content width; text size scales up a little on wide screens. |

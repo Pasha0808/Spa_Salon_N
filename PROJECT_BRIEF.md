@@ -52,6 +52,14 @@ agents are in [AGENTS.md](AGENTS.md).
 
 Newest first. "Dev" is the developer; "owner" is the salon owner.
 
+### 2026-11-11 (latest): reviews fill the screen width
+
+- **Fill the screen horizontally with the reviews.** Done: the row of four
+  reviews now runs the full width of the screen, like the gallery above it,
+  and the lettering grows slightly on wide screens. The section became a
+  little shorter as a result (about 310 px on a laptop). Phones keep the
+  sideways-swipe row.
+
 ### 2026-11-11 (latest): reviews without boxes, one background for three sections
 
 - **Home-page reviews should not sit in boxes; write them in the nice
