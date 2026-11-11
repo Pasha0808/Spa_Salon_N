@@ -73,7 +73,7 @@ about.html                About Us (story + The Founder at #founder)
 specialists.html        Our Specialists (everyone, with links to book)
 specialist.html         One template for every specialist: ?p=<slug>
 careers.html              Careers (with enquiry form)
-gift-certificates.html    Gift Certificates (kept, but not linked for now)
+gift-certificates.html    Gift Certificates (out of the menu; linked by the facts strip and footer)
 contact.html              Contact Us (details, form, map, FAQ)
 booking.html              Book a Visit (booking request form)
 
@@ -89,7 +89,9 @@ assets/img/               neha-mark.svg (logo mark + favicon), leaf-line.svg
                           (leaf drawing for backgrounds), hero-poster.jpg, logo-original.png
 assets/img/products/      The four brand pictures in the home page strip
 assets/img/gallery/       Eight supplied photos used by Fresh from the chair
-assets/img/specialists/   24 fictional AI sample portraits, 800 × 1000 WebP
+assets/img/services/      Five generated home-service photographs, 900 × 780 WebP
+assets/img/team/          Supplied real-team portraits, optimized to 800 × 1000 WebP
+assets/img/specialists/   Legacy fictional samples; retained but no longer used
 assets/video/             hero-loop.mp4 (placeholder)
 
 tests/static-audit.mjs    npm test
@@ -100,8 +102,8 @@ wrangler.jsonc, .assetsignore   Optional Cloudflare deploy (untested)
 .nojekyll                 Tells GitHub Pages to serve files as they are
 ```
 
-The two image folders include their own `README.md` manifests with source
-mapping and, for the fictional portraits, the generation prompt pattern.
+The image folders include their own `README.md` manifests with source
+mapping and generation notes where applicable.
 
 ---
 
@@ -114,21 +116,21 @@ Every page has the same skeleton:
 <div id="neha-header"></div>
 <main id="main"> … </main>
 <div id="neha-footer"></div>
-<script src="js/config.js?v=11"></script>
-<script src="js/specialists.js?v=3"></script>
-<script src="js/i18n.js?v=6"></script>
-<script src="js/site.js?v=15"></script>
+<script src="js/config.js?v=13"></script>
+<script src="js/specialists.js?v=4"></script>
+<script src="js/i18n.js?v=8"></script>
+<script src="js/site.js?v=17"></script>
 <script src="js/main.js?v=6"></script>
 ```
 
 `js/site.js` replaces the two mount points with the offer bar + header and
-the call-to-action band + footer. So the **menu and footer are edited in
+the gift band + footer. So the **menu and footer are edited in
 one place**, `js/site.js`.
 
 - `class="header-over-hero"` makes the header start transparent over the
   dark page heading and turn solid white on scroll. Every page uses it.
 - `data-no-cta` on `<body>` leaves out the "Give the Gift of Self Care"
-  band above the footer (used on `booking.html`).
+  band above the footer (used on `booking.html` and `gift-certificates.html`).
 - The `?v=N` on CSS and JS addresses is a cache-buster. **Raise it on every
   page when that file changes**, or returning visitors see the old version.
 
@@ -142,11 +144,13 @@ not draw the header control.
 The Spanish layer is still in the code, dormant:
 - Shared/static copy: the `ES` dictionary in `js/i18n.js`.
 - Services: `nameEs`, `tagEs` and `blurbEs` in `js/config.js`.
-- Specialists: `nameEs`, `titleEs` and `bioEs` in `js/specialists.js`.
+- Specialists: optional `nameEs`, `titleEs`, `bioEs` and `noteEs` fields in
+  `js/specialists.js`.
 
 Setting `languageSwitch: true` brings the switch back. Text added after
 2026-11-11 (Home, the hero selling points, the facts strip, the "Our
-services" cards, the gift band) has no Spanish yet and would need adding.
+services" cards, the gift band) is not complete in Spanish and would need
+review before the switch is re-enabled.
 
 ### Hooks filled in from `js/config.js`
 
@@ -158,12 +162,13 @@ Put these attributes in a page and `js/site.js` fills them:
 | `data-email` (on a link) | Email address and `mailto:` link |
 | `data-address` | Street address, two lines |
 | `data-hours` (on a `<ul class="hours-list">`) | Opening hours |
+| `data-spa-hours` (on a `<ul class="hours-list">`) | Spa hours, by appointment only |
 | `data-directions` (on a link) | Google Maps directions |
 | `data-map` | Google Maps embed |
 | `data-socials` | All social links |
 | `data-social="instagram"` (on a link) | That one network's address |
 | `data-gift-shop` (on a link) | The online gift card shop |
-| `data-service-tiles` / `="detailed"` | All services: the icon row on the home page / cards with a description on the Services page |
+| `data-service-tiles="featured"` / `="detailed"` | Five photographic home highlights / all 12 Services-page cards |
 | `data-other-services` | Links to every service except the current page |
 | `data-service-options` | The booking form's service checkboxes with "About this service" links |
 | `data-products` (on the strip's `<ul>`) | The product strip items |
@@ -184,8 +189,9 @@ Put these attributes in a page and `js/site.js` fills them:
   on hover and on keyboard focus.
 - Below 1340 px the menu becomes a panel behind the ☰ button, and each
   submenu opens with its small arrow button.
-- The service submenu, the footer service list, the service icons and the
-  booking checkboxes all come from the `services` list in `js/config.js`.
+- The service submenu, footer service list and booking checkboxes come from
+  `services` in `js/config.js`; the five home photographs come from
+  `homeServiceHighlights`.
 - The header has no phone number (dev request). The phone is in the footer
   and on the Contact and Booking pages.
 
@@ -206,22 +212,25 @@ Prices belong to specialists, not to services. Everything comes from
   and prices at the top and their work photos at the bottom. An unknown
   slug shows a "couldn't find" message with a link to the team page.
 - **Booking links** carry the choice: `booking.html?pro=<slug>&service=<slug>`.
-- **Sample team:** all 24 current profiles are placeholders, generated at
-  the bottom of `js/specialists.js` so that every service lists five. Real
-  people go in `REAL_SPECIALISTS` at the top of that file and appear first.
-  When the real team is complete, delete the sample section as the file's
-  header explains. `sample: true` shows a "Sample profile" note.
+- **Current team:** all 11 entries are real people from the owner-supplied
+  files; no sample profile is rendered. Destiny and Rosemary are marked
+  `incomplete: true` because only their portraits were supplied. Price
+  groups that were named without prices use `pending: true`, and the UI
+  says the details are being confirmed instead of inventing a menu.
+- The Our Specialists grid is limited to three columns on wide screens,
+  two on tablets and one on phones.
 
 ### Home page sections
 
 In order: video hero with three selling points (`.hero-features`), the
-facts strip (`.info-strip`), "Our services" photo cards (`.showcase`), the
-gallery, one slim row of reviews (`.reviews-slim`), the product strip. The
-"Give the Gift of Self Care" band (`.gift-band`, drawn in `js/site.js`)
-sits above the footer on every page.
+facts strip (`.info-strip`), "Our services" photo cards
+(`.services-showcase`), the gallery, one slim row of reviews
+(`.reviews-slim`), the product strip. The "Give the Gift of Self Care" band
+(`.gift-band` + `.gift-banner`, generated in `js/site.js`) sits above the
+footer on every page except Booking and the Gift Certificates page itself.
 
-The five "Our services" cards are plain HTML in `index.html`; each links
-to a service page. To change a card's photo, replace its `<img>`.
+The five "Our services" cards come from `homeServiceHighlights` in
+`js/config.js`. To change a card's photo, update its `img` and `alt` fields.
 
 **Backup:** the earlier "What brings you in today?" icon row is saved in
 `backups/what-brings-you-in.html`, with restore instructions at the top.
@@ -243,11 +252,13 @@ an `img` shows the picture; without one it shows the brand name.
 | --- | --- |
 | `name`, `tagline`, `email` | Used in the header, footer and forms |
 | `locations` | One entry (Pikesville): address, phone, map address, hours. The first entry is used everywhere |
+| `locations[0].spaHours` | Spa-only hours shown on Contact; every entry is by appointment only |
 | `formEndpoint` | Where forms are sent. Empty = open the visitor's email app (see §5) |
 | `giftCardUrl` | The "Choose a Design" button on the gift certificates page |
 | `socials` | Footer and Contact page links. An empty `url` hides that network |
 | `announcement` | Text of the top bar. `""` hides the bar |
-| `services` | **The service list.** `slug` is the page's file name without `.html`; `tag` is a short label (not shown at present: the home icon row was slimmed down); `blurb` is the one-line description |
+| `services` | **The complete service list.** `slug` is the page's file name without `.html`; `tag` and `blurb` feed the Services page and shared UI |
+| `homeServiceHighlights` | The five photo-led home cards: destination service, image, alt text, name and short description in both languages |
 | `products` | Brands in the home page strip: `name`, `kind`, optional `img` |
 | `specialistsLabel` | The menu name of the team page ("Our Specialists") |
 
@@ -285,25 +296,27 @@ hard-edged version are in the brief, §4.
 
 | Token (`css/styles.css`) | Value | Use |
 | --- | --- | --- |
-| `--forest` | `#285f5f` | Logo teal: buttons, links, small labels, call-to-action band |
-| `--forest-deep` / `--forest-ink` | `#173f3d` / `#102c2a` | Hover / footer, offer bar, hero overlay |
-| `--lime` / `--lime-soft` | `#aecd54` / `#e9f1d2` | Book buttons and accents on dark / notices, ticked options. Lime is not for text on light backgrounds |
-| `--sun` | `#e6883c` | Logo orange: stars, bullets, focus ring |
-| `--cream` / `--mist` | `#f8f7f1` / `#edf2ea` | Page background / alternating pale sage sections |
-| `--ink` / `--ink-soft` | `#16211f` / `#46534f` | Text |
+| `--forest` | `#626548` | Warm olive: buttons, links, labels and call-to-action band |
+| `--forest-deep` / `--forest-ink` | `#4c5038` / `#2f3427` | Hover / footer, offer bar, hero overlay |
+| `--lime` / `--lime-soft` | `#d2cda8` / `#eee9d9` | Khaki accents on dark / notices and selected options. Never text on a light background |
+| `--sun` | `#a87849` | Muted bronze: stars and tiny accents |
+| `--cream` / `--mist` | `#f7f3ed` / `#ebe6d9` | Page background / alternating warm sections |
+| `--ink` / `--ink-soft` | `#282a22` / `#5b5b50` | Text |
 | `--radius`, `--shadow` | `6px`, soft | Rounded corners and soft shadows on cards |
 
 - **Headings:** Cormorant Garamond, mixed case, weight 500, italic `<em>` accents.
 - **Body, menu, buttons, wordmark:** Jost, weight 400.
 - Cards are white with a soft shadow and no border. Sections alternate
   cream and `.section-mist`.
-- Remaining photo placeholders (`.ph-photo`) are green gradient tiles with
+- Remaining photo placeholders (`.ph-photo`) are warm olive gradient tiles with
   a leaf drawing (`assets/img/leaf-line.svg`) and a label. The home gallery
-  and the sample portrait cards now use optimized WebP photography.
+  and real-team portrait cards use optimized WebP photography.
 - Service icons are small line drawings in `js/site.js` (`ICONS`), keyed by
   the service's slug. A service without one gets a leaf.
-- Useful classes: `.section`, `.section-mist`, `.page-hero`, `.needs` /
-  `.needs-grid` (home icon row), `.service-cards` (Services page), `.split`
+- Useful classes: `.section`, `.section-mist`, `.page-hero`,
+  `.home-services-grid` / `.home-service-card` (photo-led home services),
+  `.gift-banner` (home and Gift Certificates page), `.service-cards`
+  (Services page), `.split`
   (photo + text), `.card`, `.service-layout` (content + side panel),
   `.menu-list` (price list with dotted lines), `.notice-soon`,
   `.request-form`, `.ph-photo`.
@@ -468,3 +481,4 @@ Desktop/Mobile view toggle, and the Supabase portal (not relevant here).
 | 2026-11-10 | **Explicit language dropdown.** Replaced the hover-swap interaction with a translucent circular control and an `EN` / `ES` dropdown. Both language URLs are now explicit, fixing the return from Spanish to English. |
 | 2026-11-11 | **Owner's layout example applied.** Home tab added first; menu and logo 25% larger (menu collapses below 1340 px). Hero: three selling points replace the bullet points, "Pikesville" added to the text. New facts strip under the video. "What brings you in today?" replaced by "Our services" photo cards (old section kept in `backups/`). Reviews reduced to one slim row. The band above the footer is now "Give the Gift of Self Care", linking to the gift certificates page. Language switch removed; English only, Spanish kept dormant. |
 | 2026-11-11 | **Renamed to "Neha Salon & Spa".** Titles, descriptions, body text, footer and the logo wordmark (NEHA / SALON & SPA). The web address, email and social handles are unchanged. |
+| 2026-11-11 | **Real team, menus and warm khaki refresh.** Replaced 24 fictional samples with 11 owner-supplied specialists and their available menus, clearly marking incomplete roles and price groups. Added spa hours, real founder/team portraits, substantive service-page copy, and updated service category names. Limited the team grid to three cards per desktop row. Restyled the site in warm khaki/olive, generated five original home-service photographs, rebuilt that section as a wider and slimmer showcase, and replaced the gift area with an original “Give the Gift of Self Care” banner. |

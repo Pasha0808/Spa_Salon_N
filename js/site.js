@@ -23,6 +23,7 @@
   })[ch]);
 
   const services = C.services || [];
+  const featuredServices = C.homeServiceHighlights || [];
   const locations = C.locations || [];
   const main = locations[0] || {};
   const socials = (C.socials || []).filter(item => item.url);
@@ -152,35 +153,21 @@
      parties band. Left out on pages with data-no-cta on <body>. */
   const giftBand = document.body.hasAttribute("data-no-cta") ? "" : `
   <section class="gift-band" aria-labelledby="gift-title">
-    <div class="container gift-inner">
-      <h2 id="gift-title">Give the Gift<br>of Self Care</h2>
-      <svg class="gift-art" viewBox="0 0 420 240" aria-hidden="true" focusable="false">
-        <g class="gift-leaves">
-          <path d="M40 215 C90 160 130 110 170 30" class="gift-stem"/>
-          <path d="M62 190 C30 186 14 166 12 144 C38 146 58 162 62 190Z"/>
-          <path d="M72 178 C92 196 120 196 138 184 C120 164 94 160 72 178Z"/>
-          <path d="M90 150 C60 140 48 116 52 94 C78 102 92 124 90 150Z"/>
-          <path d="M102 136 C124 152 152 148 166 132 C146 114 120 114 102 136Z"/>
-          <path d="M120 104 C94 90 88 64 96 44 C120 56 130 80 120 104Z"/>
-          <path d="M134 90 C158 100 182 92 192 74 C172 60 148 64 134 90Z"/>
-          <path d="M150 60 C134 42 138 20 150 6 C168 22 168 44 150 60Z"/>
-        </g>
-        <g transform="rotate(-9 285 130)">
-          <rect class="gift-card" x="170" y="62" width="230" height="140" rx="12"/>
-          <g class="gift-emblem" transform="translate(300 112)">
-            <path d="M0 34 V-30"/>
-            <path d="M0 -30 C-7 -22 -7 -12 0 -6 C7 -12 7 -22 0 -30Z"/>
-            <path d="M0 -4 C-14 -8 -20 -18 -20 -28 C-9 -26 -2 -18 0 -4Z"/>
-            <path d="M0 -4 C14 -8 20 -18 20 -28 C9 -26 2 -18 0 -4Z"/>
-            <path d="M0 14 C-13 10 -19 0 -19 -10 C-8 -8 -2 0 0 14Z"/>
-            <path d="M0 14 C13 10 19 0 19 -10 C8 -8 2 0 0 14Z"/>
-          </g>
-          <text class="gift-card-text" x="188" y="186">GIFT CARD</text>
-        </g>
-      </svg>
-      <div class="gift-copy">
-        <p>Neha Salon &amp; Spa gift cards are the perfect way to show someone you care.</p>
-        <a class="btn btn-outline-light" href="gift-certificates.html">Buy Gift Card</a>
+    <div class="container container-wide">
+      <div class="gift-banner">
+        <div class="gift-banner-title">
+          <p class="eyebrow">A thoughtful way to care</p>
+          <h2 id="gift-title">Give the Gift<br>of <em>Self Care</em></h2>
+        </div>
+        <div class="gift-card-preview" aria-hidden="true">
+          ${markSVG()}
+          <span>Neha Salon &amp; Spa</span>
+          <small>Gift Certificate</small>
+        </div>
+        <div class="gift-banner-copy">
+          <p>Neha Salon &amp; Spa gift certificates are a lovely way to show someone you care. Choose a design, then send or print it today.</p>
+          <a class="btn btn-outline-light" data-gift-shop href="gift-certificates.html">Buy Gift Card</a>
+        </div>
       </div>
     </div>
   </section>`;
@@ -236,6 +223,7 @@
   each("[data-email]", a => { a.href = "mailto:" + C.email; a.textContent = C.email; });
   each("[data-address]", el => { el.innerHTML = `${esc(main.addressLine1)}<br>${esc(main.addressLine2)}`; });
   each("[data-hours]", el => { el.innerHTML = hoursList(main.hours); });
+  each("[data-spa-hours]", el => { el.innerHTML = hoursList(main.spaHours); });
   each("[data-directions]", a => { a.href = directionsHref(main); a.target = "_blank"; a.rel = "noopener"; });
   each("[data-gift-shop]", a => { a.href = C.giftCardUrl; a.target = "_blank"; a.rel = "noopener"; });
   each("[data-socials]", el => { el.innerHTML = socialLinks; });
@@ -257,6 +245,19 @@
   // Service icons: the row on the home page, and cards on the Services page
   each("[data-service-tiles]", wrap => {
     const detailed = wrap.dataset.serviceTiles === "detailed";
+    const featured = wrap.dataset.serviceTiles === "featured";
+    if (featured) {
+      wrap.innerHTML = featuredServices.map(s => `
+      <a class="home-service-card" href="${esc(s.href)}">
+        <img src="${esc(s.img)}" alt="${esc(serviceText(s, "alt"))}" width="900" height="780" loading="lazy" decoding="async">
+        <span class="home-service-card-body">
+          <strong>${esc(serviceText(s, "name"))}</strong>
+          <small>${esc(serviceText(s, "blurb"))}</small>
+          <span class="text-link">${esc(t("Learn more"))} <span aria-hidden="true">→</span></span>
+        </span>
+      </a>`).join("");
+      return;
+    }
     wrap.innerHTML = services.map(s => detailed ? `
       <a class="service-card" href="${esc(s.slug)}.html">
         ${icon(s.slug)}
@@ -290,25 +291,26 @@
   // Booking form: the specialist dropdown. booking.html?pro=<slug> picks one.
   each("[data-pro-select]", select => {
     const wanted = params.get("pro");
-    select.innerHTML = `<option value="${esc(t("No preference"))}">${esc(t("No preference"))}</option>` + pros.map(p =>
+    select.innerHTML = `<option value="${esc(t("No preference"))}">${esc(t("No preference"))}</option>` + pros.filter(p => p.services.length).map(p =>
       `<option value="${esc(proText(p, "name"))}"${p.slug === wanted ? " selected" : ""}>${esc(proText(p, "name"))} · ${esc(proText(p, "title"))}</option>`).join("");
   });
 
   /* ---------------- Specialists ---------------- */
 
-  // "Book with Priya". Sample profiles keep their whole placeholder name.
-  const firstName = p => p.shortName || (p.sample ? proText(p, "name") : proText(p, "name").split(" ")[0]);
+  const firstName = p => p.shortName || proText(p, "name").split(" ")[0];
   const proHref = (p, service) => `specialist.html?p=${encodeURIComponent(p.slug)}${service ? "&service=" + encodeURIComponent(service) : ""}`;
   const bookHref = (p, service) => `booking.html?pro=${encodeURIComponent(p.slug)}${service ? "&service=" + encodeURIComponent(service) : ""}`;
   const proPhoto = (p, cls) => p.photo
     ? `<img class="${cls}" src="${esc(p.photo)}" alt="${esc(proText(p, "name"))}, ${esc(proText(p, "title"))}" loading="lazy">`
     : `<div class="ph-photo ${cls}" data-label="${esc(I.language === "es" ? "Foto próximamente" : "Photo coming soon")}" role="img" aria-label="${esc(I.language === "es" ? `Foto de ${proText(p, "name")} (próximamente)` : `Photo of ${p.name} (coming soon)`)}"></div>`;
-  const sampleNote = p => p.sample ? `<p class="sample-note">${esc(t("Sample profile"))}</p>` : "";
+  const statusNote = p => p.incomplete ? `<p class="sample-note">${esc(t("Details pending"))}</p>` : "";
   const offers = (p, slug) => p.services.filter(entry => entry.service === slug);
-  const priceList = items => `<ul class="menu-list">${items.map(item => `
+  const priceList = (items, pending) => pending || !items.length
+    ? `<div class="notice-soon"><p>${esc(t("Individual pricing is being confirmed."))}</p></div>`
+    : `<ul class="menu-list">${items.map(item => `
         <li class="menu-item">
-          <div class="menu-line"><h3>${esc(t(item.name))}</h3><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">${esc(item.price)}</span></div>
-          ${item.note ? `<p>${esc(t(item.note))}</p>` : ""}
+          <div class="menu-line"><h3>${esc(itemText(item, "name"))}</h3><span class="menu-dots" aria-hidden="true"></span><span class="menu-price">${esc(item.price)}</span></div>
+          ${item.note ? `<p>${esc(itemText(item, "note"))}</p>` : ""}
           ${item.time ? `<p><span class="dur">${esc(t(item.time))}</span></p>` : ""}
         </li>`).join("")}</ul>`;
 
@@ -330,7 +332,7 @@
         <div class="pro-row-body">
           <h3><a href="${proHref(p, slug)}">${esc(proText(p, "name"))}</a></h3>
           <p class="pro-title">${esc(proText(p, "title"))}</p>
-          ${sampleNote(p)}
+          ${statusNote(p)}
         </div>
         <div class="pro-row-actions">
           <a class="btn btn-ink" href="${proHref(p, slug)}">${esc(t("Prices & Work"))}</a>
@@ -342,18 +344,18 @@
   // Our Specialists page
   each("[data-pro-list]", wrap => {
     wrap.innerHTML = pros.map(p => {
-      const names = [...new Set(p.services.map(entry => serviceBySlug(entry.service)?.name).filter(Boolean))];
+      const hasServices = p.services.length > 0;
       return `
       <article class="pro-card">
         <a href="${proHref(p)}" tabindex="-1" aria-hidden="true">${proPhoto(p, "pro-portrait")}</a>
         <h2><a href="${proHref(p)}">${esc(proText(p, "name"))}</a></h2>
         <p class="pro-title">${esc(proText(p, "title"))}</p>
-        ${sampleNote(p)}
+        ${statusNote(p)}
         <p class="pro-bio">${esc(proText(p, "bio"))}</p>
-        <p class="pro-tags">${p.services.map(entry => serviceBySlug(entry.service)).filter((service, index, list) => service && list.indexOf(service) === index).map(service => esc(serviceText(service, "name"))).join(" · ")}</p>
+        ${hasServices ? `<p class="pro-tags">${p.services.map(entry => serviceBySlug(entry.service)).filter((service, index, list) => service && list.indexOf(service) === index).map(service => esc(serviceText(service, "name"))).join(" · ")}</p>` : ""}
         <div class="pro-actions">
-          <a class="btn btn-outline" href="${proHref(p)}">${esc(t("Prices & Work"))}</a>
-          <a class="btn btn-ink" href="${bookHref(p)}">${esc(I.language === "es" ? `Reservar con ${firstName(p)}` : `Book with ${firstName(p)}`)}</a>
+          ${hasServices ? `<a class="btn btn-outline" href="${proHref(p)}">${esc(t("Prices & Work"))}</a>
+          <a class="btn btn-ink" href="${bookHref(p)}">${esc(I.language === "es" ? `Reservar con ${firstName(p)}` : `Book with ${firstName(p)}`)}</a>` : `<a class="btn btn-outline" href="contact.html">${esc(t("Contact Us"))}</a>`}
         </div>
       </article>`;
     }).join("");
@@ -370,6 +372,7 @@
       return;
     }
     const wanted = params.get("service");
+    const hasServices = p.services.length > 0;
     // The service the visitor came from is listed first
     const entries = [...p.services].sort((a, b) => (b.service === wanted) - (a.service === wanted));
     document.title = `${proText(p, "name")}, ${proText(p, "title")} — ${C.name}`;
@@ -384,15 +387,15 @@
       <div class="container service-layout">
         <div class="prose">
           <h2 id="prices-title">${esc(t("Services & prices"))}</h2>
-          ${p.sample ? `<p class="sample-note">${esc(t("Sample profile: the name, prices and photos are placeholders"))}</p>` : ""}
-          ${entries.map(entry => {
+          ${statusNote(p)}
+          ${hasServices ? entries.map(entry => {
             const service = serviceBySlug(entry.service);
             return `
           <div class="price-group">
-            <h3 class="price-group-title">${entry.title ? esc(t(entry.title)) : `<a href="${esc(entry.service)}.html">${esc(service ? serviceText(service, "name") : entry.service)}</a>`}</h3>
-            ${priceList(entry.items)}
+            <h3 class="price-group-title">${entry.title ? esc(itemText(entry, "title")) : `<a href="${esc(entry.service)}.html">${esc(service ? serviceText(service, "name") : entry.service)}</a>`}</h3>
+            ${priceList(entry.items, entry.pending)}
           </div>`;
-          }).join("")}
+          }).join("") : `<div class="notice-soon"><p>${esc(t("Services and pricing are being confirmed."))}</p></div>`}
         </div>
         <aside class="aside-card pro-aside" aria-label="${esc(I.language === "es" ? `Acerca de ${proText(p, "name")}` : `About ${p.name}`)}">
           ${proPhoto(p, "pro-portrait")}
@@ -400,18 +403,18 @@
           <p class="pro-title">${esc(proText(p, "title"))}</p>
           <p>${esc(proText(p, "bio"))}</p>
           ${p.instagram ? `<p><a href="${esc(p.instagram)}"${external}>${esc(t("Instagram"))}</a></p>` : ""}
-          <a class="btn btn-ink" href="${bookHref(p, wanted)}">${esc(I.language === "es" ? `Reservar con ${firstName(p)}` : `Book with ${firstName(p)}`)}</a>
-          <a class="btn btn-outline" href="#work">${esc(I.language === "es" ? `Ver el trabajo de ${firstName(p)}` : `See ${firstName(p)}'s Work`)}</a>
+          ${hasServices ? `<a class="btn btn-ink" href="${bookHref(p, wanted)}">${esc(I.language === "es" ? `Reservar con ${firstName(p)}` : `Book with ${firstName(p)}`)}</a>
+          <a class="btn btn-outline" href="#work">${esc(I.language === "es" ? `Ver el trabajo de ${firstName(p)}` : `See ${firstName(p)}'s Work`)}</a>` : `<a class="btn btn-outline" href="contact.html">${esc(t("Contact Us"))}</a>`}
         </aside>
       </div>
     </section>
-    <section class="section section-mist" id="work" aria-labelledby="work-title">
+    ${hasServices ? `<section class="section section-mist" id="work" aria-labelledby="work-title">
       <div class="container">
         <div class="section-head"><h2 id="work-title">${esc(I.language === "es" ? `Trabajo de ${firstName(p)}` : `${firstName(p)}'s work`)}</h2></div>
         <div class="work-grid"${p.work && p.work.length ? "" : ' data-placeholder="Work photos"'}>${work}</div>
         <div class="center-cta"><a class="btn btn-ink" href="${bookHref(p, wanted)}">${esc(I.language === "es" ? `Reservar con ${firstName(p)}` : `Book with ${firstName(p)}`)}</a></div>
       </div>
-    </section>`;
+    </section>` : ""}`;
   });
 
   // Product strip: the list is repeated so the strip is always wider than

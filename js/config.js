@@ -33,6 +33,11 @@ window.NEHA_CONFIG = {
         ["Thursday – Friday", "10 AM – 8 PM"],
         ["Saturday", "9 AM – 6 PM"],
         ["Sunday", "11 AM – 5 PM"]
+      ],
+      spaHours: [
+        ["Sunday – Monday", "Closed"],
+        ["Tuesday – Friday", "10 AM – 6 PM"],
+        ["Saturday", "10 AM – 4 PM"]
       ]
     }
   ],
@@ -63,24 +68,33 @@ window.NEHA_CONFIG = {
   announcement: "New clients enjoy 15% off their first visit", // confirmed 2026-11-08; "" hides the bar
   announcementEs: "Los clientes nuevos reciben un 15 % de descuento en su primera visita",
 
-  // The service list. Each service has its own page, <slug>.html.
-  // This one list feeds the Services menu, the home page icons, the
-  // Services page, the booking form and the footer. `tag` is the small
-  // label under the name on the home page. Each service's icon is in
-  // js/site.js (ICONS), under the same slug.
+  // The complete service list. Each service has its own page, <slug>.html.
+  // This list feeds the Services menu and page, booking form, footer and
+  // specialist links. Each service's icon is in js/site.js (ICONS), under
+  // the same slug; the five home highlights are configured separately below.
   services: [
-    { slug: "threading", name: "Threading", nameEs: "Depilación con hilo", tag: "Brows & face", tagEs: "Cejas y rostro", blurb: "Eyebrow and facial threading with pure cotton thread — Neha's signature.", blurbEs: "Depilación de cejas y rostro con hilo de algodón puro, la especialidad de Neha." },
+    { slug: "threading", name: "Threading", nameEs: "Depilación con hilo", tag: "Brows & face", tagEs: "Cejas y rostro", blurb: "Precise facial hair removal with twisted cotton thread, ideal for sensitive skin.", blurbEs: "Depilación facial precisa con hilo de algodón, ideal para piel sensible." },
     { slug: "hair-styling", name: "Hair Styling", nameEs: "Peluquería", tag: "Cut & colour", tagEs: "Corte y color", blurb: "Cuts, colour, styling and treatments from an experienced team.", blurbEs: "Cortes, color, peinados y tratamientos de un equipo con experiencia." },
-    { slug: "facials", name: "Facials", nameEs: "Faciales", tag: "Skin", tagEs: "Piel", blurb: "Customized facials in our state-of-the-art treatment rooms.", blurbEs: "Faciales personalizados en nuestras modernas salas de tratamiento." },
-    { slug: "massages", name: "Massages", nameEs: "Masajes", tag: "Hot stone & more", tagEs: "Piedras calientes y más", blurb: "From Swedish relaxation to hot stone and Ayurvedic massage.", blurbEs: "Desde masaje sueco relajante hasta piedras calientes y masaje ayurvédico." },
-    { slug: "nail-care", name: "Nail Care", nameEs: "Cuidado de uñas", tag: "Mani & pedi", tagEs: "Manicura y pedicura", blurb: "Manicures and pedicures.", blurbEs: "Manicuras y pedicuras." },
+    { slug: "facials", name: "Facials", nameEs: "Faciales", tag: "Skin", tagEs: "Piel", blurb: "Customized facials, corrective skin treatments, dermaplaning and HydraFacial.", blurbEs: "Faciales personalizados, tratamientos correctivos, dermaplaning e HydraFacial." },
+    { slug: "massages", name: "Massages", nameEs: "Masajes", tag: "Hot stone & more", tagEs: "Piedras calientes y más", blurb: "Relaxation, therapeutic, Ayurvedic, lymphatic and body-contouring massage.", blurbEs: "Masajes relajantes, terapéuticos, ayurvédicos, linfáticos y de contorno corporal." },
+    { slug: "nail-care", name: "Nail Care", nameEs: "Cuidado de uñas", tag: "Mani & pedi", tagEs: "Manicura y pedicura", blurb: "Manicures, pedicures, acrylic services and nail enhancements.", blurbEs: "Manicuras, pedicuras, servicios de acrílico y complementos para uñas." },
     { slug: "vichy-shower", name: "Vichy Shower", nameEs: "Ducha Vichy", tag: "Water therapy", tagEs: "Terapia de agua", blurb: "Warm cascading water and a full-body scrub.", blurbEs: "Agua tibia en cascada y exfoliación corporal completa." },
-    { slug: "spa-treatments", name: "Spa Treatments", nameEs: "Tratamientos de spa", tag: "Ayurvedic", tagEs: "Ayurvédicos", blurb: "Ayurvedic face and body treatments.", blurbEs: "Tratamientos ayurvédicos para rostro y cuerpo." },
-    { slug: "spa-parties", name: "Spa Parties", nameEs: "Fiestas de spa", tag: "Celebrate", tagEs: "Celebra", blurb: "Celebrate together with a private spa party.", blurbEs: "Celebra en compañía con una fiesta de spa privada." },
-    { slug: "waxing", name: "Waxing", nameEs: "Depilación con cera", tag: "Face & body", tagEs: "Rostro y cuerpo", blurb: "Face and body waxing.", blurbEs: "Depilación con cera para rostro y cuerpo." },
-    { slug: "other-services", name: "Other Services", nameEs: "Otros servicios", tag: "Henna & makeup", tagEs: "Henna y maquillaje", blurb: "Henna tattoos, makeup and more.", blurbEs: "Tatuajes de henna, maquillaje y más." },
-    { slug: "microblading", name: "Microblading", nameEs: "Microblading", tag: "Brows", tagEs: "Cejas", blurb: "Semi-permanent brows, stroke by stroke.", blurbEs: "Cejas semipermanentes, trazo a trazo." },
-    { slug: "slimming-treatments", name: "Slimming Treatments", nameEs: "Tratamientos reductores", tag: "Body", tagEs: "Cuerpo", blurb: "Body treatments to tone and contour.", blurbEs: "Tratamientos corporales para tonificar y definir." }
+    { slug: "spa-treatments", name: "Spa Treatments", nameEs: "Tratamientos de spa", tag: "Body rituals", tagEs: "Rituales corporales", blurb: "Vichy hydrotherapy, exfoliation and hydrating or detox body wraps.", blurbEs: "Hidroterapia Vichy, exfoliación y envolturas hidratantes o detox." },
+    { slug: "spa-parties", name: "Spa Parties", nameEs: "Fiestas de spa", tag: "Celebrate", tagEs: "Celebra", blurb: "Reserve the spa level for a small group and choose services from the salon menu.", blurbEs: "Reserva el nivel del spa para un grupo pequeño y elige servicios del menú." },
+    { slug: "waxing", name: "Waxing", nameEs: "Depilación con cera", tag: "Face & body", tagEs: "Rostro y cuerpo", blurb: "Face and full-body hair removal with waxes selected for different hair types.", blurbEs: "Depilación facial y corporal con ceras para distintos tipos de vello." },
+    { slug: "other-services", name: "Lashes, Makeup & Henna", nameEs: "Pestañas, maquillaje y henna", tag: "Finishing touches", tagEs: "Toques finales", blurb: "Lash extensions and lifts, makeup for special occasions, and henna tattoos.", blurbEs: "Extensiones y lifting de pestañas, maquillaje para ocasiones y tatuajes de henna." },
+    { slug: "microblading", name: "Microblading & Microshading", nameEs: "Microblading y microshading", tag: "Brows", tagEs: "Cejas", blurb: "Hair-like strokes, soft powder shading or a combination for fuller brows.", blurbEs: "Trazos similares al cabello, sombreado suave o una combinación para cejas más llenas." },
+    { slug: "slimming-treatments", name: "Body Contouring", nameEs: "Contorno corporal", tag: "Body", tagEs: "Cuerpo", blurb: "Manual contouring and multi-technology cavitation treatments.", blurbEs: "Contorno manual y tratamientos de cavitación con varias tecnologías." }
+  ],
+
+  // Five broad, photo-led categories on the home page. The complete menu
+  // remains available through `services` above.
+  homeServiceHighlights: [
+    { name: "Skin Care", nameEs: "Cuidado de la piel", blurb: "Facials & treatments", blurbEs: "Faciales y tratamientos", href: "facials.html", img: "assets/img/services/skin-care.webp", alt: "Facial treatment with a mineral mask", altEs: "Tratamiento facial con mascarilla mineral" },
+    { name: "Hair Services", nameEs: "Servicios de cabello", blurb: "Cut, color & style", blurbEs: "Corte, color y peinado", href: "hair-styling.html", img: "assets/img/services/hair-services.webp", alt: "Finished dimensional brunette hairstyle", altEs: "Peinado castaño con ondas y dimensión" },
+    { name: "Nail Care", nameEs: "Cuidado de uñas", blurb: "Manicure & pedicure", blurbEs: "Manicura y pedicura", href: "nail-care.html", img: "assets/img/services/nail-care.webp", alt: "Neat neutral manicure", altEs: "Manicura neutra y cuidada" },
+    { name: "Massage", nameEs: "Masaje", blurb: "Therapy for body & mind", blurbEs: "Terapia para cuerpo y mente", href: "massages.html", img: "assets/img/services/massage.webp", alt: "Professional hot-stone massage", altEs: "Masaje profesional con piedras calientes" },
+    { name: "Brows & Lashes", nameEs: "Cejas y pestañas", blurb: "Threading, waxing & more", blurbEs: "Hilo, cera y más", href: "threading.html", img: "assets/img/services/brows-lashes.webp", alt: "Precisely shaped brow and defined lashes", altEs: "Ceja definida y pestañas cuidadas" }
   ],
 
   // Home page product strip: the brands the salon carries (from

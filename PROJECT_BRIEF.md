@@ -8,9 +8,9 @@ agents are in [AGENTS.md](AGENTS.md).
 - **Client:** Neha Salon & Spa, Pikesville, Maryland (called "Neha Threading Salon & Spa" until 2026-11-11)
 - **Developer / repo owner:** Pasha0808
 - **Review link:** <https://pasha0808.github.io/Spa_Salon_N/>
-- **Status:** prototype under client review. Second round of owner feedback
-  applied on 2026-11-10, then restyled back to the soft look and expanded
-  with bilingual content and review photography.
+- **Status:** prototype under client review. The real specialist menus and
+  portraits supplied on 2026-11-11 are now in the site, along with a warmer
+  khaki direction and a new photographic home-services section.
 
 ## Contents
 
@@ -31,9 +31,9 @@ agents are in [AGENTS.md](AGENTS.md).
 | --- | --- |
 | Name | **Neha Salon & Spa**. The logo reads NEHA / SALON & SPA. Web address, email and social accounts keep "nehathreading" |
 | Look | **Soft "botanical calm" style with crisp details** (§4). The hard-edged Craft-style version was tried and rejected |
-| Colour | Shades of green: the owner's preference from day one |
+| Colour | **Warm khaki and olive green** inspired by the owner's 2026-11-11 reference image, with cream backgrounds and tiny orange accents |
 | Hero | Full-screen background video in HD (placeholder clip for now) |
-| Home page | Video hero with three selling points → thin facts strip (Walk-ins Welcome · Open 7 Days a Week · Gift Cards Available) → **"Our services" photo cards** → gallery → one slim row of reviews → product strip → **"Give the Gift of Self Care" band** |
+| Home page | Video hero with three selling points → thin facts strip → **five wide photographic service cards** → gallery → one slim row of reviews → product strip → **khaki “Give the Gift of Self Care” band** |
 | Header | **No phone number in the menu bar.** Phone is in the footer and on the Contact and Booking pages |
 | Languages | **English only.** The EN / ES switch was removed on 2026-11-11. The Spanish text is kept in the code, switched off (`languageSwitch` in `js/config.js`) |
 | Locations | **One: Pikesville.** Canton is closed. No "two locations" wording anywhere |
@@ -50,6 +50,31 @@ agents are in [AGENTS.md](AGENTS.md).
 ## 2. Request log
 
 Newest first. "Dev" is the developer; "owner" is the salon owner.
+
+### 2026-11-11 (latest): real team, khaki reference and home-page refresh
+
+- The dev supplied the owner's current service menus, specialist menus,
+  staff portraits, salon/spa hours and cancellation policy in `Salon.zip`.
+  The 24 fictional sample profiles were replaced with **11 real profiles**:
+  Alinah, Charles, Destiny, Kyra, Mariquita, Olga, Pinal, Rosemary, Sandy,
+  Sara and Sushma. Neha's supplied portrait is used in The Founder section;
+  she is not listed as a bookable specialist until the owner confirms that
+  she takes clients.
+- **Show no more than three specialists across.** Done: three columns on
+  wide desktop, two on tablet and one on phones.
+- **Use the warm khaki colour from the supplied design example.** Done with
+  khaki/olive tokens while retaining the approved rounded, soft design.
+- **Replace the home service artwork, make the section about 25% slimmer and
+  let it fill the screen horizontally.** Done: five purpose-generated
+  photographic cards for Skin Care, Hair Services, Nail Care, Massage and
+  Brows & Lashes use a wide 1500 px container. Generation notes are in
+  `assets/img/services/README.md`.
+- **Replace the existing “Give the Gift of Self Care” area with the
+  reference composition.** Done in the global band and on the Gift
+  Certificates page, using an original khaki banner and card mock-up rather
+  than copying the reference image itself.
+- Service-page descriptions and visible service names now reflect the
+  supplied owner material. Prices remain only on specialist profiles.
 
 ### 2026-11-11 (later): the name is "Neha Salon & Spa"
 
@@ -90,25 +115,22 @@ and borrow these parts. All **done** unless marked.
    Services, Nail Care, Massage, Brows & Lashes), "Learn more" links and a
    "View All Services" button. The old icon row is saved in
    `backups/what-brings-you-in.html` with instructions for restoring it.
-   ⏳ The Hair Services card has no photo yet.
+   The later Codex pass supplied five generated service photographs.
 7. **Make the testimonials much slimmer vertically.** Done: one row of four
    compact review cards, about 300 px tall (was about 760 px). On phones the
    four cards sit in one row that is swiped sideways.
 8. **Replace the Book a visit / Our Specialists / Spa parties band with
    "Give the Gift of Self Care", exactly as in the picture but in a
-   different colour.** Done in the site's green, with a drawn gift card and
-   leaf sprig and a "Buy Gift Card" button. It links to the Gift
-   Certificates page, which is therefore linked again (also from the facts
-   strip and the footer). It is still not a menu item.
+   different colour.** First done as a green illustrated strip, then replaced
+   with the requested khaki editorial composition. Gift Certificates is
+   linked again from the facts strip and footer, but is still not a menu item.
 9. **Remove the language change option.** Done: the EN / ES control is gone
    and the site is English only (`?lang=es` is ignored). The Spanish text
    Codex added is still in `js/i18n.js`, switched off, so it can return by
    setting `languageSwitch: true`. Text added since has no Spanish.
 10. **Update the specialists' photos, prices and services from the folder
-    `/Users/pavloromanyuk/Downloads/Salon`.** ⏳ **Not done: that folder is
-    on the dev's own computer and this cloud session cannot read it.** The
-    files need to be uploaded to the chat (or the folder shared with the
-    session). Until then the 24 sample specialists stay.
+    `/Users/pavloromanyuk/Downloads/Salon`.** Done in the later Codex pass
+    from the supplied `Salon.zip`; missing facts remain explicitly pending.
 11. **Review what was done with ChatGPT Codex.** Done: the five Codex
     commits (bilingual content, AI sample portraits, eight gallery photos,
     wider grids, the commit-and-push rule) were read and kept, apart from
@@ -234,11 +256,11 @@ The dev, after more input from the salon. All **done** unless marked.
 
 How it was built: all specialists are in one file, `js/specialists.js`.
 One template page, `specialist.html?p=<slug>`, shows any specialist, so
-adding or removing staff means editing only that file.
-⏳ **All profiles are samples** (seven at first, 24 since 2026-11-11) with
-sample prices, until the salon supplies its real team (§7). The salon's
-real massage menu is kept under the sample massage therapist.
-The Gift Certificates page still exists but nothing links to it.
+adding or removing staff means editing only that file. As of 2026-11-11,
+all 11 entries are real people from the owner's supplied files; incomplete
+facts and price groups are explicitly marked pending. The Gift Certificates
+page is still out of the menu, while the home gift banner links to the
+existing online shop.
 
 ### 2026-11-10 (latest follow-up): home-page order and full-site audit
 
@@ -355,14 +377,14 @@ the old site's addresses where possible, which helps with redirects at launch.
 
 | Page | File | Notes |
 | --- | --- | --- |
-| Home | `index.html` | Video hero + three selling points · facts strip · "Our services" photo cards · gallery · slim reviews · product strip · gift band (above the footer on every page except Booking) |
+| Home | `index.html` | Video hero + three selling points · facts strip · five photographic service cards · gallery · slim reviews · product strip · khaki gift band |
 | Services | `services.html` | The 12 services with a one-line description each |
 | 12 service pages | `threading.html`, `hair-styling.html`, `facials.html`, `massages.html`, `nail-care.html`, `vichy-shower.html`, `spa-treatments.html`, `spa-parties.html`, `waxing.html`, `other-services.html`, `microblading.html`, `slimming-treatments.html` | A description, then **"Choose your specialist"**: everyone who offers the service, with their role, a link to their page and a booking link. **No prices here.** Spa Parties has no specialists and invites a request instead |
 | About Us | `about.html` | The spa's story, then **The Founder** (`about.html#founder`) |
 | Our Specialists | `specialists.html` | Every specialist: portrait, role, short description, their services, **Prices & Work** and **Book with …** |
 | A specialist's page | `specialist.html?p=<slug>` | One template for everyone. **Top: their services and prices. Bottom: photos of their work.** Arriving from a service page (`&service=<slug>`) lists that service first |
 | Careers | `careers.html` | Short text and an enquiry form |
-| Gift Certificates | `gift-certificates.html` | Linked from the "Give the Gift of Self Care" band, the facts strip and the footer. Not a menu item |
+| Gift Certificates | `gift-certificates.html` | Linked from the facts strip and footer but not the menu; its khaki banner links to the existing online shop |
 | Contact Us | `contact.html` | Address, phone, email, hours, social links, message form, map, FAQ |
 | Book a Visit | `booking.html` | The booking request form: services, a specialist dropdown, message. `booking.html?service=massages&pro=<slug>` ticks the service and selects the specialist |
 
@@ -397,16 +419,17 @@ be ported) and requests arrive by email without that extra step.
 owner's settled preference after trying a harder-edged version.
 
 **The style (keep this):**
-- Cream and pale sage backgrounds, deep green for the footer and page headings.
+- Cream and warm khaki backgrounds, muted olive for the footer and page headings.
 - **Soft edges and contours:** gently rounded corners, soft shadows, no hard
   black borders.
 - Headings in *Cormorant Garamond*, mixed case with italic accents. Body
   text and the NEHA wordmark in *Jost*.
-- "What brings you in today?" uses **large round icons** with the service
-  name underneath, as in the first prototype. Icons and names are 50%
-  larger than the earlier compact version and form a responsive grid.
-- Logo colours as accents: lime `#AECD54` for Book buttons, orange `#E6883C`
-  for tiny details, teal `#285F5F` for buttons and the call-to-action band.
+- The home service showcase uses five landscape photographs with compact
+  white descriptions; the full Services page keeps the complete 12-service
+  list.
+- The current core palette is olive `#626548`, deep olive `#4c5038`, cream
+  `#f7f3ed` and warm mist `#ebe6d9`. Orange remains a tiny accent only;
+  pale lime/khaki is never used as text on a light background.
 
 **The sharpness (keep this too):**
 - The hero video in full HD (1920×1080), lightly sharpened, with only a
@@ -459,6 +482,9 @@ half a mile south of the Beltway.
 Phone **410-653-BROW (2769)** · Email **neha@nehathreading.com**
 Hours: Mon–Wed 10–7 · Thu–Fri 10–8 · Sat 9–6 · Sun 11–5
 
+**Spa hours (by appointment only):** Sun–Mon closed · Tue–Fri 10–6 ·
+Sat 10–4.
+
 **Closed:** Canton (2931 O'Donnell Street, Baltimore). Confirmed by the
 owner on 2026-11-10. Do not mention it.
 
@@ -480,9 +506,15 @@ treatment rooms for facials, massages and body treatments. Highlights:
 Vichy showers and Ayurvedic face and body treatments. Old-site tagline:
 "It's all about feeling beautiful."
 
-**Guest policy:** arrive 15 minutes early for spa services to change into a
-robe and slippers. The old site also has a Cancellation Policy page (not
-yet captured).
+**Guest and cancellation policy supplied 2026-11-11:** arrive 10–15 minutes
+early to complete paperwork and change into a robe and slippers. A $15
+deposit per service is required and is applied to the service total. The
+supplied document describes account credit for cancellations with more than
+24 hours' notice, a 48-hour cancellation/rescheduling requirement, a 50%
+charge for less than 24 hours' notice, full charges for no-shows or arrivals
+more than 20 minutes late, and stricter prepayment after three or more
+cancellations/reschedulings. The 24-hour/48-hour wording needs clarification
+before this policy is published (§7).
 
 **Products the salon carries:**
 - **Bioelements** (skin care): professional formulas since 1991
@@ -490,10 +522,10 @@ yet captured).
 - **Davines** (hair care): made in Parma, Italy; B Corp
 - **Moroccanoil** (hair care): argan-oil-infused
 
-**Prices captured:** massages only (13 massages and 13 add-ons) and the
-Vichy shower scrub add-on ($60, 30 min). These are the old site's salon-wide
-prices. They now sit under the sample "Specialist Four" in
-`js/specialists.js` until each therapist's own prices are known.
+**Specialist menus captured:** Alinah, Charles, Kyra, Mariquita, Olga,
+Sandy and Sushma have detailed supplied menus; Sushma also has detailed
+threading, Vichy and lash prices. The remaining missing price groups are
+listed in §7. Prices live only in `js/specialists.js`.
 
 **Reviews on the site** (from the old site): Erin L., Nancy S., Kabir B.
 (who praises a threader named Sara), Cynthia B.
@@ -509,24 +541,24 @@ Waiting on the dev or the owner:
 
 | Needed | For |
 | --- | --- |
-| **The contents of the dev's `Downloads/Salon` folder** (specialists' photos, services and prices), uploaded to the chat or shared with the session | Replacing the 24 sample specialists in `js/specialists.js` |
 | **Confirm "Walk-ins Welcome"** (from the owner's layout picture) and that the salon is open 7 days a week (the hours on file say yes) | The facts strip under the hero |
-| **A hair photo** for the Hair Services card | Home "Our services" cards |
-| **How gift cards are sold** now that the band invites visitors to buy one (see the Gift certificates row below) | `gift-certificates.html` |
-| **Service descriptions** for 11 service pages (all except Massages). Prices no longer go on service pages: they belong to each specialist | The service pages have short placeholder descriptions |
+| **Confirm the updated service descriptions and category names** derived from the owner-supplied menus | All 12 service pages now have substantive copy; prices remain on specialist profiles only |
 | ~~Product pictures~~ | ✅ Supplied by the dev on 2026-11-10 and in the strip |
 | **The salon's own video** (10–20 s, calm) | The hero uses a hotel's promo clip, which **must not go live** |
-| **Remaining real photos**: Neha, the actual spa, the real team and each specialist's work | The home gallery now has eight supplied photos. About/founder and work-photo tiles are still placeholders; the 24 portraits are fictional AI samples |
+| **Kyra's portrait** and work/portfolio photos for every specialist | Ten specialist portraits and Neha's founder portrait were supplied. Kyra currently has a clearly marked photo placeholder; work galleries remain placeholders |
 | **Confirm rights and attribution for the eight supplied gallery images**, and confirm any pictured interiors are actually appropriate for the salon | Required before public launch; source-to-output mapping is in `assets/img/gallery/README.md` |
-| **The real team.** For each specialist: name, role, short description, portrait, which services they offer, **their own price list**, photos of their work, and optionally Instagram. Also whether Neha takes clients herself | `js/specialists.js` holds 24 sample profiles |
+| **Destiny and Rosemary:** roles, services and price lists | Only their portraits were supplied, so their cards are real but explicitly marked “Profile details coming soon” and cannot be booked yet |
+| **Missing individual price groups:** Pinal — threading and waxing; Sara — threading and waxing; Sandy — threading and waxing; Sushma — waxing | The supplied role/service documents named these services but did not include those prices; their profiles mark the groups pending instead of inventing prices |
+| **Confirm whether Neha takes clients** and whether all supplied portraits are approved for public use | Neha appears only in The Founder section for now |
+| Optional short biographies and Instagram links for the real team | Current bios are concise factual summaries of each supplied menu; no social handles were invented |
 | **Careers wording**: which roles, how to apply | `careers.html` |
 | **How many years** Neha has been in Baltimore (the old site's "over 18" is out of date; a client review says 19 as a customer) | `about.html` |
-| **Gift certificates**: linked again (2026-11-11), still not in the menu. To decide: keep the old online shop, move it, or sell in person only? Its address will change when the new site replaces the old one | `gift-certificates.html` (unlinked) |
+| **Gift certificates:** confirm whether the old online shop remains the long-term destination when the new site replaces the old domain | The page stays out of the menu; the new home banner links to the current shop |
 | **Where form emails should go** and a server to send them (`formEndpoint`). The prototype opens the visitor's email app, which is unreliable for visitors without one configured | Booking, contact and careers forms |
 | **Confirm the threading FAQ claims** about discomfort and how long results last. They are not identified as owner-supplied or old-site facts | `contact.html` |
-| **Strengthen the keyboard focus indicator.** The orange outline is about 2.46:1 against the cream background; use a dual light/dark ring or another treatment that reaches 3:1 on both light and dark surfaces | Accessibility before launch |
+| ~~Strengthen the keyboard focus indicator~~ | ✅ Replaced with a dual light/dark focus ring on 2026-11-11 |
 | **Launch SEO:** remove `noindex`, add canonical URLs, absolute Open Graph image URLs, a sitemap, LocalBusiness structured data and old-URL redirects | Launch |
-| Vector logo; domain plan; cancellation policy text | Launch |
+| Vector logo; domain plan; **clarify the cancellation policy's conflicting 24-hour and 48-hour windows, then decide where to publish it** | Launch |
 
 Open any page with `?review` added to the address to see every placeholder
 outlined in orange.
@@ -541,6 +573,7 @@ Suggestions to raise with the owner; none are built.
 - **Spa Packages** and **Specials** pages (the old site has both).
 - A real **Gallery page** once photos arrive; the home page then shows a few.
 - A **newsletter signup** (the old site has one).
-- Additional languages beyond the completed English/Spanish switch.
+- Re-enable Spanish after the new English-only sections and specialist menus
+  receive a complete translation review.
 - **Online gift certificate sales** built into the new site.
 - Redirects from the old site's addresses to the new pages at launch.
