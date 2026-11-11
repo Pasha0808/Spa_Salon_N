@@ -11,6 +11,8 @@
     "Language": "Idioma",
     "English": "Inglés",
     "Spanish": "Español",
+    "Switch to English": "Cambiar a inglés",
+    "Switch to Spanish": "Cambiar a español",
     "Skip to main content": "Saltar al contenido principal",
     "Book today": "Reserva hoy",
     "Services": "Servicios",

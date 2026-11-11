@@ -50,6 +50,14 @@ agents are in [AGENTS.md](AGENTS.md).
 
 Newest first. "Dev" is the developer; "owner" is the salon owner.
 
+### 2026-11-10 (latest): quieter language control
+
+- **Make the language switch smaller and less prominent.** Done: the header
+  now shows one compact translucent-white language pill. It displays the
+  current language (`EN` or `ES`), previews the other language on hover or
+  keyboard focus, and switches on click or tap. On the solid header it uses
+  a subtle light treatment so it remains readable without drawing attention.
+
 ### 2026-11-10 (latest): full-width services and gallery spacing
 
 - **Keep all 12 “What brings you in today?” services on one desktop line

@@ -32,6 +32,8 @@
   const pros = window.NEHA_SPECIALISTS || [];
   const tagline = I.language === "es" ? (C.taglineEs || C.tagline) : C.tagline;
   const prosLabel = I.language === "es" ? (C.specialistsLabelEs || t(C.specialistsLabel || "Our Specialists")) : (C.specialistsLabel || "Our Specialists");
+  const nextLanguage = I.language === "en" ? "es" : "en";
+  const languageToggleLabel = t(I.language === "en" ? "Switch to Spanish" : "Switch to English");
   const serviceBySlug = slug => services.find(s => s.slug === slug);
   const serviceText = (service, name) => itemText(service, name) || "";
   const proText = (pro, name) => itemText(pro, name) || "";
@@ -128,11 +130,10 @@
         <a class="nav-book" href="booking.html">${esc(t("Book Now"))}</a>
       </nav>
       <div class="header-actions">
-        <div class="lang-switch" role="group" aria-label="${esc(t("Language"))}">
-          <button type="button" data-language="en" aria-pressed="${I.language === "en"}"><span aria-hidden="true">EN</span><span class="sr-only">English</span></button>
-          <span aria-hidden="true">/</span>
-          <button type="button" data-language="es" aria-pressed="${I.language === "es"}"><span aria-hidden="true">ES</span><span class="sr-only">Español</span></button>
-        </div>
+        <button class="lang-switch" type="button" data-language="${nextLanguage}" aria-label="${esc(languageToggleLabel)}" title="${esc(languageToggleLabel)}">
+          <span class="lang-code lang-current" aria-hidden="true">${I.language.toUpperCase()}</span>
+          <span class="lang-code lang-next" aria-hidden="true">${nextLanguage.toUpperCase()}</span>
+        </button>
         <a class="btn btn-book" href="booking.html">${esc(t("Book Now"))}</a>
         <button class="nav-toggle" id="nav-toggle" type="button" aria-label="${esc(t("Open menu"))}" aria-controls="main-nav" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
