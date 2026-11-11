@@ -72,6 +72,12 @@ https://pasha0808.github.io/Spa_Salon_N/
 - **Accessibility:** keep alt text, labels, keyboard support, visible focus,
   the product strip's pause button and reduced-motion handling.
 - Never commit secrets or API keys.
+- **Commit and push by default.** A request to change this project includes
+  authorization to commit the completed, tested work and push it to the
+  current tracked remote branch. Pause before committing or pushing only
+  when the request appears mistaken, unsafe, harmful or clearly detrimental;
+  explain the concern and ask first. Never force-push or include unrelated
+  user changes without explicit permission.
 
 ## Before you finish
 ```bash
@@ -80,4 +86,5 @@ npm test
 Then check the pages you changed in a browser at desktop width and at phone
 width (about 390 px): no sideways scrolling, menus open and close, forms
 validate. Update README §13 (History) and PROJECT_BRIEF.md when what they
-describe changes.
+describe changes. Commit and push the verified result unless the safety
+exception above applies.

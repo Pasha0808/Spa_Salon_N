@@ -1,0 +1,17 @@
+---
+description: Commit and push completed project changes by default
+alwaysApply: true
+---
+
+# Commit and Push by Default
+
+- A request to change this project includes authorization to commit the
+  completed work and push it to the current tracked remote branch.
+- Run the relevant tests and review the diff before committing.
+- Do not commit or push if the request appears mistaken, unsafe, harmful,
+  or produces a clearly worse result. Explain the concern and ask first.
+- If a push fails, diagnose and retry safe transport fixes; verify that the
+  remote commit matches local HEAD before reporting completion.
+- Never force-push, rewrite shared history, or include unrelated user
+  changes unless the developer explicitly asks.
+

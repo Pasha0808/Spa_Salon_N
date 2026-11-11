@@ -50,6 +50,14 @@ agents are in [AGENTS.md](AGENTS.md).
 
 Newest first. "Dev" is the developer; "owner" is the salon owner.
 
+### 2026-11-10: project delivery convention
+
+- A request to change this project also means **commit and push the finished,
+  tested result**. Stop and ask only when the request appears mistaken,
+  unsafe, harmful or clearly detrimental. This convention is recorded in
+  `AGENTS.md` and `.cursor/rules/commit-and-push.mdc` so Codex and Claude
+  follow it in later sessions.
+
 ### 2026-11-10 (latest): larger service choices, English/Spanish and photography
 
 - **Make every home-page service icon and service name 50% larger.** Done.
