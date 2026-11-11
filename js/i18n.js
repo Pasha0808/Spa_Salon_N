@@ -349,8 +349,11 @@
   const params = new URLSearchParams(location.search);
   let stored = "";
   try { stored = localStorage.getItem("neha-language") || ""; } catch (_) {}
-  const requested = params.get("lang");
-  const language = requested === "es" || requested === "en" ? requested : stored === "es" ? "es" : "en";
+  // With the switch turned off in js/config.js the site is English only.
+  const switchEnabled = Boolean(window.NEHA_CONFIG && window.NEHA_CONFIG.languageSwitch);
+  const requested = switchEnabled ? params.get("lang") : null;
+  const language = !switchEnabled ? "en"
+    : requested === "es" || requested === "en" ? requested : stored === "es" ? "es" : "en";
   if (requested === "es" || requested === "en") {
     try { localStorage.setItem("neha-language", requested); } catch (_) {}
   }
@@ -360,7 +363,7 @@
   const field = (item, name) => language === "es" && item && item[`${name}Es`] ? item[`${name}Es`] : item?.[name];
 
   function setLanguage(next) {
-    if (next !== "en" && next !== "es") return;
+    if (!switchEnabled || (next !== "en" && next !== "es")) return;
     try { localStorage.setItem("neha-language", next); } catch (_) {}
     const url = new URL(location.href);
     url.searchParams.set("lang", next);
@@ -395,5 +398,5 @@
     }));
   }
 
-  window.NEHA_I18N = { language, t, field, apply, setLanguage };
+  window.NEHA_I18N = { language, t, field, apply, setLanguage, switchEnabled };
 })();

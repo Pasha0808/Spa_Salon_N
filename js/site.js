@@ -10,7 +10,7 @@
      <div id="neha-footer"></div>  (after <main>)
    Add class "header-over-hero" to <body> when the page opens on a dark hero
    so the header starts transparent. Add data-no-cta to <body> to leave out
-   the Book / Our Specialists / Spa parties band above the footer.
+   the gift card band above the footer.
    ========================================================================== */
 
 (function () {
@@ -113,6 +113,17 @@
         </div>`;
   }
 
+  // The EN / ES switch: only when languageSwitch is on in js/config.js
+  const languageMenuHTML = !I.switchEnabled ? "" : `<div class="language-menu">
+          <button class="lang-switch" id="language-toggle" type="button" aria-label="${esc(t("Change language"))}" aria-haspopup="menu" aria-expanded="false" aria-controls="language-options">
+            <span aria-hidden="true">${I.language.toUpperCase()}</span>
+          </button>
+          <div class="language-options" id="language-options" role="menu" aria-label="${esc(t("Language"))}" hidden>
+            <button type="button" role="menuitemradio" data-language="en" aria-checked="${I.language === "en"}" lang="en">EN<span class="sr-only"> English</span></button>
+            <button type="button" role="menuitemradio" data-language="es" aria-checked="${I.language === "es"}" lang="es">ES<span class="sr-only"> Español</span></button>
+          </div>
+        </div>`;
+
   const headerHTML = `
   <a class="skip-link" href="#main">${esc(t("Skip to main content"))}</a>
   ${announcement}
@@ -120,6 +131,7 @@
     <div class="container header-inner">
       ${logo()}
       <nav class="main-nav" id="main-nav" aria-label="${esc(I.language === "es" ? "Navegación principal" : "Main navigation")}">
+        <a href="index.html">${esc(t("Home"))}</a>
         ${navGroup("services.html", t("Services"), "sub-services", serviceLinks, true)}
         <a href="specialists.html">${esc(prosLabel)}</a>
         ${navGroup("about.html", t("About Us"), "sub-about",
@@ -128,44 +140,53 @@
         <a class="nav-book" href="booking.html">${esc(t("Book Now"))}</a>
       </nav>
       <div class="header-actions">
-        <div class="language-menu">
-          <button class="lang-switch" id="language-toggle" type="button" aria-label="${esc(t("Change language"))}" aria-haspopup="menu" aria-expanded="false" aria-controls="language-options">
-            <span aria-hidden="true">${I.language.toUpperCase()}</span>
-          </button>
-          <div class="language-options" id="language-options" role="menu" aria-label="${esc(t("Language"))}" hidden>
-            <button type="button" role="menuitemradio" data-language="en" aria-checked="${I.language === "en"}" lang="en">EN<span class="sr-only"> English</span></button>
-            <button type="button" role="menuitemradio" data-language="es" aria-checked="${I.language === "es"}" lang="es">ES<span class="sr-only"> Español</span></button>
-          </div>
-        </div>
+        ${languageMenuHTML}
         <a class="btn btn-book" href="booking.html">${esc(t("Book Now"))}</a>
         <button class="nav-toggle" id="nav-toggle" type="button" aria-label="${esc(t("Open menu"))}" aria-controls="main-nav" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </div>
   </header>`;
 
-  const ctaTrio = document.body.hasAttribute("data-no-cta") ? "" : `
-  <section class="cta-trio" aria-label="${esc(I.language === "es" ? "Reservas, especialistas y fiestas" : "Book, specialists and parties")}">
-    <div class="container cta-trio-grid">
-      <div class="cta-item">
-        <h2>${esc(t("Book a visit"))}</h2>
-        <p>${esc(t("Tell us what you'd like and when. We'll confirm by email or phone."))}</p>
-        <a class="btn btn-lime" href="booking.html">${esc(t("Book Now"))}</a>
-      </div>
-      <div class="cta-item">
-        <h2>${esc(prosLabel)}</h2>
-        <p>${esc(t("See each specialist's prices and work, and book with your favourite."))}</p>
-        <a class="btn btn-outline-light" href="specialists.html">${esc(t("Meet the Team"))}</a>
-      </div>
-      <div class="cta-item">
-        <h2>${esc(t("Spa parties"))}</h2>
-        <p>${esc(t("Bring your friends and make a day of it."))}</p>
-        <a class="btn btn-outline-light" href="spa-parties.html">${esc(t("Plan a Party"))}</a>
+  /* The band above the footer: "Give the Gift of Self Care" (owner's layout
+     example, 2026-11-11). It replaced the Book / Our Specialists / Spa
+     parties band. Left out on pages with data-no-cta on <body>. */
+  const giftBand = document.body.hasAttribute("data-no-cta") ? "" : `
+  <section class="gift-band" aria-labelledby="gift-title">
+    <div class="container gift-inner">
+      <h2 id="gift-title">Give the Gift<br>of Self Care</h2>
+      <svg class="gift-art" viewBox="0 0 420 240" aria-hidden="true" focusable="false">
+        <g class="gift-leaves">
+          <path d="M40 215 C90 160 130 110 170 30" class="gift-stem"/>
+          <path d="M62 190 C30 186 14 166 12 144 C38 146 58 162 62 190Z"/>
+          <path d="M72 178 C92 196 120 196 138 184 C120 164 94 160 72 178Z"/>
+          <path d="M90 150 C60 140 48 116 52 94 C78 102 92 124 90 150Z"/>
+          <path d="M102 136 C124 152 152 148 166 132 C146 114 120 114 102 136Z"/>
+          <path d="M120 104 C94 90 88 64 96 44 C120 56 130 80 120 104Z"/>
+          <path d="M134 90 C158 100 182 92 192 74 C172 60 148 64 134 90Z"/>
+          <path d="M150 60 C134 42 138 20 150 6 C168 22 168 44 150 60Z"/>
+        </g>
+        <g transform="rotate(-9 285 130)">
+          <rect class="gift-card" x="170" y="62" width="230" height="140" rx="12"/>
+          <g class="gift-emblem" transform="translate(300 112)">
+            <path d="M0 34 V-30"/>
+            <path d="M0 -30 C-7 -22 -7 -12 0 -6 C7 -12 7 -22 0 -30Z"/>
+            <path d="M0 -4 C-14 -8 -20 -18 -20 -28 C-9 -26 -2 -18 0 -4Z"/>
+            <path d="M0 -4 C14 -8 20 -18 20 -28 C9 -26 2 -18 0 -4Z"/>
+            <path d="M0 14 C-13 10 -19 0 -19 -10 C-8 -8 -2 0 0 14Z"/>
+            <path d="M0 14 C13 10 19 0 19 -10 C8 -8 2 0 0 14Z"/>
+          </g>
+          <text class="gift-card-text" x="188" y="186">GIFT CARD</text>
+        </g>
+      </svg>
+      <div class="gift-copy">
+        <p>Neha Salon &amp; Spa gift cards are the perfect way to show someone you care.</p>
+        <a class="btn btn-outline-light" href="gift-certificates.html">Buy Gift Card</a>
       </div>
     </div>
   </section>`;
 
   const footerHTML = `
-  ${ctaTrio}
+  ${giftBand}
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-brand">
@@ -182,6 +203,7 @@
         <a href="about.html">${esc(t("About Us"))}</a>
         <a href="specialists.html">${esc(prosLabel)}</a>
         <a href="careers.html">${esc(t("Careers"))}</a>
+        <a href="gift-certificates.html">${esc(t("Gift Cards"))}</a>
         <a href="booking.html">${esc(t("Book a Visit"))}</a>
         <a href="contact.html">${esc(t("Contact Us"))}</a>
       </div>
@@ -420,32 +442,34 @@
   const navToggle = document.getElementById("nav-toggle");
   const mainNav = document.getElementById("main-nav");
   const overHero = document.body.classList.contains("header-over-hero");
-  const languageMenu = document.querySelector(".language-menu");
-  const languageToggle = document.getElementById("language-toggle");
-  const languageOptions = document.getElementById("language-options");
+  if (I.switchEnabled) {
+    const languageMenu = document.querySelector(".language-menu");
+    const languageToggle = document.getElementById("language-toggle");
+    const languageOptions = document.getElementById("language-options");
 
-  function setLanguageMenu(open) {
-    languageOptions.hidden = !open;
-    languageToggle.setAttribute("aria-expanded", String(open));
-  }
-
-  languageToggle.addEventListener("click", event => {
-    event.stopPropagation();
-    setLanguageMenu(languageOptions.hidden);
-  });
-
-  document.querySelectorAll("[data-language]").forEach(button => {
-    button.addEventListener("click", () => I.setLanguage?.(button.dataset.language));
-  });
-  document.addEventListener("click", event => {
-    if (!languageOptions.hidden && !languageMenu.contains(event.target)) setLanguageMenu(false);
-  });
-  document.addEventListener("keydown", event => {
-    if (event.key === "Escape" && !languageOptions.hidden) {
-      setLanguageMenu(false);
-      languageToggle.focus();
+    function setLanguageMenu(open) {
+      languageOptions.hidden = !open;
+      languageToggle.setAttribute("aria-expanded", String(open));
     }
-  });
+
+    languageToggle.addEventListener("click", event => {
+      event.stopPropagation();
+      setLanguageMenu(languageOptions.hidden);
+    });
+
+    document.querySelectorAll("[data-language]").forEach(button => {
+      button.addEventListener("click", () => I.setLanguage?.(button.dataset.language));
+    });
+    document.addEventListener("click", event => {
+      if (!languageOptions.hidden && !languageMenu.contains(event.target)) setLanguageMenu(false);
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && !languageOptions.hidden) {
+        setLanguageMenu(false);
+        languageToggle.focus();
+      }
+    });
+  }
 
   function syncHeader() {
     header.classList.toggle("is-solid", !overHero || window.scrollY > 40 || mainNav.classList.contains("open"));

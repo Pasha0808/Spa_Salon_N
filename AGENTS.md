@@ -37,8 +37,14 @@ https://pasha0808.github.io/Spa_Salon_N/
   not want visitors choosing a specialist because they are cheaper. Prices
   appear only on a specialist's own page.
 - **Gallery is not a menu item.** The gallery section stays on the home page.
-- **Gift Certificates is unlinked for now.** Keep the page; do not add
-  links to it until the developer asks.
+- **Gift Certificates is not a menu item**, but it is linked from the "Give
+  the Gift of Self Care" band, the facts strip and the footer.
+- **English only.** The language switch is off (`languageSwitch: false` in
+  `js/config.js`). Do not turn it back on or add a language control unless
+  the developer asks. New text does not need Spanish.
+- **`backups/` holds sections removed from the site but kept on request.**
+  Do not delete it, or the `.needs` styles and `data-service-tiles` code the
+  "What brings you in today?" backup relies on.
 - **Keep it static.** No frameworks, bundlers or npm dependencies unless the
   developer asks. Relative links only, so the site keeps working under the
   `/Spa_Salon_N/` GitHub Pages sub-path. Pages stay as flat files in the root.

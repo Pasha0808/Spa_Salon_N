@@ -32,11 +32,11 @@ agents are in [AGENTS.md](AGENTS.md).
 | Look | **Soft "botanical calm" style with crisp details** (§4). The hard-edged Craft-style version was tried and rejected |
 | Colour | Shades of green: the owner's preference from day one |
 | Hero | Full-screen background video in HD (placeholder clip for now) |
-| Home page | Hero → **one wide desktop row of 12 service icons** → full-width gallery with eight supplied photos → reviews → product strip (with the four brand pictures) |
+| Home page | Video hero with three selling points → thin facts strip (Walk-ins Welcome · Open 7 Days a Week · Gift Cards Available) → **"Our services" photo cards** → gallery → one slim row of reviews → product strip → **"Give the Gift of Self Care" band** |
 | Header | **No phone number in the menu bar.** Phone is in the footer and on the Contact and Booking pages |
-| Languages | Header switch for **English and Spanish**. The choice persists and Spanish links can be shared with `?lang=es` |
+| Languages | **English only.** The EN / ES switch was removed on 2026-11-11. The Spanish text is kept in the code, switched off (`languageSwitch` in `js/config.js`) |
 | Locations | **One: Pikesville.** Canton is closed. No "two locations" wording anywhere |
-| Menu | Services ▾ · **Our Specialists** · About Us ▾ (The Founder, Careers) · Contact Us · **Book Now**. Gallery and Gift Certificates are out of the menu |
+| Menu | **Home** · Services ▾ · **Our Specialists** · About Us ▾ (The Founder, Careers) · Contact Us · **Book Now**. The menu and logo are 25% larger than before. Gallery and Gift Certificates are not menu items |
 | Services | 12 services, each with **its own page**. A service page describes the service and lists **the specialists who offer it** |
 | Prices | **Per specialist, not one salon price list.** Prices appear **only on a specialist's own page** (prices at the top, work photos below). **Service pages show no prices**, so nobody is picked for being cheapest |
 | Booking | **Email request form** on its own page, with service tick boxes and a **specialist dropdown**. The salon does not want an integrated booking service |
@@ -49,6 +49,57 @@ agents are in [AGENTS.md](AGENTS.md).
 ## 2. Request log
 
 Newest first. "Dev" is the developer; "owner" is the salon owner.
+
+### 2026-11-11: owner's layout example, Home tab, larger header, no language switch
+
+The owner supplied a picture of a home-page layout he likes ("Neha Salon &
+Spa": hero with three selling points, a thin facts strip, "Our services"
+photo cards, a gift card band). The dev: keep what we have, it is similar,
+and borrow these parts. All **done** unless marked.
+
+1. **Add a Home tab as the first menu item.**
+2. **Make the navigation menu and logo 25% larger.** Done: the logo, menu
+   text and Book Now button. The menu now turns into the ☰ button below
+   1340 px wide (was 1120) so the larger items never crowd.
+3. **Put the Expert Care / Quality Products / Relaxing Environment items
+   over the video, as in the picture**, replacing "6,000 sq ft day spa ·
+   Ayurvedic face & body treatments · Vichy showers". Done, with the
+   picture's wording: *Skilled & certified professionals*, *Top-rated
+   brands we trust*, *Clean, comfortable & welcoming space*.
+4. **Add "Pikesville" to the hero paragraph.** Done: "…and a calm,
+   full-service spa in Pikesville for massage, facials and body treatments."
+5. **A thin strip under the video, same as the picture:** Walk-ins Welcome
+   · Open 7 Days a Week · Gift Cards Available. Done. ⚠️ "Walk-ins Welcome"
+   comes from the picture; confirm it with the owner (§7).
+6. **Replace "What brings you in today?" with the picture's "Our services"
+   layout, and keep the old section as a backup.** Done: "Everything you
+   need, all in *one* place." with five photo cards (Skin Care, Hair
+   Services, Nail Care, Massage, Brows & Lashes), "Learn more" links and a
+   "View All Services" button. The old icon row is saved in
+   `backups/what-brings-you-in.html` with instructions for restoring it.
+   ⏳ The Hair Services card has no photo yet.
+7. **Make the testimonials much slimmer vertically.** Done: one row of four
+   compact review cards, about 300 px tall (was about 760 px). On phones the
+   four cards sit in one row that is swiped sideways.
+8. **Replace the Book a visit / Our Specialists / Spa parties band with
+   "Give the Gift of Self Care", exactly as in the picture but in a
+   different colour.** Done in the site's green, with a drawn gift card and
+   leaf sprig and a "Buy Gift Card" button. It links to the Gift
+   Certificates page, which is therefore linked again (also from the facts
+   strip and the footer). It is still not a menu item.
+9. **Remove the language change option.** Done: the EN / ES control is gone
+   and the site is English only (`?lang=es` is ignored). The Spanish text
+   Codex added is still in `js/i18n.js`, switched off, so it can return by
+   setting `languageSwitch: true`. Text added since has no Spanish.
+10. **Update the specialists' photos, prices and services from the folder
+    `/Users/pavloromanyuk/Downloads/Salon`.** ⏳ **Not done: that folder is
+    on the dev's own computer and this cloud session cannot read it.** The
+    files need to be uploaded to the chat (or the folder shared with the
+    session). Until then the 24 sample specialists stay.
+11. **Review what was done with ChatGPT Codex.** Done: the five Codex
+    commits (bilingual content, AI sample portraits, eight gallery photos,
+    wider grids, the commit-and-push rule) were read and kept, apart from
+    the language switch now being off.
 
 ### 2026-11-10 (latest): language dropdown and reliable English return
 
@@ -291,18 +342,18 @@ the old site's addresses where possible, which helps with redirects at launch.
 
 | Page | File | Notes |
 | --- | --- | --- |
-| Home | `index.html` | Video hero · 12 service icons · gallery · reviews · product strip |
+| Home | `index.html` | Video hero + three selling points · facts strip · "Our services" photo cards · gallery · slim reviews · product strip · gift band (above the footer on every page except Booking) |
 | Services | `services.html` | The 12 services with a one-line description each |
 | 12 service pages | `threading.html`, `hair-styling.html`, `facials.html`, `massages.html`, `nail-care.html`, `vichy-shower.html`, `spa-treatments.html`, `spa-parties.html`, `waxing.html`, `other-services.html`, `microblading.html`, `slimming-treatments.html` | A description, then **"Choose your specialist"**: everyone who offers the service, with their role, a link to their page and a booking link. **No prices here.** Spa Parties has no specialists and invites a request instead |
 | About Us | `about.html` | The spa's story, then **The Founder** (`about.html#founder`) |
 | Our Specialists | `specialists.html` | Every specialist: portrait, role, short description, their services, **Prices & Work** and **Book with …** |
 | A specialist's page | `specialist.html?p=<slug>` | One template for everyone. **Top: their services and prices. Bottom: photos of their work.** Arriving from a service page (`&service=<slug>`) lists that service first |
 | Careers | `careers.html` | Short text and an enquiry form |
-| Gift Certificates | `gift-certificates.html` | **Not linked from anywhere for now** (dev request). The page is kept for later |
+| Gift Certificates | `gift-certificates.html` | Linked from the "Give the Gift of Self Care" band, the facts strip and the footer. Not a menu item |
 | Contact Us | `contact.html` | Address, phone, email, hours, social links, message form, map, FAQ |
 | Book a Visit | `booking.html` | The booking request form: services, a specialist dropdown, message. `booking.html?service=massages&pro=<slug>` ticks the service and selects the specialist |
 
-Menu: **Services** (submenu: the 12 services) · **Our Specialists** ·
+Menu: **Home** · **Services** (submenu: the 12 services) · **Our Specialists** ·
 **About Us** (submenu: The Founder, Careers) · **Contact Us** · **Book Now**
 button. The gallery is a section on the home page, with no menu item. There is no phone number
 in the menu bar (dev request, 2026-11-10).
@@ -443,6 +494,10 @@ Waiting on the dev or the owner:
 
 | Needed | For |
 | --- | --- |
+| **The contents of the dev's `Downloads/Salon` folder** (specialists' photos, services and prices), uploaded to the chat or shared with the session | Replacing the 24 sample specialists in `js/specialists.js` |
+| **Confirm "Walk-ins Welcome"** (from the owner's layout picture) and that the salon is open 7 days a week (the hours on file say yes) | The facts strip under the hero |
+| **A hair photo** for the Hair Services card | Home "Our services" cards |
+| **How gift cards are sold** now that the band invites visitors to buy one (see the Gift certificates row below) | `gift-certificates.html` |
 | **Service descriptions** for 11 service pages (all except Massages). Prices no longer go on service pages: they belong to each specialist | The service pages have short placeholder descriptions |
 | ~~Product pictures~~ | ✅ Supplied by the dev on 2026-11-10 and in the strip |
 | **The salon's own video** (10–20 s, calm) | The hero uses a hotel's promo clip, which **must not go live** |
@@ -451,7 +506,7 @@ Waiting on the dev or the owner:
 | **The real team.** For each specialist: name, role, short description, portrait, which services they offer, **their own price list**, photos of their work, and optionally Instagram. Also whether Neha takes clients herself | `js/specialists.js` holds 24 sample profiles |
 | **Careers wording**: which roles, how to apply | `careers.html` |
 | **How many years** Neha has been in Baltimore (the old site's "over 18" is out of date; a client review says 19 as a customer) | `about.html` |
-| **Gift certificates**: removed from the menu for now. When it returns: keep the old online shop, move it, or sell in person only? Its address will change when the new site replaces the old one | `gift-certificates.html` (unlinked) |
+| **Gift certificates**: linked again (2026-11-11), still not in the menu. To decide: keep the old online shop, move it, or sell in person only? Its address will change when the new site replaces the old one | `gift-certificates.html` (unlinked) |
 | **Where form emails should go** and a server to send them (`formEndpoint`). The prototype opens the visitor's email app, which is unreliable for visitors without one configured | Booking, contact and careers forms |
 | **Confirm the threading FAQ claims** about discomfort and how long results last. They are not identified as owner-supplied or old-site facts | `contact.html` |
 | **Strengthen the keyboard focus indicator.** The orange outline is about 2.46:1 against the cream background; use a dual light/dark ring or another treatment that reaches 3:1 on both light and dark surfaces | Accessibility before launch |

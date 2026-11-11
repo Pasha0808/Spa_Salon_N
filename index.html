@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Jost:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=16">
+<link rel="stylesheet" href="css/styles.css?v=17">
 </head>
 <body class="header-over-hero">
 
@@ -35,25 +35,97 @@
   <div class="container hero-content">
     <p class="eyebrow">Threading &amp; Day Spa · Pikesville, Maryland</p>
     <h1>Natural beauty, <em>shaped by hand.</em></h1>
-    <p class="lead">Brows shaped with a single strand of pure cotton thread by the hands Maryland has trusted for years — and a calm, full-service spa for massage, facials and body treatments.</p>
+    <p class="lead">Brows shaped with a single strand of pure cotton thread by the hands Maryland has trusted for years — and a calm, full-service spa in Pikesville for massage, facials and body treatments.</p>
     <div class="hero-ctas">
       <a class="btn btn-lime" href="booking.html">Book an Appointment</a>
       <a class="btn btn-outline-light" href="services.html">Explore Services</a>
     </div>
-    <ul class="hero-meta">
-      <li>6,000 sq ft day spa</li>
-      <li>Ayurvedic face &amp; body treatments</li>
-      <li>Vichy showers</li>
+    <ul class="hero-features">
+      <li>
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="16" r="8"/><path d="M8 42c1-10 7-15 16-15s15 5 16 15Z"/></svg>
+        <div><strong>Expert Care</strong><span>Skilled &amp; certified professionals</span></div>
+      </li>
+      <li>
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 8c6 7 6 19 0 28-6-9-6-21 0-28Z"/><path d="M24 36c-9 0-15-6-17-16 8 0 13 4 17 16Z"/><path d="M24 36c9 0 15-6 17-16-8 0-13 4-17 16Z"/><path d="M24 36v6"/></svg>
+        <div><strong>Quality Products</strong><span>Top-rated brands we trust</span></div>
+      </li>
+      <li>
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 41S7 31 7 19a9 9 0 0 1 17-4 9 9 0 0 1 17 4c0 12-17 22-17 22Z"/></svg>
+        <div><strong>Relaxing Environment</strong><span>Clean, comfortable &amp; welcoming space</span></div>
+      </li>
     </ul>
   </div>
   <button class="hero-pause" id="hero-pause" type="button" aria-pressed="false" aria-label="Pause background video" hidden></button>
 </section>
 
-<!-- ===== Services ===== -->
-<section class="needs" id="services" aria-labelledby="services-title">
+<!-- ===== Quick facts strip ===== -->
+<section class="info-strip" aria-label="Good to know">
+  <ul class="container">
+    <li>
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="15" r="7"/><path d="M10 42c1-9 6-14 14-14s13 5 14 14"/></svg>
+      Walk-ins Welcome
+    </li>
+    <li>
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="17"/><path d="M24 14v10l7 5"/></svg>
+      Open 7 Days a Week
+    </li>
+    <li>
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="18" width="34" height="8"/><path d="M10 26v16h28V26"/><path d="M24 18v24"/><path d="M24 18c-4-9-13-8-12-3 1 4 7 3 12 3Zm0 0c4-9 13-8 12-3-1 4-7 3-12 3Z"/></svg>
+      <a href="gift-certificates.html">Gift Cards Available</a>
+    </li>
+  </ul>
+</section>
+
+<!-- ===== Our services (photo cards) =====
+     The earlier "What brings you in today?" icon row is kept in
+     backups/what-brings-you-in.html -->
+<section class="section showcase" id="services" aria-labelledby="services-title">
   <div class="container">
-    <h2 id="services-title">What brings you in today?</h2>
-    <div class="needs-grid" data-service-tiles></div>
+    <p class="eyebrow">Our services</p>
+    <h2 id="services-title">Everything you need,<br>all in <em>one</em> place.</h2>
+    <div class="showcase-grid">
+      <a class="showcase-card" href="facials.html">
+        <img src="assets/img/gallery/facial-treatment-room.webp" alt="Facial treatment room" width="640" height="427" loading="lazy" decoding="async">
+        <div class="showcase-body">
+          <h3>Skin Care</h3>
+          <p>Facials &amp; treatments</p>
+          <span class="showcase-more">Learn more <span aria-hidden="true">→</span></span>
+        </div>
+      </a>
+      <a class="showcase-card" href="hair-styling.html">
+        <div class="ph-photo tone-sage" data-label="Photo coming soon" data-placeholder="Hair photo"></div>
+        <div class="showcase-body">
+          <h3>Hair Services</h3>
+          <p>Cut, color &amp; style</p>
+          <span class="showcase-more">Learn more <span aria-hidden="true">→</span></span>
+        </div>
+      </a>
+      <a class="showcase-card" href="nail-care.html">
+        <img src="assets/img/gallery/nail-art.webp" alt="Pink ombré nail art" width="500" height="500" loading="lazy" decoding="async">
+        <div class="showcase-body">
+          <h3>Nail Care</h3>
+          <p>Manicure &amp; pedicure</p>
+          <span class="showcase-more">Learn more <span aria-hidden="true">→</span></span>
+        </div>
+      </a>
+      <a class="showcase-card" href="massages.html">
+        <img src="assets/img/gallery/massage-treatment.webp" alt="Massage treatment" width="678" height="452" loading="lazy" decoding="async">
+        <div class="showcase-body">
+          <h3>Massage</h3>
+          <p>Therapy for body &amp; mind</p>
+          <span class="showcase-more">Learn more <span aria-hidden="true">→</span></span>
+        </div>
+      </a>
+      <a class="showcase-card" href="threading.html">
+        <img src="assets/img/gallery/brow-shaping.webp" alt="Brow shaping and tint result" width="1290" height="1290" loading="lazy" decoding="async">
+        <div class="showcase-body">
+          <h3>Brows &amp; Lashes</h3>
+          <p>Threading, waxing &amp; more</p>
+          <span class="showcase-more">Learn more <span aria-hidden="true">→</span></span>
+        </div>
+      </a>
+    </div>
+    <div class="center-cta"><a class="btn btn-ink" href="services.html">View All Services</a></div>
   </div>
 </section>
 
@@ -77,26 +149,27 @@
   </div>
 </section>
 
-<!-- ===== Reviews ===== -->
-<section class="section" id="reviews" aria-labelledby="reviews-title">
+<!-- ===== Reviews (one slim row) ===== -->
+<section class="reviews-slim" id="reviews" aria-labelledby="reviews-title">
   <div class="container">
     <h2 class="sr-only" id="reviews-title">Client reviews</h2>
-    <figure class="quote-feature reveal">
-      <blockquote>Neha has taken care of my brows for 19 years and counting. I have watched her business grow into a very successful business.</blockquote>
-      <figcaption><span class="stars" aria-label="5 out of 5 stars">★★★★★</span><br>Erin L. · Client for 19 years</figcaption>
-    </figure>
     <div class="review-grid">
-      <figure class="review reveal">
+      <figure class="review">
+        <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+        <blockquote>Neha has taken care of my brows for 19 years and counting. I have watched her business grow into a very successful business.</blockquote>
+        <figcaption>Erin L. · Client for 19 years</figcaption>
+      </figure>
+      <figure class="review">
         <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
         <blockquote>Great relaxing place for spa and beauty services. Technicians are lovely and skilled. Neha has created a very inviting space! Been going for years!</blockquote>
         <figcaption>Nancy S. · Google review</figcaption>
       </figure>
-      <figure class="review reveal">
+      <figure class="review">
         <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
         <blockquote>Sara is amazing at threading! Super precise and gentle, and she always gets my brows exactly how I want them.</blockquote>
         <figcaption>Kabir B. · Google review</figcaption>
       </figure>
-      <figure class="review reveal">
+      <figure class="review">
         <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
         <blockquote>I have been going to Neha’s for several years and have always had a pleasant and satisfying experience… It’s a great place, go to pamper yourself.</blockquote>
         <figcaption>Cynthia B. · Google review</figcaption>
@@ -125,10 +198,10 @@
 
 <div id="neha-footer"></div>
 
-<script src="js/config.js?v=10"></script>
+<script src="js/config.js?v=11"></script>
 <script src="js/specialists.js?v=3"></script>
-<script src="js/i18n.js?v=5"></script>
-<script src="js/site.js?v=14"></script>
+<script src="js/i18n.js?v=6"></script>
+<script src="js/site.js?v=15"></script>
 <script src="js/main.js?v=6"></script>
 </body>
 </html>

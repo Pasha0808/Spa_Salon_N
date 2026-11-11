@@ -80,7 +80,8 @@ booking.html              Book a Visit (booking request form)
 css/styles.css            All styles: tokens at the top, responsive rules at the bottom
 js/config.js              ★ Business details, the service list, product brands
 js/specialists.js         ★ The specialists: their services, prices and work photos
-js/i18n.js                English/Spanish selection and Spanish copy
+js/i18n.js                Spanish copy and language selection (switched off; English only)
+backups/                  Sections taken off the site but kept, with restore notes
 js/site.js                Header, menus, footer, and everything filled in from config
 js/main.js                Hero video rules and the request forms
 
@@ -113,10 +114,10 @@ Every page has the same skeleton:
 <div id="neha-header"></div>
 <main id="main"> … </main>
 <div id="neha-footer"></div>
-<script src="js/config.js?v=10"></script>
+<script src="js/config.js?v=11"></script>
 <script src="js/specialists.js?v=3"></script>
-<script src="js/i18n.js?v=5"></script>
-<script src="js/site.js?v=14"></script>
+<script src="js/i18n.js?v=6"></script>
+<script src="js/site.js?v=15"></script>
 <script src="js/main.js?v=6"></script>
 ```
 
@@ -126,26 +127,26 @@ one place**, `js/site.js`.
 
 - `class="header-over-hero"` makes the header start transparent over the
   dark page heading and turn solid white on scroll. Every page uses it.
-- `data-no-cta` on `<body>` leaves out the Book / Our Specialists / Spa
-  parties band (used on `booking.html`).
+- `data-no-cta` on `<body>` leaves out the "Give the Gift of Self Care"
+  band above the footer (used on `booking.html`).
 - The `?v=N` on CSS and JS addresses is a cache-buster. **Raise it on every
   page when that file changes**, or returning visitors see the old version.
 
-### English and Spanish
+### Languages: English only (Spanish switched off)
 
-`js/i18n.js` sets English by default and switches the site from the compact
-single-code header control. Clicking or tapping the translucent circle opens
-an `EN` / `ES` dropdown; choosing either language writes an explicit
-`?lang=en` or `?lang=es` URL and stores the choice as `neha-language` in
-`localStorage`. Other query parameters, such as a specialist's `?p=`, are
-kept when the language changes.
+The EN / ES switch was removed at the developer's request (2026-11-11).
+`languageSwitch: false` in `js/config.js` makes `js/i18n.js` always use
+English and ignore `?lang=es` and any stored choice, and `js/site.js` does
+not draw the header control.
 
-- Shared/static copy is translated in the `ES` dictionary in `js/i18n.js`.
-- Services use `nameEs`, `tagEs` and `blurbEs` in `js/config.js`.
-- Specialist samples use `nameEs`, `titleEs` and `bioEs` in
-  `js/specialists.js`. Real people can use the same optional fields.
-- Add both languages whenever new visible copy is introduced, then raise
-  `i18n.js?v=` (and the data file's version when applicable) on every page.
+The Spanish layer is still in the code, dormant:
+- Shared/static copy: the `ES` dictionary in `js/i18n.js`.
+- Services: `nameEs`, `tagEs` and `blurbEs` in `js/config.js`.
+- Specialists: `nameEs`, `titleEs` and `bioEs` in `js/specialists.js`.
+
+Setting `languageSwitch: true` brings the switch back. Text added after
+2026-11-11 (Home, the hero selling points, the facts strip, the "Our
+services" cards, the gift band) has no Spanish yet and would need adding.
 
 ### Hooks filled in from `js/config.js`
 
@@ -174,12 +175,14 @@ Put these attributes in a page and `js/site.js` fills them:
 
 ### Menus
 
-- Items: Services (submenu of the 12 services), Our Specialists, About Us
-  (submenu: The Founder, Careers), Contact Us, and the Book Now button.
-  Gallery and Gift Certificates are not in the menu.
+- Items: Home, Services (submenu of the 12 services), Our Specialists,
+  About Us (submenu: The Founder, Careers), Contact Us, and the Book Now
+  button. Gallery and Gift Certificates are not in the menu.
+- The header was enlarged by 25% on 2026-11-11 (logo 62 px, menu text
+  0.98 rem, header 104 px tall), and its container is wider (1400 px).
 - Desktop: "Services" and "About Us" are normal links. Their submenus open
   on hover and on keyboard focus.
-- Below 1120 px the menu becomes a panel behind the ☰ button, and each
+- Below 1340 px the menu becomes a panel behind the ☰ button, and each
   submenu opens with its small arrow button.
 - The service submenu, the footer service list, the service icons and the
   booking checkboxes all come from the `services` list in `js/config.js`.
@@ -208,6 +211,22 @@ Prices belong to specialists, not to services. Everything comes from
   people go in `REAL_SPECIALISTS` at the top of that file and appear first.
   When the real team is complete, delete the sample section as the file's
   header explains. `sample: true` shows a "Sample profile" note.
+
+### Home page sections
+
+In order: video hero with three selling points (`.hero-features`), the
+facts strip (`.info-strip`), "Our services" photo cards (`.showcase`), the
+gallery, one slim row of reviews (`.reviews-slim`), the product strip. The
+"Give the Gift of Self Care" band (`.gift-band`, drawn in `js/site.js`)
+sits above the footer on every page.
+
+The five "Our services" cards are plain HTML in `index.html`; each links
+to a service page. To change a card's photo, replace its `<img>`.
+
+**Backup:** the earlier "What brings you in today?" icon row is saved in
+`backups/what-brings-you-in.html`, with restore instructions at the top.
+Its styles (`.needs…`) and its code (`data-service-tiles`, `ICONS`) are
+still in place, so restoring it is a paste.
 
 ### Product strip (home page)
 
@@ -447,3 +466,4 @@ Desktop/Mobile view toggle, and the Supabase portal (not relevant here).
 | 2026-11-10 | **Full-width home grids and clearer specialist spacing.** Added two supplied treatment-room photos as WebP, rebuilt Fresh from the chair as a hole-free eight-cell grid that uses the viewport width, and changed the service choices to one 12-item desktop row with fluid icon sizing. Increased the vertical separation between specialist cards and service-page specialist rows. |
 | 2026-11-10 | **Quieter language switch.** Replaced the two-option `EN / ES` control with one compact translucent pill that shows the active code, previews the alternate language on hover/focus and toggles on click or tap. |
 | 2026-11-10 | **Explicit language dropdown.** Replaced the hover-swap interaction with a translucent circular control and an `EN` / `ES` dropdown. Both language URLs are now explicit, fixing the return from Spanish to English. |
+| 2026-11-11 | **Owner's layout example applied.** Home tab added first; menu and logo 25% larger (menu collapses below 1340 px). Hero: three selling points replace the bullet points, "Pikesville" added to the text. New facts strip under the video. "What brings you in today?" replaced by "Our services" photo cards (old section kept in `backups/`). Reviews reduced to one slim row. The band above the footer is now "Give the Gift of Self Care", linking to the gift certificates page. Language switch removed; English only, Spanish kept dormant. |

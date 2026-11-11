@@ -11,6 +11,12 @@ window.NEHA_CONFIG = {
   taglineEs: "Depilación con hilo · Spa · Masaje · Piel",
   email: "neha@nehathreading.com",
 
+  // The EN / ES language switch in the header. Off at the developer's
+  // request (2026-11-11): the site shows English only and ignores ?lang=es.
+  // The Spanish text is still in js/i18n.js; set this to true to bring the
+  // switch back (new English text added since then has no Spanish yet).
+  languageSwitch: false,
+
   // One salon: Pikesville. (The Canton location is closed, confirmed by
   // the owner on 2026-11-10.) The code still accepts more than one entry.
   locations: [
