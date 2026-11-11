@@ -41,6 +41,7 @@ agents are in [AGENTS.md](AGENTS.md).
 | Services | 12 services, each with **its own page**. A service page describes the service and lists **the specialists who offer it** |
 | Prices | **Per specialist, not one salon price list.** Prices appear **only on a specialist's own page** (prices at the top, work photos below). **Service pages show no prices**, so nobody is picked for being cheapest |
 | Booking | **Email request form** on its own page, with service tick boxes and a **specialist dropdown**. The salon does not want an integrated booking service |
+| Cancellation policy | **24 hours’ notice.** Full policy appears on Services and Booking; the footer links to it. The original 24/48-hour contradiction was normalized on 2026-11-11 |
 | Old website | nehathreading.com is for **facts and prices only. No design inspiration**: the owner dislikes it |
 | New-client offer | "New clients enjoy 15% off their first visit" stays |
 | Tech | Static HTML/CSS/JS on GitHub Pages, following the Elite Dental Lab site |
@@ -50,6 +51,25 @@ agents are in [AGENTS.md](AGENTS.md).
 ## 2. Request log
 
 Newest first. "Dev" is the developer; "owner" is the salon owner.
+
+### 2026-11-11 (latest): publish a consistent cancellation policy
+
+- The supplied policy contradicted itself: it credited deposits with more
+  than 24 hours’ notice, required 48 hours to avoid a fee, specified a 50%
+  charge only inside 24 hours, and left the 24–48-hour window undefined.
+  It also mentioned a percentage-based late fee without stating the
+  percentage, and its 48-hour deposit deadline did not account for
+  appointments booked sooner than that.
+- **Resolved to one 24-hour cutoff**, because the detailed source terms
+  already define both sides of it: 24+ hours means no cancellation fee and
+  salon credit; under 24 hours means a 50% charge. The deposit is applied
+  toward any charge.
+- The deposit is now due within 48 hours after the salon requests it **or
+  before the appointment when sooner**. The undefined late-fee wording was
+  removed; late services may be shortened, and arrivals over 20 minutes
+  late remain full-price no-shows.
+- The full policy now appears on Services and Booking. A Cancellation
+  Policy link sits in the site’s bottom footer, including on the home page.
 
 ### 2026-11-11 (latest): slower handpicked-products strip
 
@@ -384,7 +404,7 @@ the old site's addresses where possible, which helps with redirects at launch.
 | Page | File | Notes |
 | --- | --- | --- |
 | Home | `index.html` | Video hero + three selling points · facts strip · five photographic service cards · gallery · slim reviews · product strip · khaki gift band |
-| Services | `services.html` | The 12 services with a one-line description each |
+| Services | `services.html` | The 12 services with a one-line description each, followed by the cancellation and appointment policy |
 | 12 service pages | `threading.html`, `hair-styling.html`, `facials.html`, `massages.html`, `nail-care.html`, `vichy-shower.html`, `spa-treatments.html`, `spa-parties.html`, `waxing.html`, `other-services.html`, `microblading.html`, `slimming-treatments.html` | A description, then **"Choose your specialist"**: everyone who offers the service, with their role, a link to their page and a booking link. **No prices here.** Spa Parties has no specialists and invites a request instead |
 | About Us | `about.html` | The spa's story, then **The Founder** (`about.html#founder`) |
 | Our Specialists | `specialists.html` | Every specialist: portrait, role, short description, their services, **Prices & Work** and **Book with …** |
@@ -392,7 +412,7 @@ the old site's addresses where possible, which helps with redirects at launch.
 | Careers | `careers.html` | Short text and an enquiry form |
 | Gift Certificates | `gift-certificates.html` | Linked from the facts strip and footer but not the menu; its khaki banner links to the existing online shop |
 | Contact Us | `contact.html` | Address, phone, email, hours, social links, message form, map, FAQ |
-| Book a Visit | `booking.html` | The booking request form: services, a specialist dropdown, message. `booking.html?service=massages&pro=<slug>` ticks the service and selects the specialist |
+| Book a Visit | `booking.html` | The booking request form plus the cancellation and appointment policy. `booking.html?service=massages&pro=<slug>` ticks the service and selects the specialist |
 
 Menu: **Home** · **Services** (submenu: the 12 services) · **Our Specialists** ·
 **About Us** (submenu: The Founder, Careers) · **Contact Us** · **Book Now**
@@ -512,15 +532,15 @@ treatment rooms for facials, massages and body treatments. Highlights:
 Vichy showers and Ayurvedic face and body treatments. Old-site tagline:
 "It's all about feeling beautiful."
 
-**Guest and cancellation policy supplied 2026-11-11:** arrive 10–15 minutes
-early to complete paperwork and change into a robe and slippers. A $15
-deposit per service is required and is applied to the service total. The
-supplied document describes account credit for cancellations with more than
-24 hours' notice, a 48-hour cancellation/rescheduling requirement, a 50%
-charge for less than 24 hours' notice, full charges for no-shows or arrivals
-more than 20 minutes late, and stricter prepayment after three or more
-cancellations/reschedulings. The 24-hour/48-hour wording needs clarification
-before this policy is published (§7).
+**Guest and cancellation policy supplied and normalized 2026-11-11:** a
+$15 deposit per service is applied to the service total. It is due within
+48 hours after the salon requests it, or before the appointment when sooner.
+Cancellations and rescheduling use one 24-hour cutoff: with 24+ hours’
+notice there is no fee and the deposit stays as salon credit; under 24 hours
+costs 50%, with the deposit applied toward the charge. Spa guests should
+arrive 10–15 minutes early. Arrivals over 20 minutes late and no-shows are
+charged in full. After three or more cancellations/rescheduling requests,
+future appointments require non-refundable full prepayment plus 20% gratuity.
 
 **Products the salon carries:**
 - **Bioelements** (skin care): professional formulas since 1991
@@ -564,7 +584,7 @@ Waiting on the dev or the owner:
 | **Confirm the threading FAQ claims** about discomfort and how long results last. They are not identified as owner-supplied or old-site facts | `contact.html` |
 | ~~Strengthen the keyboard focus indicator~~ | ✅ Replaced with a dual light/dark focus ring on 2026-11-11 |
 | **Launch SEO:** remove `noindex`, add canonical URLs, absolute Open Graph image URLs, a sitemap, LocalBusiness structured data and old-URL redirects | Launch |
-| Vector logo; domain plan; **clarify the cancellation policy's conflicting 24-hour and 48-hour windows, then decide where to publish it** | Launch |
+| Vector logo; domain plan | Launch |
 
 Open any page with `?review` added to the address to see every placeholder
 outlined in orange.

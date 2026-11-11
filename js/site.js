@@ -204,7 +204,7 @@
     </div>
     <div class="container footer-bottom">
       <span>© ${new Date().getFullYear()} ${esc(C.name)}. ${esc(t("All rights reserved."))}</span>
-      <span>${esc(t("It's all about feeling beautiful."))}</span>
+      <span class="footer-bottom-meta"><a href="services.html#cancellation-policy">${esc(t("Cancellation Policy"))}</a><span aria-hidden="true">·</span><span>${esc(t("It's all about feeling beautiful."))}</span></span>
     </div>
   </footer>`;
 
@@ -240,6 +240,23 @@
     frame.referrerPolicy = "no-referrer-when-downgrade";
     frame.src = "https://www.google.com/maps?output=embed&q=" + encodeURIComponent(main.mapQuery);
     el.replaceWith(frame);
+  });
+
+  // One shared source of truth for the policy shown on Services and Booking.
+  each("[data-cancellation-policy]", wrap => {
+    const policy = C.cancellationPolicy;
+    if (!policy) {
+      wrap.hidden = true;
+      return;
+    }
+    wrap.innerHTML = `
+      <p class="eyebrow">${esc(policy.eyebrow)}</p>
+      <h2 id="cancellation-policy-title">${esc(policy.title)}</h2>
+      <p class="policy-lede">${esc(policy.intro)}</p>
+      <div class="policy-grid">
+        ${(policy.items || []).map(item => `<section class="policy-item"><h3>${esc(item.title)}</h3><p>${esc(item.body)}</p></section>`).join("")}
+      </div>
+      <p class="policy-contact">${esc(policy.contact)} <a href="${esc(main.phoneHref)}">${esc(main.phone)}</a></p>`;
   });
 
   // Service icons: the row on the home page, and cards on the Services page

@@ -68,7 +68,7 @@ checks on pushes to `main` and on pull requests.
 
 ```
 index.html                Home
-services.html             The 12 services
+services.html             The 12 services + cancellation policy
 threading.html … slimming-treatments.html   One page per service (12)
 about.html                About Us (story + The Founder at #founder)
 specialists.html        Our Specialists (everyone, with links to book)
@@ -76,7 +76,7 @@ specialist.html         One template for every specialist: ?p=<slug>
 careers.html              Careers (with enquiry form)
 gift-certificates.html    Gift Certificates (out of the menu; linked by the facts strip and footer)
 contact.html              Contact Us (details, form, map, FAQ)
-booking.html              Book a Visit (booking request form)
+booking.html              Book a Visit (booking request form + cancellation policy)
 
 css/styles.css            All styles: tokens at the top, responsive rules at the bottom
 js/config.js              ★ Business details, the service list, product brands
@@ -117,10 +117,10 @@ Every page has the same skeleton:
 <div id="neha-header"></div>
 <main id="main"> … </main>
 <div id="neha-footer"></div>
-<script src="js/config.js?v=13"></script>
+<script src="js/config.js?v=14"></script>
 <script src="js/specialists.js?v=4"></script>
 <script src="js/i18n.js?v=8"></script>
-<script src="js/site.js?v=17"></script>
+<script src="js/site.js?v=18"></script>
 <script src="js/main.js?v=6"></script>
 ```
 
@@ -178,6 +178,7 @@ Put these attributes in a page and `js/site.js` fills them:
 | `data-pro-page` | The whole body of `specialist.html` |
 | `data-pro-name`, `data-pro-title` | The specialist's name and role in that page's heading |
 | `data-pro-select` (on a `<select>`) | The booking form's specialist dropdown |
+| `data-cancellation-policy` | The shared policy card on Services and Booking |
 
 ### Menus
 
@@ -229,6 +230,7 @@ facts strip (`.info-strip`), "Our services" photo cards
 (`.reviews-slim`), the product strip. The "Give the Gift of Self Care" band
 (`.gift-band` + `.gift-banner`, generated in `js/site.js`) sits above the
 footer on every page except Booking and the Gift Certificates page itself.
+The bottom footer links to the policy on `services.html#cancellation-policy`.
 
 The five "Our services" cards come from `homeServiceHighlights` in
 `js/config.js`. To change a card's photo, update its `img` and `alt` fields.
@@ -258,6 +260,7 @@ an `img` shows the picture; without one it shows the brand name.
 | `locations[0].spaHours` | Spa-only hours shown on Contact; every entry is by appointment only |
 | `formEndpoint` | Where forms are sent. Empty = open the visitor's email app (see §5) |
 | `giftCardUrl` | The "Choose a Design" button on the gift certificates page |
+| `cancellationPolicy` | Shared policy headings and terms rendered on Services and Booking |
 | `socials` | Footer and Contact page links. An empty `url` hides that network |
 | `announcement` | Text of the top bar. `""` hides the bar |
 | `services` | **The complete service list.** `slug` is the page's file name without `.html`; `tag` and `blurb` feed the Services page and shared UI |
@@ -322,7 +325,7 @@ hard-edged version are in the brief, §4.
   (Services page), `.split`
   (photo + text), `.card`, `.service-layout` (content + side panel),
   `.menu-list` (price list with dotted lines), `.notice-soon`,
-  `.request-form`, `.ph-photo`.
+  `.request-form`, `.policy-card`, `.ph-photo`.
 
 A price list item:
 
@@ -486,3 +489,4 @@ Desktop/Mobile view toggle, and the Supabase portal (not relevant here).
 | 2026-11-11 | **Renamed to "Neha Salon & Spa".** Titles, descriptions, body text, footer and the logo wordmark (NEHA / SALON & SPA). The web address, email and social handles are unchanged. |
 | 2026-11-11 | **Real team, menus and warm khaki refresh.** Replaced 24 fictional samples with 11 owner-supplied specialists and their available menus, clearly marking incomplete roles and price groups. Added spa hours, real founder/team portraits, substantive service-page copy, and updated service category names. Limited the team grid to three cards per desktop row. Restyled the site in warm khaki/olive, generated five original home-service photographs, rebuilt that section as a wider and slimmer showcase, and replaced the gift area with an original “Give the Gift of Self Care” banner. |
 | 2026-11-11 | **Slower handpicked-products strip.** Increased its CSS animation cycle from 45 to 67.5 seconds while preserving hover pause, the pause button and reduced-motion behaviour. Updated the audit to accept price groups explicitly marked pending while still rejecting accidental empty menus. |
+| 2026-11-11 | **Published cancellation policy.** Reconciled the source document’s 24/48-hour contradiction into one 24-hour cancellation cutoff, clarified deposit timing and late arrivals, placed the shared policy on Services and Booking, and added a footer link from the bottom of the home page. |

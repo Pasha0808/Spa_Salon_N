@@ -52,6 +52,35 @@ window.NEHA_CONFIG = {
   // Their existing online gift card shop (design, preview, send or print).
   giftCardUrl: "https://www.nehathreading.com/gift-cards", // TODO: this address changes when the new site replaces the old one
 
+  // Owner-supplied cancellation policy, normalized on 2026-11-11. The
+  // source mixed 24- and 48-hour cancellation cutoffs; 24 hours is used
+  // consistently because the detailed source terms define both sides of
+  // that cutoff (account credit at 24+ hours, 50% charge under 24 hours).
+  cancellationPolicy: {
+    eyebrow: "Before your visit",
+    title: "Cancellation & appointment policy",
+    intro: "We reserve time especially for you. These terms keep deposits, changes and late arrivals clear before your appointment is confirmed.",
+    items: [
+      {
+        title: "Deposits & confirmation",
+        body: "A $15 deposit is required for each service and is applied to your service total. Payment information and the deposit are due within 48 hours after the salon requests them, or before the appointment if it is sooner. Otherwise, the unconfirmed reservation will be released."
+      },
+      {
+        title: "Cancellations & rescheduling",
+        body: "Please give at least 24 hours’ notice. With 24 hours’ notice or more, there is no cancellation fee and your deposit remains on your salon account as credit. With less than 24 hours’ notice, 50% of the service cost will be charged; the deposit is applied toward that charge."
+      },
+      {
+        title: "Late arrivals & no-shows",
+        body: "For spa services, please arrive 10–15 minutes early for paperwork and changing. A late arrival may shorten the service. Arrivals more than 20 minutes late are treated as a no-show and charged the full service price."
+      },
+      {
+        title: "Repeated changes",
+        body: "After three or more cancellations or rescheduling requests, future appointments require non-refundable prepayment of the full service cost plus 20% gratuity."
+      }
+    ],
+    contact: "To cancel or reschedule, call or text your service provider, or call the salon."
+  },
+
   // Shown in the footer and on the Contact page, in this order.
   socials: [
     { label: "Instagram", url: "https://www.instagram.com/nehathreading" },
