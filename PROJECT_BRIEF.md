@@ -52,6 +52,19 @@ agents are in [AGENTS.md](AGENTS.md).
 
 Newest first. "Dev" is the developer; "owner" is the salon owner.
 
+### 2026-11-11 (latest): reconcile the remaining specialist-price gaps
+
+- Rechecked the combined Services PDF and each person’s source file from
+  `Salon.zip`. Sushma’s individual document does contain a complete waxing
+  price list; it has now been added to her profile.
+- The combined Services PDF includes salon-wide threading and waxing prices,
+  but does not say which specialist charges them. Because this site keeps
+  prices per specialist, those generic prices were not assigned to Pinal,
+  Sandy or Sara.
+- Still needed: Destiny and Rosemary’s roles, services and prices; Pinal’s
+  threading and waxing prices; Sandy’s threading and waxing prices; and
+  Sara’s threading and waxing prices.
+
 ### 2026-11-11 (latest): publish a consistent cancellation policy
 
 - The supplied policy contradicted itself: it credited deposits with more
@@ -549,9 +562,9 @@ future appointments require non-refundable full prepayment plus 20% gratuity.
 - **Moroccanoil** (hair care): argan-oil-infused
 
 **Specialist menus captured:** Alinah, Charles, Kyra, Mariquita, Olga,
-Sandy and Sushma have detailed supplied menus; Sushma also has detailed
-threading, Vichy and lash prices. The remaining missing price groups are
-listed in §7. Prices live only in `js/specialists.js`.
+Sandy and Sushma have detailed supplied menus; Sushma’s supplied menu includes
+threading, waxing, Vichy and lash prices. The remaining missing price groups
+are listed in §7. Prices live only in `js/specialists.js`.
 
 **Reviews on the site** (from the old site): Erin L., Nancy S., Kabir B.
 (who praises a threader named Sara), Cynthia B.
@@ -574,7 +587,7 @@ Waiting on the dev or the owner:
 | **Kyra's portrait** and work/portfolio photos for every specialist | Ten specialist portraits and Neha's founder portrait were supplied. Kyra currently has a clearly marked photo placeholder; work galleries remain placeholders |
 | **Confirm rights and attribution for the eight supplied gallery images**, and confirm any pictured interiors are actually appropriate for the salon | Required before public launch; source-to-output mapping is in `assets/img/gallery/README.md` |
 | **Destiny and Rosemary:** roles, services and price lists | Only their portraits were supplied, so their cards are real but explicitly marked “Profile details coming soon” and cannot be booked yet |
-| **Missing individual price groups:** Pinal — threading and waxing; Sara — threading and waxing; Sandy — threading and waxing; Sushma — waxing | The supplied role/service documents named these services but did not include those prices; their profiles mark the groups pending instead of inventing prices |
+| **Missing individual price groups:** Pinal — threading and waxing; Sara — threading and waxing; Sandy — threading and waxing | Their individual documents name these services but do not include the prices. The generic salon-wide menu cannot establish each person’s prices, so their profiles mark these groups pending instead of inventing prices |
 | **Confirm whether Neha takes clients** and whether all supplied portraits are approved for public use | Neha appears only in The Founder section for now |
 | Optional short biographies and Instagram links for the real team | Current bios are concise factual summaries of each supplied menu; no social handles were invented |
 | **Careers wording**: which roles, how to apply | `careers.html` |

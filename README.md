@@ -118,7 +118,7 @@ Every page has the same skeleton:
 <main id="main"> … </main>
 <div id="neha-footer"></div>
 <script src="js/config.js?v=14"></script>
-<script src="js/specialists.js?v=4"></script>
+<script src="js/specialists.js?v=5"></script>
 <script src="js/i18n.js?v=8"></script>
 <script src="js/site.js?v=18"></script>
 <script src="js/main.js?v=6"></script>
@@ -218,7 +218,8 @@ Prices belong to specialists, not to services. Everything comes from
   files; no sample profile is rendered. Destiny and Rosemary are marked
   `incomplete: true` because only their portraits were supplied. Price
   groups that were named without prices use `pending: true`, and the UI
-  says the details are being confirmed instead of inventing a menu.
+  says the details are being confirmed instead of inventing a menu. Sushma’s
+  individual source file includes and supplies her complete waxing menu.
 - The Our Specialists grid is limited to three columns on wide screens,
   two on tablets and one on phones.
 
@@ -470,6 +471,7 @@ Desktop/Mobile view toggle, and the Supabase portal (not relevant here).
 
 | Date | Change |
 | --- | --- |
+| 2026-11-11 | **Completed Sushma’s waxing menu.** Rechecked the individual staff documents, imported Sushma’s full waxing price list, and narrowed the unresolved specialist-price list to Pinal, Sandy and Sara. Salon-wide prices remain unassigned where no document ties them to an individual specialist. |
 | 2026-11-07 | First prototype: home page, tabbed menu page, vector logo mark, green palette, static audit, CI. |
 | 2026-11-07 | Placeholder hero video from the supplied Sharq spa clip. GitHub Pages set up. |
 | 2026-11-07 | Two-location support and social links from `js/config.js`. |

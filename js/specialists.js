@@ -401,7 +401,30 @@ const REAL_SPECIALISTS = [
         item("Neck", "$10 & up", "", "", "Cuello"),
         item("Full Face", "$45", "", "", "Rostro completo")
       ]),
-      group("waxing", [], "", "", true),
+      group("waxing", [
+        item("Brows", "$15", "", "", "Cejas"),
+        item("Upper Lip", "$8", "", "", "Labio superior"),
+        item("Chin", "$10 & up", "", "", "Mentón"),
+        item("Neck", "$10 & up", "", "", "Cuello"),
+        item("Sideburns", "$15 & up", "", "", "Patillas"),
+        item("Underarms", "$18", "", "", "Axilas"),
+        item("Forearms", "$25", "", "", "Antebrazos"),
+        item("Full Arms", "$45", "", "", "Brazos completos"),
+        item("Woman's Back", "$50", "", "", "Espalda para mujer"),
+        item("Stomach", "$25", "", "", "Abdomen"),
+        item("Chest", "$25", "", "", "Pecho"),
+        item("Full Face", "$37", "", "", "Rostro completo"),
+        item("Forehead", "$7", "", "", "Frente"),
+        item("Woman's Lower Back", "$20", "", "", "Zona lumbar para mujer"),
+        item("Bikini Line", "$30 & up", "", "", "Línea del bikini"),
+        item("French Bikini", "$45 & up", "", "", "Bikini francés"),
+        item("Brazilian", "$65 & up", "", "", "Brasileña"),
+        item("Upper Legs", "$35 & up", "", "", "Muslos"),
+        item("Lower Legs", "$35 & up", "", "", "Parte inferior de las piernas"),
+        item("Full Legs", "$70 & up", "", "", "Piernas completas"),
+        item("Man's Chest", "$45 & up", "", "", "Pecho para hombre"),
+        item("Man's Back", "$65 & up", "", "", "Espalda para hombre")
+      ]),
       group("vichy-shower", [
         item("Vichy Shower Hydrotherapy Treatment", "$110 · $140", "60 min · 80 min", "Full-body exfoliation with a custom organic scrub and a seaweed, clay or mud mask rinsed by eight warm shower heads.", "Tratamiento de hidroterapia con ducha Vichy", "Exfoliación corporal con exfoliante orgánico y mascarilla de algas, arcilla o barro, enjuagada por ocho duchas tibias.")
       ]),
