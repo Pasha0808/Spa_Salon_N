@@ -420,7 +420,7 @@ h1 em, h2 em { font-style: italic; color: inherit; }
 .product-strip { overflow: hidden; padding: 4px 0; }
 .product-track {
   display: flex; list-style: none; width: max-content;
-  animation: strip-scroll 45s linear infinite;
+  animation: strip-scroll 67.5s linear infinite;
 }
 .product-strip:hover .product-track, .product-strip.is-paused .product-track { animation-play-state: paused; }
 @keyframes strip-scroll { to { transform: translateX(-50%); } }

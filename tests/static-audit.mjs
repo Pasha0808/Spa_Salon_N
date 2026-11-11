@@ -71,7 +71,7 @@ const todos = (config.match(/\/\/ TODO/g) || []).length;
     seen.add(pro.slug);
     for (const entry of pro.services) {
       if (!serviceSlugs.has(entry.service)) fail(`specialists.js: ${pro.slug} lists unknown service "${entry.service}"`);
-      if (!entry.items?.length) fail(`specialists.js: ${pro.slug} has no prices for "${entry.service}"`);
+      if (!entry.items?.length && !entry.pending) fail(`specialists.js: ${pro.slug} has no prices for "${entry.service}"`);
     }
     for (const file of [pro.photo, ...(pro.work || []).map(w => w.img)].filter(Boolean)) {
       if (!(await exists(join(root, file)))) fail(`specialists.js: ${pro.slug} references missing file ${file}`);

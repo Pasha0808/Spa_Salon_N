@@ -51,6 +51,12 @@ agents are in [AGENTS.md](AGENTS.md).
 
 Newest first. "Dev" is the developer; "owner" is the salon owner.
 
+### 2026-11-11 (latest): slower handpicked-products strip
+
+- **Make “Our handpicked products” move 50% slower.** Done: the CSS
+  animation duration is now 67.5 seconds instead of 45 seconds. Hover,
+  pause-button and reduced-motion behaviour are unchanged.
+
 ### 2026-11-11 (latest): real team, khaki reference and home-page refresh
 
 - The dev supplied the owner's current service menus, specialist menus,

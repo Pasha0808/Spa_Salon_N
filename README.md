@@ -56,6 +56,7 @@ npm test
 - there are no inline scripts or inline styles
 - every page has the shared header/footer mount points and scripts
 - every service in `js/config.js` has its own page
+- every specialist service has prices or is explicitly marked pending
 - all JavaScript parses
 
 It also prints how many placeholders remain. GitHub Actions runs the same
@@ -240,6 +241,8 @@ still in place, so restoring it is a paste.
 ### Product strip (home page)
 
 A row of square tiles that scrolls sideways on its own (pure CSS animation).
+The full animation takes 67.5 seconds, 50% longer than the previous
+45-second cycle for a noticeably calmer pace.
 It pauses on hover and with its pause button. For visitors who ask their
 device to reduce motion, it does not move and can be swiped. A product with
 an `img` shows the picture; without one it shows the brand name.
@@ -482,3 +485,4 @@ Desktop/Mobile view toggle, and the Supabase portal (not relevant here).
 | 2026-11-11 | **Owner's layout example applied.** Home tab added first; menu and logo 25% larger (menu collapses below 1340 px). Hero: three selling points replace the bullet points, "Pikesville" added to the text. New facts strip under the video. "What brings you in today?" replaced by "Our services" photo cards (old section kept in `backups/`). Reviews reduced to one slim row. The band above the footer is now "Give the Gift of Self Care", linking to the gift certificates page. Language switch removed; English only, Spanish kept dormant. |
 | 2026-11-11 | **Renamed to "Neha Salon & Spa".** Titles, descriptions, body text, footer and the logo wordmark (NEHA / SALON & SPA). The web address, email and social handles are unchanged. |
 | 2026-11-11 | **Real team, menus and warm khaki refresh.** Replaced 24 fictional samples with 11 owner-supplied specialists and their available menus, clearly marking incomplete roles and price groups. Added spa hours, real founder/team portraits, substantive service-page copy, and updated service category names. Limited the team grid to three cards per desktop row. Restyled the site in warm khaki/olive, generated five original home-service photographs, rebuilt that section as a wider and slimmer showcase, and replaced the gift area with an original “Give the Gift of Self Care” banner. |
+| 2026-11-11 | **Slower handpicked-products strip.** Increased its CSS animation cycle from 45 to 67.5 seconds while preserving hover pause, the pause button and reduced-motion behaviour. Updated the audit to accept price groups explicitly marked pending while still rejecting accidental empty menus. |
