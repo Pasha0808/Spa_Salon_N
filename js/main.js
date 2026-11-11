@@ -1,5 +1,5 @@
 /* ==========================================================================
-   NEHA Threading — main.js
+   Neha Salon & Spa — main.js
    Page behaviour: hero background video (rules carried over from the Elite
    Dental Lab site) and the request forms (booking, contact, careers).
    ========================================================================== */

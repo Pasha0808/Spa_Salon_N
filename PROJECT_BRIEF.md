@@ -1,11 +1,11 @@
-# Project brief: Neha Threading Salon & Spa website
+# Project brief: Neha Salon & Spa website
 
 **Read this first.** It records what the client and the developer asked
 for, what was decided, the facts about the business, and what is still
 open. How the code works is in [README.md](README.md). Rules for AI coding
 agents are in [AGENTS.md](AGENTS.md).
 
-- **Client:** Neha Threading Salon & Spa, Pikesville, Maryland
+- **Client:** Neha Salon & Spa, Pikesville, Maryland (called "Neha Threading Salon & Spa" until 2026-11-11)
 - **Developer / repo owner:** Pasha0808
 - **Review link:** <https://pasha0808.github.io/Spa_Salon_N/>
 - **Status:** prototype under client review. Second round of owner feedback
@@ -29,6 +29,7 @@ agents are in [AGENTS.md](AGENTS.md).
 
 | Topic | Decision |
 | --- | --- |
+| Name | **Neha Salon & Spa**. The logo reads NEHA / SALON & SPA. Web address, email and social accounts keep "nehathreading" |
 | Look | **Soft "botanical calm" style with crisp details** (§4). The hard-edged Craft-style version was tried and rejected |
 | Colour | Shades of green: the owner's preference from day one |
 | Hero | Full-screen background video in HD (placeholder clip for now) |
@@ -49,6 +50,18 @@ agents are in [AGENTS.md](AGENTS.md).
 ## 2. Request log
 
 Newest first. "Dev" is the developer; "owner" is the salon owner.
+
+### 2026-11-11 (later): the name is "Neha Salon & Spa"
+
+- **Change the name to "Neha Salon & Spa", in the logo as well.** Done on
+  every page: page titles, descriptions, the About text, the footer
+  copyright and the gift band. The logo keeps the leaf mark and now reads
+  **NEHA / SALON & SPA** (was NEHA / THREADING).
+- Left as they are, because they are real addresses and accounts: the
+  website and email address (`nehathreading.com`), the Instagram handle
+  `@nehathreading`, the Facebook and Yelp links, and the wording of client
+  reviews. The logo file the owner first sent still says "Threading"; a new
+  logo file in the new name would be worth asking for.
 
 ### 2026-11-11: owner's layout example, Home tab, larger header, no language switch
 
@@ -437,7 +450,9 @@ Facts only.
 Sources: the old site's Home, Contact, Massages and Products pages (saved by
 the dev), and the owner.
 
-**Business:** Neha Threading Salon and Spa. Founder: **Neha Gupta**.
+**Business:** **Neha Salon & Spa** (the name used on the new site from
+2026-11-11). The old website and listings say "Neha Threading Salon and
+Spa". Founder: **Neha Gupta**.
 
 **Location (the only one):** 1501 Reisterstown Road, Pikesville, MD 21208,
 half a mile south of the Beltway.

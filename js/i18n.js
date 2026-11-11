@@ -1,5 +1,5 @@
 /* ==========================================================================
-   NEHA Threading — i18n.js
+   Neha Salon & Spa — i18n.js
    Lightweight English / Spanish language layer for this static site.
    The selected language is kept in localStorage and may be shared in a URL
    with ?lang=es. English remains the default when JavaScript is unavailable.
@@ -310,7 +310,7 @@
     "something for everyone": "algo para todos",
     "Our story": "Nuestra historia",
     "In the heart of Pikesville": "En el corazón de Pikesville",
-    "Neha Threading Salon and Spa is right in the heart of Pikesville, just half a mile south of the Beltway at 1501 Reisterstown Road. The spa offers a wide range of services for both women and men.": "Neha Threading Salon and Spa está en el corazón de Pikesville, a solo media milla al sur de la Beltway, en 1501 Reisterstown Road. El spa ofrece una amplia variedad de servicios para mujeres y hombres.",
+    "Neha Salon & Spa is right in the heart of Pikesville, just half a mile south of the Beltway at 1501 Reisterstown Road. The spa offers a wide range of services for both women and men.": "Neha Salon & Spa está en el corazón de Pikesville, a solo media milla al sur de la Beltway, en 1501 Reisterstown Road. El spa ofrece una amplia variedad de servicios para mujeres y hombres.",
     "After careful planning and attention to every detail, the spa was formally opened in March 2013 by the Mayor of Baltimore, Stephanie Rawlings-Blake. At more than 6,000 square feet, it brings together a full hair salon and state-of-the-art treatment rooms for facials, massages and body treatments.": "Tras una planificación cuidadosa y atención a cada detalle, el spa fue inaugurado formalmente en marzo de 2013 por la alcaldesa de Baltimore, Stephanie Rawlings-Blake. Con más de 6,000 pies cuadrados, reúne un salón de peluquería completo y modernas salas para faciales, masajes y tratamientos corporales.",
     "Whether you are coming in for a shampoo and style or a full spa package, our goal is the same: exceptional service, customized to you.": "Ya sea que vengas por un lavado y peinado o por un paquete completo de spa, nuestro objetivo es el mismo: un servicio excepcional, personalizado para ti.",
     "Explore Our Services": "Explorar nuestros servicios",

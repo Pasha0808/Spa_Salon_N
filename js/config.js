@@ -1,12 +1,12 @@
 /* ==========================================================================
-   NEHA Threading — config.js
+   Neha Salon & Spa — config.js
    Business details and the service list, used across every page.
    Facts come from the salon's current website (nehathreading.com) and the
    owner. Values marked TODO are still placeholders.
    ========================================================================== */
 
 window.NEHA_CONFIG = {
-  name: "Neha Threading Salon & Spa",
+  name: "Neha Salon & Spa",
   tagline: "Threading · Spa · Massage · Skin",
   taglineEs: "Depilación con hilo · Spa · Masaje · Piel",
   email: "neha@nehathreading.com",

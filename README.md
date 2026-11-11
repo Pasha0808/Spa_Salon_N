@@ -1,6 +1,6 @@
-# Neha Threading Salon & Spa: website
+# Neha Salon & Spa: website
 
-A website for **Neha Threading Salon & Spa** in Pikesville, Maryland. It is
+A website for **Neha Salon & Spa** in Pikesville, Maryland. It is
 built the same way as the earlier
 [Elite Dental Lab](https://github.com/Pasha0808/EliteDentalLab) site: static
 HTML, CSS and vanilla JavaScript, with no framework, no build step and no
@@ -467,3 +467,4 @@ Desktop/Mobile view toggle, and the Supabase portal (not relevant here).
 | 2026-11-10 | **Quieter language switch.** Replaced the two-option `EN / ES` control with one compact translucent pill that shows the active code, previews the alternate language on hover/focus and toggles on click or tap. |
 | 2026-11-10 | **Explicit language dropdown.** Replaced the hover-swap interaction with a translucent circular control and an `EN` / `ES` dropdown. Both language URLs are now explicit, fixing the return from Spanish to English. |
 | 2026-11-11 | **Owner's layout example applied.** Home tab added first; menu and logo 25% larger (menu collapses below 1340 px). Hero: three selling points replace the bullet points, "Pikesville" added to the text. New facts strip under the video. "What brings you in today?" replaced by "Our services" photo cards (old section kept in `backups/`). Reviews reduced to one slim row. The band above the footer is now "Give the Gift of Self Care", linking to the gift certificates page. Language switch removed; English only, Spanish kept dormant. |
+| 2026-11-11 | **Renamed to "Neha Salon & Spa".** Titles, descriptions, body text, footer and the logo wordmark (NEHA / SALON & SPA). The web address, email and social handles are unchanged. |

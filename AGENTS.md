@@ -1,4 +1,4 @@
-# Agent instructions: Neha Threading Salon & Spa website
+# Agent instructions: Neha Salon & Spa website
 
 Read these two files before changing anything:
 
@@ -9,7 +9,7 @@ Read these two files before changing anything:
 
 ## Project in one paragraph
 Static website (HTML + CSS + vanilla JS, no framework, no build step) for
-Neha Threading Salon & Spa, one location in Pikesville, Maryland. The owner
+Neha Salon & Spa, one location in Pikesville, Maryland. The owner
 wants shades of green, a full-screen background video, and a soft, calm
 look with crisp details (HD video, clear text). The code follows the
 developer's earlier Elite Dental Lab site (github.com/Pasha0808/EliteDentalLab).

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   NEHA Threading — specialists.js
+   Neha Salon & Spa — specialists.js
    The salon's specialists, each with their own services and prices.
    This one list feeds:
      - the Our Specialists page (specialists.html)

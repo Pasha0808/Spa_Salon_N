@@ -1,5 +1,5 @@
 /* ==========================================================================
-   NEHA Threading — site.js
+   Neha Salon & Spa — site.js
    Shared chrome for every page (same approach as the Elite Dental Lab site):
    announcement bar, header with dropdown menus, footer, and everything that
    is filled in from js/config.js (service lists, contact details, map,
@@ -92,7 +92,7 @@
     return `
     <a class="logo ${extraClass || ""}" href="index.html" aria-label="${esc(C.name)} — home">
       ${markSVG()}
-      <span class="wordmark"><span class="wm-name">NEHA</span><span class="wm-sub">THREADING</span></span>
+      <span class="wordmark"><span class="wm-name">NEHA</span><span class="wm-sub">SALON &amp; SPA</span></span>
     </a>`;
   }
 

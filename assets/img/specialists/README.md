@@ -1,7 +1,7 @@
 # Sample specialist portraits
 
 These 24 portraits are **AI-generated fictional people** for the 24 sample
-profiles in `js/specialists.js`. They are not Neha Threading staff and must
+profiles in `js/specialists.js`. They are not Neha Salon & Spa staff and must
 not be presented as real employees. The live cards keep the visible
 **Sample profile** label for that reason.
 
