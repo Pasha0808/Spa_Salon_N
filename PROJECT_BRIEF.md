@@ -33,7 +33,7 @@ agents are in [AGENTS.md](AGENTS.md).
 | Look | **Soft "botanical calm" style with crisp details** (§4). The hard-edged Craft-style version was tried and rejected |
 | Colour | **Warm khaki and olive green** inspired by the owner's 2026-11-11 reference image, with cream backgrounds and tiny orange accents |
 | Hero | Full-screen background video in HD (placeholder clip for now) |
-| Home page | Video hero with three selling points → thin facts strip → **five wide photographic service cards** → gallery → one slim row of reviews → product strip → **khaki “Give the Gift of Self Care” band** |
+| Home page | Video hero with three selling points → thin facts strip → **five wide photographic service cards** → gallery → one slim row of reviews in italic serif, no boxes (gallery, reviews and products share one background) → product strip → **khaki “Give the Gift of Self Care” band** |
 | Header | **No phone number in the menu bar.** Phone is in the footer and on the Contact and Booking pages |
 | Languages | **English only.** The EN / ES switch was removed on 2026-11-11. The Spanish text is kept in the code, switched off (`languageSwitch` in `js/config.js`) |
 | Locations | **One: Pikesville.** Canton is closed. No "two locations" wording anywhere |
@@ -51,6 +51,21 @@ agents are in [AGENTS.md](AGENTS.md).
 ## 2. Request log
 
 Newest first. "Dev" is the developer; "owner" is the salon owner.
+
+### 2026-11-11 (latest): reviews without boxes, one background for three sections
+
+- **Home-page reviews should not sit in boxes; write them in the nice
+  calligraphy already used on the site.** Done: the four reviews are set in
+  the site's italic serif (the lettering of "shaped by hand." in the hero),
+  centred, with thin dividing lines between them and no cards or shadows.
+  The section is still one slim row; on phones the reviews are swiped
+  sideways.
+- **"Fresh from the chair", the reviews and "Our handpicked products" had
+  different backgrounds; make all three the same.** Done: the reviews now
+  use the same warm mist background as the gallery and the product strip.
+- Before this, Claude reviewed the four Codex commits made since its last
+  session (real team, khaki palette, service photos, slower product strip,
+  cancellation policy, Sushma's waxing prices) and kept them all.
 
 ### 2026-11-11 (latest): reconcile the remaining specialist-price gaps
 

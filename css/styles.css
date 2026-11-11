@@ -472,11 +472,21 @@ h1 em, h2 em { font-style: italic; color: inherit; }
 .stars { color: var(--sun); letter-spacing: 0.25em; font-size: 0.9rem; }
 .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 60px; }
 /* Home: one slim row of four compact reviews (dev request, 2026-11-11) */
-.reviews-slim { padding: 44px 0; }
-.reviews-slim .review-grid { grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 0; }
-.reviews-slim .review { padding: 20px 22px; display: flex; flex-direction: column; }
-.reviews-slim .review blockquote { margin-top: 8px; font-size: 0.95rem; line-height: 1.5; flex: 1; }
-.reviews-slim .review figcaption { margin-top: 12px; font-size: 0.68rem; letter-spacing: 0.18em; }
+/* No boxes: each review is written in the site's italic serif, the same
+   lettering as "shaped by hand." in the hero (dev request, 2026-11-11). */
+.reviews-slim { padding: 40px 0 44px; }
+.reviews-slim .review-grid { grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 0; }
+.reviews-slim .review {
+  background: none; box-shadow: none; border-radius: 0;
+  padding: 6px 30px; display: flex; flex-direction: column; text-align: center;
+}
+.reviews-slim .review + .review { border-left: 1px solid var(--line); }
+.reviews-slim .review blockquote {
+  margin-top: 10px; flex: 1;
+  font-family: var(--serif); font-style: italic; font-weight: 500;
+  font-size: 1.36rem; line-height: 1.34; color: var(--forest-ink);
+}
+.reviews-slim .review figcaption { margin-top: 14px; font-size: 0.68rem; letter-spacing: 0.18em; }
 .review { background: #fff; padding: 34px 30px; border-radius: var(--radius); box-shadow: 0 6px 24px rgba(47, 52, 39, 0.07); }
 .review blockquote { margin-top: 12px; color: var(--ink-soft); }
 
@@ -754,7 +764,8 @@ fieldset.service-field { border: 0; min-width: 0; }
 
 @media (max-width: 1120px) {
   .showcase-grid { grid-template-columns: repeat(3, 1fr); }
-  .reviews-slim .review-grid { grid-template-columns: repeat(2, 1fr); }
+  .reviews-slim .review-grid { grid-template-columns: repeat(2, 1fr); row-gap: 30px; }
+  .reviews-slim .review:nth-child(odd) { border-left: 0; }
 
   .service-cards { grid-template-columns: repeat(2, 1fr); }
   .pro-grid { grid-template-columns: repeat(3, 1fr); }
@@ -813,7 +824,9 @@ fieldset.service-field { border: 0; min-width: 0; }
   .reviews-slim { padding: 34px 0; }
   /* Phones: the four reviews sit in one row you swipe sideways, so the section stays short */
   .reviews-slim .review-grid { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; margin: 0 -20px; padding-inline: 20px; }
-  .reviews-slim .review { flex: 0 0 82%; scroll-snap-align: center; }
+  .reviews-slim .review { flex: 0 0 82%; scroll-snap-align: center; padding: 4px 20px; }
+  .reviews-slim .review:nth-child(odd) { border-left: 1px solid var(--line); }
+  .reviews-slim .review:first-child { border-left: 0; }
   .services-showcase { padding: 44px 0 42px; }
   .services-showcase-head { align-items: flex-start; flex-direction: column; gap: 18px; margin-bottom: 22px; }
   .services-showcase-head .btn { margin-bottom: 0; }
