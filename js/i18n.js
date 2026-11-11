@@ -67,9 +67,11 @@
     "Play product slideshow": "Reproducir carrusel de productos",
     "Before and after brow lamination": "Antes y después de laminado de cejas",
     "Brow shaping and tint result": "Resultado de diseño y tinte de cejas",
+    "Bright facial treatment room": "Sala luminosa para tratamientos faciales",
     "Relaxing treatment room": "Sala de tratamiento relajante",
     "Pink ombré nail art": "Diseño de uñas ombré rosa",
     "Massage treatment": "Tratamiento de masaje",
+    "Intimate massage treatment room": "Sala íntima para tratamientos de masaje",
     "Spa reception interior": "Recepción del spa",
 
     /* Services and specialist routes */

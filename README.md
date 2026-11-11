@@ -87,7 +87,7 @@ js/main.js                Hero video rules and the request forms
 assets/img/               neha-mark.svg (logo mark + favicon), leaf-line.svg
                           (leaf drawing for backgrounds), hero-poster.jpg, logo-original.png
 assets/img/products/      The four brand pictures in the home page strip
-assets/img/gallery/       Six supplied photos used by Fresh from the chair
+assets/img/gallery/       Eight supplied photos used by Fresh from the chair
 assets/img/specialists/   24 fictional AI sample portraits, 800 × 1000 WebP
 assets/video/             hero-loop.mp4 (placeholder)
 
@@ -115,7 +115,7 @@ Every page has the same skeleton:
 <div id="neha-footer"></div>
 <script src="js/config.js?v=10"></script>
 <script src="js/specialists.js?v=3"></script>
-<script src="js/i18n.js?v=2"></script>
+<script src="js/i18n.js?v=3"></script>
 <script src="js/site.js?v=12"></script>
 <script src="js/main.js?v=6"></script>
 ```
@@ -443,3 +443,4 @@ Desktop/Mobile view toggle, and the Supabase portal (not relevant here).
 | 2026-11-10 | **Renamed to "Our Specialists".** The team page, each person's page and the data file are now `specialists.html`, `specialist.html` and `js/specialists.js`; all visible wording says "specialist". CSS classes and `data-` hooks keep their short `pro-` prefix. |
 | 2026-11-11 | **No prices on service pages; five specialists per service; Gallery out of the menu.** "from $…" removed from the "Choose your specialist" rows. The sample team is now 24 generated placeholders, with a `REAL_SPECIALISTS` list ready for real people. Our Specialists shows four cards per row. |
 | 2026-11-10 | **Larger service choices, bilingual site and photography.** Home service icons and labels are 50% larger, with a stronger heading and responsive columns. Added persistent EN/ES switching and Spanish copy across navigation, pages, forms and specialist menus. Added six supplied WebP gallery images and 24 distinct fictional AI sample portraits. Verified desktop and exact 390 px layouts in both languages; `npm test` passes all 21 pages. |
+| 2026-11-10 | **Full-width home grids and clearer specialist spacing.** Added two supplied treatment-room photos as WebP, rebuilt Fresh from the chair as a hole-free eight-cell grid that uses the viewport width, and changed the service choices to one 12-item desktop row with fluid icon sizing. Increased the vertical separation between specialist cards and service-page specialist rows. |

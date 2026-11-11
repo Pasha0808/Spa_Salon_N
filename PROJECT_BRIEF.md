@@ -32,7 +32,7 @@ agents are in [AGENTS.md](AGENTS.md).
 | Look | **Soft "botanical calm" style with crisp details** (§4). The hard-edged Craft-style version was tried and rejected |
 | Colour | Shades of green: the owner's preference from day one |
 | Hero | Full-screen background video in HD (placeholder clip for now) |
-| Home page | Hero → **large responsive grid of 12 service icons** → gallery with six supplied photos → reviews → product strip (with the four brand pictures) |
+| Home page | Hero → **one wide desktop row of 12 service icons** → full-width gallery with eight supplied photos → reviews → product strip (with the four brand pictures) |
 | Header | **No phone number in the menu bar.** Phone is in the footer and on the Contact and Booking pages |
 | Languages | Header switch for **English and Spanish**. The choice persists and Spanish links can be shared with `?lang=es` |
 | Locations | **One: Pikesville.** Canton is closed. No "two locations" wording anywhere |
@@ -49,6 +49,21 @@ agents are in [AGENTS.md](AGENTS.md).
 ## 2. Request log
 
 Newest first. "Dev" is the developer; "owner" is the salon owner.
+
+### 2026-11-10 (latest): full-width services and gallery spacing
+
+- **Keep all 12 “What brings you in today?” services on one desktop line
+  and use the screen width.** Done: the section breaks out of the normal
+  content width, uses all 12 columns on wide screens and grows the icons up
+  to 112 px where space allows. Tablets and phones still wrap so labels
+  remain readable and touch targets remain usable.
+- **Add `bed.jpeg` and `bed2.jpg` to “Fresh from the chair,” remove empty
+  spaces and spread the photos horizontally.** Done: both were converted
+  to WebP, the gallery now has eight equal grid cells, and the photo grid
+  spans the viewport instead of the standard content container.
+- **Increase vertical space between specialists.** Done on the Our
+  Specialists grid and the specialist rows within service pages, so each
+  “Book with …” action is clearly separated from the next portrait.
 
 ### 2026-11-10: project delivery convention
 
@@ -415,8 +430,8 @@ Waiting on the dev or the owner:
 | **Service descriptions** for 11 service pages (all except Massages). Prices no longer go on service pages: they belong to each specialist | The service pages have short placeholder descriptions |
 | ~~Product pictures~~ | ✅ Supplied by the dev on 2026-11-10 and in the strip |
 | **The salon's own video** (10–20 s, calm) | The hero uses a hotel's promo clip, which **must not go live** |
-| **Remaining real photos**: Neha, the actual spa, the real team and each specialist's work | The home gallery now has six supplied photos. About/founder and work-photo tiles are still placeholders; the 24 portraits are fictional AI samples |
-| **Confirm rights and attribution for the six supplied gallery images**, and confirm any pictured interiors are actually appropriate for the salon | Required before public launch; source-to-output mapping is in `assets/img/gallery/README.md` |
+| **Remaining real photos**: Neha, the actual spa, the real team and each specialist's work | The home gallery now has eight supplied photos. About/founder and work-photo tiles are still placeholders; the 24 portraits are fictional AI samples |
+| **Confirm rights and attribution for the eight supplied gallery images**, and confirm any pictured interiors are actually appropriate for the salon | Required before public launch; source-to-output mapping is in `assets/img/gallery/README.md` |
 | **The real team.** For each specialist: name, role, short description, portrait, which services they offer, **their own price list**, photos of their work, and optionally Instagram. Also whether Neha takes clients herself | `js/specialists.js` holds 24 sample profiles |
 | **Careers wording**: which roles, how to apply | `careers.html` |
 | **How many years** Neha has been in Baltimore (the old site's "over 18" is out of date; a client review says 19 as a customer) | `about.html` |
